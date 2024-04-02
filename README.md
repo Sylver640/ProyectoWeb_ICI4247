@@ -1,4 +1,4 @@
-# Proyecto
+# Proyecto TuneBytes
 
 <div align="center">
 
@@ -10,23 +10,19 @@
 
 ## Descripción
 
-> [!NOTE]
-> Crear una breve descripción de su proyecto.
+**TuneBytes** es una aplicación móvil que permite a los usuarios buscar y reproducir música de videojuegos. Con una UI inspirada en aplicaciones como Spotify o Youtube Music, siendo intuitiva y simple de manejar en dispositivos móviles, cada usuario puede crear y editar listas de reproducción, indicar cuáles son sus videojuegos favoritos y recibir recomendaciones de diferente tipo: género de videojuego o género músical.
 
 ### Funcionalidades
-
-> [!NOTE]
-> Crear una lista numerada con las funcionalidades propuestas para su proyecto.
+1. Creación de cuenta personal e inicio de sesión
+2. Escuchar música de videojuegos
+3. Buscar, con ayuda de una API, los videojuegos por su nombre
+4. Creación y edición de listas de reproducción personalizadas y personales
+5. Edición de perfil personal que indique los 4 videojuegos favoritos del usuario y sus listas de reproducción creadas
+6. Recomendación personalizada para cada usuario con respecto a dos criterios: género de videojuego o género músical de videojuego
 
 ## Prototipo
-
-> [!NOTE]
-> Debe reemplazar los URL de los archivos Figma. Ver al final de este archivo, ahí estan los links.
-
 <div align="center">
-
 [![figma-prot-badge]][figma-prot-url] [![figma-dis-badge]][figma-dis-url]
-
 </div>
 
 ## Maquetación web
