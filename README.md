@@ -82,6 +82,6 @@
 [android-development-web]: https://developer.android.com/
 
 [figma-prot-badge]: https://img.shields.io/badge/Ver%20prototipo%20en%20Figma-F24E1E?logo=figma&logoColor=fff&style=flat
-[figma-prot-url]: #
+[figma-prot-url]: https://www.figma.com/file/Kcfe2qfNulpaNh0qzUn3sX/AppM%C3%BAsicaVG?type=design&node-id=0%3A1&mode=design&t=bAKoBhMZQBgrkb6o-1
 [figma-dis-badge]: https://img.shields.io/badge/Ver%20diseño%20UI%20en%20Figma-F24E1E?logo=figma&logoColor=fff&style=flat
 [figma-dis-url]: #
