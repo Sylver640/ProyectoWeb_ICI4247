@@ -22,7 +22,9 @@
 
 ## Prototipo
 <div align="center">
+  
 [![figma-prot-badge]][figma-prot-url] [![figma-dis-badge]][figma-dis-url]
+
 </div>
 
 ## Maquetación web
