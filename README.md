@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![angular-badge-sm]][angular-web] [![css3-badge-sm]][css3-web] [![eslint-badge-sm]][eslint-web] [![express-badge-sm]][express-web] [![figma-badge-sm]][figma-web] [![git-badge-sm]][git-web] [![github-badge-sm]][github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web] [![mongodb-badge-sm]][mongodb-web] [![mysql-badge-sm]][mysql-web] [![nodejs-badge-sm]][nodejs-web] [![npm-badge-sm]][npm-web] [![postgresql-badge-sm]][postgresql-web] [![prettier-badge-sm]][prettier-web] [![react-badge-sm]][react-web] [![tailwind-badge-sm]][tailwind-web] [![ts-badge-sm]][ts-web] [![vscode-badge-sm]][vscode-web] [![yarn-badge-sm]][yarn-web]
+[![express-badge-sm]][express-web] [![figma-badge-sm]][figma-web] [![git-badge-sm]][git-web] [![github-badge-sm]][github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web][![nodejs-badge-sm]][nodejs-web] [![npm-badge-sm]][npm-web] [![postgresql-badge-sm]][postgresql-web] [![prettier-badge-sm]][prettier-web] [![react-badge-sm]][react-web][![ts-badge-sm]][ts-web] [![vscode-badge-sm]][vscode-web]
 
 [![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
 
