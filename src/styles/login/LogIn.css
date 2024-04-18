@@ -1,0 +1,91 @@
+.inicio{
+    align-items: center;
+    text-align: center;
+}
+
+.flex-col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:5px;
+}
+
+.flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row-vw{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:3vw;
+    width: 100%;
+}
+
+.redondeo{
+    width: 70vw;
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+.redes{
+    width: 60vw;
+}
+
+.login{
+    width: 65vw;
+}
+
+#recordatorio{
+    width: 85%;
+    padding-left: 5vw;
+}
+
+#toggle{
+    width: 15%;
+}
+
+#login-color{
+    --background: #FFFFFF;
+    --color:#151515;
+}
+
+#face-color{
+    --background:#3B5998;
+}
+
+#google-color{
+    --background:#DB4A39;
+}
+
+#apple-color{
+    --background:#F0F3F5;
+    --color: #151515;
+}
+
+.user-passORsing{
+    text-decoration: none;
+    color: #FB7E14;
+    margin-bottom: 1vw;
+}
+
+.login-item{
+    --background: #E8E9EB;
+    --color: #A0A0A0;
+    --border-radius: 100px;
+}
+
+ion-toggle{
+    --track-background: #E8E9EB;
+    --track-background-checked: #E8E9EB;
+  
+    --handle-background: #A0A0A0;
+    --handle-background-checked: #FB7E14;
+
+    --handle-max-height: auto;
+    --handle-box-shadow: none;
+}
