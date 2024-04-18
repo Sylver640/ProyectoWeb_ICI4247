@@ -38,7 +38,7 @@ const Home = () => {
 
                             {cards.map((card) => {
                                 return(
-                                <IonCard >
+                                <IonCard key={card.id}>
                                     <IonCardHeader>
                                         <IonCardTitle>{card.title}</IonCardTitle>
                                         <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>

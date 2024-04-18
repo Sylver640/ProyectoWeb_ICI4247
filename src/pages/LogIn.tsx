@@ -8,10 +8,7 @@ import {
     IonText, 
     IonToggle, 
     IonInput, 
-    IonItem, 
-    IonButton,
-    IonAlert,
-    IonRow
+    IonButton
 } from '@ionic/react';
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
@@ -19,27 +16,57 @@ import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 
 import '../styles/login/LogIn.css';
 
-function validateEmail(email: string) {
-    const re = /^((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]))$/;
-    return re.test(String(email).toLowerCase());
-}
-
 const LogIn: React.FC = () => {
 
     // Declaracion de variables
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [message, setMessage] = useState<string>('');
-    const [iserror, setIsError] = useState<boolean>(false);
+    const [isValid, setIsValid] = useState<boolean>();
+    const [isError, setIsError] = useState<boolean>();
+    const [isTouched, setIsTouched] = useState<boolean>(false);
     const history = useHistory();
-    
-    // Inicio de sesion
-    const handleUsernameChange = (e: any) => {
-        setEmail(e.target.value);
+
+    // Validar Email
+    const validateEmail = (email: string) => {
+        return email.match(/^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
     };
-    
-    const handlePasswordChange = (e: any) => {
-        setPassword(e.target.value);
+
+    // validar el email
+    const validate = (e: Event)=>{
+        const value = (e.target as HTMLInputElement).value;
+
+        setIsValid(undefined);
+
+        if(value === '') return;
+
+        validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
+
+        if(isValid === true){setEmail(value);}
+    };
+
+    const passwordValidation = (password: string) => {
+
+        if(password.length < 2) return false;
+
+        return true;
+    }
+
+    // Validar password
+    const validatePassword = (e: Event) => {
+        const value = (e.target as HTMLInputElement).value;
+
+        setIsError(undefined);
+
+        if(value === '') return;
+        
+        passwordValidation(value) ? setIsError(true) : setIsError(false);
+
+        if(isError === true){setPassword(value);}
+    }
+
+    // Mark es tocado
+    const markTouched = () => {
+        setIsTouched(true);
     };
 
     const handleSignIn = () => {
@@ -51,24 +78,13 @@ const LogIn: React.FC = () => {
     }
     
     const handleLogin = () => {
-        if(!email){
-            setMessage('Please enter a valid email');
-            setIsError(true);
-            return;
-        }
-
-        if(!validateEmail(email)){
-            setMessage('Please enter a valid email');
-            setIsError(true);
-            return;
-        }
-
         if(email === 'generico@gmail.com' && password === '1234'){
+            console.log(password);
+            console.log(email);
             history.push('/menu');
         }else{
-            setMessage('mail or password incorrect');
-            setIsError(true);
-            return;
+            setIsError(false);
+            setIsValid(false);
         }
     };
 
@@ -85,29 +101,33 @@ const LogIn: React.FC = () => {
                 {/* Seccion del inicio de sesion */}
                 <IonCol>
                     <div className='flex-col'>
-                        <IonItem className='redondeo ion-text-sm login-item'>
-                            <IonInput placeholder="Email" id='usuario' type="text" value={email} onIonChange={handleUsernameChange}></IonInput>
-                        </IonItem>
 
-                        <IonItem className='redondeo  ion-text-sm login-item'>
-                            <IonInput type="password" placeholder='Password' value={password} onIonChange={handlePasswordChange}></IonInput>
-                        </IonItem>
+                        <IonInput 
+                            className={`singIn ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                            type="email"
+                            fill="solid"
+                            label="Email"
+                            labelPlacement="floating"
+                            helperText="Please enter a valid email"
+                            errorText="Invalid email"
+                            onIonInput={(event) => validate(event)}
+                            onIonBlur={() => markTouched()}
+                        ></IonInput>
+
+                        <IonInput
+                            className={`singIn ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
+                            type="password" 
+                            fill="solid"
+                            label='Password'
+                            labelPlacement='floating'
+                            helperText='Please enter your password'
+                            errorText='Invalid password'
+                            onIonInput={(event) => validatePassword(event)}
+                            onIonBlur={() => markTouched()}
+                        ></IonInput>
+
                     </div>
                 </IonCol>
-
-                <IonGrid>
-                    <IonRow>
-                        <IonCol>
-                            <IonAlert
-                                isOpen={iserror}
-                                onDidDismiss={() => setIsError(false)}
-                                header={'Error'}
-                                message={message}
-                                buttons={['OK']}
-                            />
-                        </IonCol>
-                    </IonRow>
-                </IonGrid>
 
                 {/* Toggle Switch */}
                 <div className='ion-padding flex-row'>

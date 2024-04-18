@@ -25,11 +25,12 @@
     width: 100%;
 }
 
-.redondeo{
+.singIn{
+    --background:#A0A0A0;
+    --color:#F0F3F5;
+    --ion-color-primary: #FB7E14;
+    border-radius: 100px;
     width: 70vw;
-    padding: 5px;
-    margin: 5px;
-    font-size: 14px;
 }
 
 .redes{
@@ -71,12 +72,6 @@
     text-decoration: none;
     color: #FB7E14;
     margin-bottom: 1vw;
-}
-
-.login-item{
-    --background: #E8E9EB;
-    --color: #A0A0A0;
-    --border-radius: 100px;
 }
 
 ion-toggle{
