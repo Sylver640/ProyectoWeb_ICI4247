@@ -49,7 +49,7 @@ const LogIn: React.FC = () => {
         if(password.length < 2) return false;
 
         return true;
-    }
+    };
 
     // Validar password
     const validatePassword = (e: Event) => {
@@ -62,7 +62,7 @@ const LogIn: React.FC = () => {
         passwordValidation(value) ? setIsError(true) : setIsError(false);
 
         if(isError === true){setPassword(value);}
-    }
+    };
 
     // Mark es tocado
     const markTouched = () => {
@@ -71,16 +71,14 @@ const LogIn: React.FC = () => {
 
     const handleSignIn = () => {
         history.push('/signin');
-    }
+    };
 
     const handleForgot = () => {
         history.push('/forgot');
-    }
+    };
     
     const handleLogin = () => {
         if(email === 'generico@gmail.com' && password === '1234'){
-            console.log(password);
-            console.log(email);
             history.push('/menu');
         }else{
             setIsError(false);
@@ -103,7 +101,7 @@ const LogIn: React.FC = () => {
                     <div className='flex-col'>
 
                         <IonInput 
-                            className={`singIn ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                            className={`logIn-input ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
                             type="email"
                             fill="solid"
                             label="Email"
@@ -115,7 +113,7 @@ const LogIn: React.FC = () => {
                         ></IonInput>
 
                         <IonInput
-                            className={`singIn ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
+                            className={`logIn-input ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             type="password" 
                             fill="solid"
                             label='Password'
@@ -132,7 +130,7 @@ const LogIn: React.FC = () => {
                 {/* Toggle Switch */}
                 <div className='ion-padding flex-row'>
                     <IonText id='recordatorio'>Remember me</IonText>
-                    <IonToggle id="toggle" checked={true}></IonToggle>
+                    <IonToggle id="toggle" checked={false}></IonToggle>
                 </div>
 
                 {/* Boton de inicio de sesion */}

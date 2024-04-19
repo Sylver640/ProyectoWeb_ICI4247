@@ -25,11 +25,10 @@
     width: 100%;
 }
 
-.singIn{
-    --background:#A0A0A0;
+.logIn-input{
+    --background:#E8E9EB;
     --color:#F0F3F5;
     --ion-color-primary: #FB7E14;
-    border-radius: 100px;
     width: 70vw;
 }
 

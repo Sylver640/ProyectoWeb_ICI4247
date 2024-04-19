@@ -74,11 +74,47 @@
     display: none;
 }
 
-ion-card{
+#song-card{
     --background: #a12929;
     --color: #F3F5F3;
     min-width: 110px;
     height: 110px;
     text-align: center;
     margin-right: 15px;
+}
+
+.titulo-scroll-center{
+    text-align: center;
+    font-size: 25px;
+}
+
+#new-release{
+    --background: #a12929;
+    --color: #F3F5F3;
+    min-width: 90%;
+    height: 320px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.lista-track{
+    background-color: #151515;
+}
+
+#song-tracklist{
+    --background:#a12929;
+    --border-color: #FB7E14;
+    --color:#F3F5F3;
+    --border-width: 1px;
+    --ripple-color: #FB7E14;
+}
+
+#game-card{
+    --background: #a12929;
+    --color: #F3F5F3;
+    min-width: 110px;
+    height: 110px;
+    text-align: center;
+    margin-right: 15px;
+    border-radius: 100px;
 }
