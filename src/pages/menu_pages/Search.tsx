@@ -9,11 +9,12 @@ const Search = () => {
 
             <div className="contenedor-search">
 
+                <IonItem lines="full" className="search-bar">
                     <IonInput
-                    className="search-bar"
-                    type="text"
-                    placeholder="Search for a song"
+                        type="text"
+                        placeholder="Search for a song"
                     ></IonInput>
+                </IonItem>
             
 
                 <p className="text-search">Recent searches</p>
@@ -30,7 +31,7 @@ const Search = () => {
                                         </IonThumbnail>
                                         <IonLabel>{card.title}</IonLabel>
                                     </IonItem>
-                                        );
+                                    );
                                 })}
 
                         </IonList>
