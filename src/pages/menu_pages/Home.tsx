@@ -1,7 +1,6 @@
 import { 
     IonContent, 
-    IonHeader, 
-    IonTitle, 
+    IonHeader,  
     IonCard, 
     IonCardSubtitle, 
     IonCardHeader, 
@@ -11,13 +10,12 @@ import {
     IonList,
     IonItem,
     IonThumbnail,
-    IonLabel
+    IonLabel,
+    IonButton
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import '../../styles/menu styles/Home.css';
 import {cards} from "../../components/cards";
-import { card } from "ionicons/icons";
-
 
 const Home = () => {
     return (
@@ -26,7 +24,12 @@ const Home = () => {
             <IonHeader translucent={true}>
 
                 <div className="header-menu">
-                    <IonTitle>TuneBytes</IonTitle>
+
+                    <div className="header-items">
+                            <IonButton className="header-item">Podcast</IonButton>
+                            <IonButton className="header-item">Playlist</IonButton>
+                    </div>
+
                     <IonAvatar id="usuario-avatar">
                         <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
                     </IonAvatar>

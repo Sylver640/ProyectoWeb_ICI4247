@@ -8,7 +8,8 @@ import {
     IonText, 
     IonToggle, 
     IonInput, 
-    IonButton
+    IonButton,
+    IonItem
 } from '@ionic/react';
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
@@ -100,25 +101,23 @@ const LogIn: React.FC = () => {
                 <IonCol>
                     <div className='flex-col'>
 
-                        <IonInput 
+                    <IonInput 
                             className={`logIn-input ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
                             type="email"
-                            fill="solid"
+                            fill="outline"
                             label="Email"
                             labelPlacement="floating"
-                            helperText="Please enter a valid email"
                             errorText="Invalid email"
                             onIonInput={(event) => validate(event)}
                             onIonBlur={() => markTouched()}
-                        ></IonInput>
+                    ></IonInput>
 
                         <IonInput
                             className={`logIn-input ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             type="password" 
-                            fill="solid"
+                            fill="outline"
                             label='Password'
                             labelPlacement='floating'
-                            helperText='Please enter your password'
                             errorText='Invalid password'
                             onIonInput={(event) => validatePassword(event)}
                             onIonBlur={() => markTouched()}
