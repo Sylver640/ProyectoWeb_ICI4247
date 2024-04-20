@@ -1,7 +1,0 @@
-{
-  "name": "Tuna",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}
