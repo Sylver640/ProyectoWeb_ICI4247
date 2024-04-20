@@ -2,11 +2,14 @@
 
 <div align="center">
 
-[![express-badge-sm]][express-web] [![figma-badge-sm]][figma-web] [![git-badge-sm]][git-web] [![github-badge-sm]][github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web][![nodejs-badge-sm]][nodejs-web] [![npm-badge-sm]][npm-web] [![postgresql-badge-sm]][postgresql-web] [![prettier-badge-sm]][prettier-web] [![react-badge-sm]][react-web][![ts-badge-sm]][ts-web] [![vscode-badge-sm]][vscode-web]
+[![css3-badge-sm]][css3-web] [![eslint-badge-sm]][eslint-web] [![express-badge-sm]][express-web] [![figma-badge-sm]][figma-web] [![git-badge-sm]][git-web] [![github-badge-sm]][github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web] [![mongodb-badge-sm]][mongodb-web] [![mysql-badge-sm]][mysql-web] [![nodejs-badge-sm]][nodejs-web] [![npm-badge-sm]][npm-web] [![postgresql-badge-sm]][postgresql-web] [![prettier-badge-sm]][prettier-web] [![react-badge-sm]][react-web] [![tailwind-badge-sm]][tailwind-web] [![ts-badge-sm]][ts-web] [![vscode-badge-sm]][vscode-web] [![yarn-badge-sm]][yarn-web]
 
 [![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
 
-</div>
+
+[![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
+
+</div>[github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web] [![mongodb-badge-sm]][mongodb-
 
 ## Descripción
 
@@ -44,8 +47,6 @@
 [tailwind-web]: https://tailwindcss.com/
 [react-badge-sm]: https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=fff&style=flat
 [react-web]: https://reactjs.org/
-[angular-badge-sm]: https://img.shields.io/badge/Angular-DD0031?logo=angular&logoColor=fff&style=flat
-[angular-web]: https://angular.io/
 [nodejs-badge-sm]: https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=fff&style=flat
 [nodejs-web]: https://nodejs.org/
 [express-badge-sm]: https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=fff&style=flat
