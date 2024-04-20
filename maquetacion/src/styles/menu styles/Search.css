@@ -1,0 +1,45 @@
+.contenedor-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:15px;
+    padding-top: 25px;
+}
+
+.search-bar{
+    --background:#E8E9EB;
+    --color:#151515;
+    width: 95vw;
+    --border-radius: 100px;
+    --border-color: #151515;
+    --ion-color-primary: #151515;
+}
+
+.text-search{
+    font-size:20px;
+    padding: 0;
+    margin: 0;
+}
+
+.contenedor-songs{
+    width: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+.search-list{
+    padding: 0;
+    margin: 0;
+    background-color: #151515;
+    width: 100%;
+}
+
+.song-searched{
+    --background: #151515;
+    --border-color : #151515;
+    --color: #F3F5F3;
+    text-align: left;
+    padding-bottom: 5px;
+    --ripple-color: #FB7E14;
+}

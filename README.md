@@ -6,7 +6,10 @@
 
 [![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
 
-</div>
+
+[![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
+
+</div>[github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web] [![mongodb-badge-sm]][mongodb-
 
 ## Descripción
 
