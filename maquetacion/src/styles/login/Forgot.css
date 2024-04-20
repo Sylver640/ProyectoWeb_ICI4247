@@ -1,0 +1,7 @@
+#titulo-forfor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    padding-top: 25px;
+}
