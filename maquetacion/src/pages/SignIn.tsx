@@ -21,6 +21,7 @@ const SignIn: React.FC = () =>{
     const [isNamed, setIsNamed] = useState<boolean>();
     const [message, setMessage] = useState<string>('');
     const [header, setHeader] = useState<string>('');
+    const [listCommunes, setListCommunes] = useState<string[]>([]);
     var state = true;
 
     //Existe nombre de usuario
@@ -140,12 +141,20 @@ const SignIn: React.FC = () =>{
     //-----------------------------------------
 
         // Seleccionar region y comuna
-    const handleRegion = (e: Event) => {
-        setregion((e.target as HTMLInputElement).value);
+    const handleRegion = (e: any) => {
+        const region = e.detail.value;
+
+        setregion(region);
+
+        if(region === 'Santiago'){
+            setListCommunes(['Maipú', 'Santiago', 'La Florida', 'La Reina']);
+        }else{
+            setListCommunes(['Valparaiso', 'Viña del Mar', 'Quilpue', 'Villa Alemana']);
+        }
     }
 
-    const handleCommune = (e: Event) => {
-        setCommune((e.target as HTMLInputElement).value);
+    const handleCommune = (e: any) => {
+        setCommune(e.detail.value);
     }
     //-----------------------------------------
 
@@ -197,6 +206,7 @@ const SignIn: React.FC = () =>{
                             className={`${isNamed && 'ion-valid'} ${isNamed === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="User name"
                             type="text"
+                            errorText="Invalid user name"
                             label-placement="floating"
                             onIonInput={(event) => getName(event)}
                             onIonBlur={() => markTouched()}
@@ -232,16 +242,19 @@ const SignIn: React.FC = () =>{
 
                         {/* Region y comuna del nuevo usuario*/}
                         <IonItem className="singIn">
-                            <IonSelect label="Regions" onIonChange={(event) => handleRegion(event)}>
-                            <IonSelectOption value="Santiago">Santiago</IonSelectOption>
+                            <IonSelect label="Regions" onIonChange={(e) => handleRegion(e)}>
+                            <IonSelectOption value="Santiago">Metropolitana</IonSelectOption>
                             <IonSelectOption value="Valparaiso">Valparaiso</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
                         <IonItem className="singIn">
-                            <IonSelect label="Communes" onIonChange={(event) => handleCommune(event)}>
-                            <IonSelectOption value="Quillota">Quillota</IonSelectOption>
-                            <IonSelectOption value="Calera">La Calera</IonSelectOption>
+                            <IonSelect label="Communes" onIonChange={handleCommune}>
+                            {listCommunes.map((commune) => (
+                                <IonSelectOption key={commune} value={commune}>
+                                {commune}
+                                </IonSelectOption>
+                            ))}
                             </IonSelect>
                         </IonItem>
 
