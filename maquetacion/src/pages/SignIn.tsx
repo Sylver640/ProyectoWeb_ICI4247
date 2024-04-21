@@ -33,32 +33,47 @@ const SignIn: React.FC = () =>{
         if(isValidEmail === true){setEmail(value);}
     };
 
-
     const validateRut = (rut: string) => {
-        // Reemplazar los puntos y guiones
-        rut = rut.replace(/[.-]/g, '');
+        /*El proceso aquí indicado hace referencia al que se encuentra en el sitio
+        Valida Rut Chile*/
 
-        // ValidaR el formato del rut
-        const match = rut.match(/^(\d{1,8})([0-9kK])$/);
-        if (!match) return false;
-
-        const number = parseInt(match[1],10);
-        const verifier = match[2].toUpperCase();
-
-        // Calcular el dígito verificador
+        //Se separa el rut con el digito verificador
+        const [rutPuntos, dv] = rut.replace("-K", "-k").split("-");
+        //Se sacan los puntos del RUT
+        const rutSinPuntos = rutPuntos.replace(/[.]/g, '');
+        
+        //Proceso para calcular la suma de digitos con multiplicador
         let sum = 0;
         let multiplier = 2;
-        for (let i = rut.length - 3; i >= 0; i--) {
-            sum += parseInt(rut.charAt(i), 10) * multiplier;
-            multiplier = (multiplier % 7) + 1;
+        for (let i = rutSinPuntos.length-1; i >=0; i--){
+            sum += parseInt(rutSinPuntos.charAt(i), 10) * multiplier;
+            multiplier += 1
+            if (multiplier > 7){
+                multiplier = 2;
+            }
         }
 
-        const calculatedVerifier = (11 - (sum % 11)) % 11;
-        const expectedVerifier = calculatedVerifier === 10 ? 'K' : calculatedVerifier.toString();
+        let sumDivided = Math.trunc(sum / 11);
+        let restoMultiplicado = sumDivided*11;
+        
+        let step6 = sum - restoMultiplicado;
+        let step7 = 11 - step6;
 
-        // Comparar el dígito verificador
-        return (verifier === expectedVerifier);
-    };
+        let digitoEncontrado = step7.toString();
+
+
+        if (digitoEncontrado == "10"){
+            digitoEncontrado = 'k';
+        }
+
+        if (digitoEncontrado == "11"){
+            digitoEncontrado = '0';
+        }
+
+        console.log(digitoEncontrado);
+
+        return (dv === digitoEncontrado);
+    }
 
     const rutValidation = (e:Event) =>{
         const value = (e.target as HTMLInputElement).value;
