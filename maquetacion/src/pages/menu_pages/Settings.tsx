@@ -7,18 +7,23 @@ const Settings = () => {
             <div>
                 <div className="contenedor-col">
 
+                    {/* Foto de perfil del usuario */}
                     <div className="center-av">
                         <IonAvatar id="usuario-avatar-settings">
                             <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
                         </IonAvatar>
                     </div>
 
+                    {/* Boton para cambiar la foto de perfil */}
                     <div>
                         <IonButton id="btn-avatar">CHANGE PROFILE PICTURE</IonButton>
                     </div>
 
                 </div>
 
+                {/* Configuraciones de la cuenta */}
+
+                {/* Seccion de la cuenta */}
                 <div className="left-av">
                     <div className="texto-titulo">ACCOUNT</div>
                     <IonItem button className="full-width-button">
@@ -35,6 +40,7 @@ const Settings = () => {
                     </IonItem>
                 </div>
 
+                {/* Seccion de la aplicacion */}
                 <div className="left-av">
                     <div className="texto-titulo">PLAYBACK SETTINGS</div>
 

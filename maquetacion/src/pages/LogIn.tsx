@@ -26,12 +26,12 @@ const LogIn: React.FC = () => {
     const [isTouched, setIsTouched] = useState<boolean>(false);
     const history = useHistory();
 
-    // Validar Email
+    // Validar Email, sacado de la pagina de Ionic
     const validateEmail = (email: string) => {
         return email.match(/^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
     };
 
-    // validar el email
+    // validar el email, si cumple con la expresion regular se guarda en el estado
     const validate = (e: Event)=>{
         const value = (e.target as HTMLInputElement).value;
 
@@ -43,7 +43,10 @@ const LogIn: React.FC = () => {
 
         if(isValid === true){setEmail(value);}
     };
+    //-----------------------------------------------------------------------------------
 
+
+    // Validar password, es simple, si la longitud es menor a 2, no es valido
     const passwordValidation = (password: string) => {
 
         if(password.length < 2) return false;
@@ -51,7 +54,7 @@ const LogIn: React.FC = () => {
         return true;
     };
 
-    // Validar password
+    // Validar password, si cumple con la expresion regular se guarda en el estado
     const validatePassword = (e: Event) => {
         const value = (e.target as HTMLInputElement).value;
 
@@ -63,12 +66,10 @@ const LogIn: React.FC = () => {
 
         if(isError === true){setPassword(value);}
     };
+    //-----------------------------------------------------------------------------------
 
-    // Mark es tocado
-    const markTouched = () => {
-        setIsTouched(true);
-    };
 
+    // Funciones de redireccion
     const handleSignIn = () => {
         history.push('/signin');
     };
@@ -76,7 +77,11 @@ const LogIn: React.FC = () => {
     const handleForgot = () => {
         history.push('/forgot');
     };
-    
+    //-----------------------------------------------------------------------------------
+
+
+    // Funcion de inicio de sesion, el correo para entrar es generico@gmail y la contraseña 1234
+    // En un futuro se cambiara por una base de datos
     const handleLogin = () => {
         if(email === 'generico@gmail.com' && password === '1234'){
             history.push('/menu');
@@ -84,6 +89,12 @@ const LogIn: React.FC = () => {
             setIsError(false);
             setIsValid(false);
         }
+    };
+    //-----------------------------------------------------------------------------------
+
+    // Mark es tocado
+    const markTouched = () => {
+        setIsTouched(true);
     };
 
     return(
@@ -96,7 +107,7 @@ const LogIn: React.FC = () => {
                 <div className='ion-padding inicio'><IonTitle>Log in to TuneBytes</IonTitle></div>
 
 
-                {/* Seccion del inicio de sesion */}
+                {/* Seccion del email y password */}
                 <IonCol>
                     <div className='flex-col'>
 
@@ -138,6 +149,7 @@ const LogIn: React.FC = () => {
 
                 <div className='ion-padding ion-text-center ion-text-bold ion-text-uppercase'>or</div>
   
+                {/* Botones de redes sociales */}
                  <div className='flex-col ion-padding'>
   
                     <IonButton expand="block" shape='round' className='redes' id="face-color">
@@ -162,7 +174,9 @@ const LogIn: React.FC = () => {
                     </IonButton>
   
                 </div>
-  
+
+                {/* Seccion de texto, Sing Up te llevara a SingIn.tsx */}
+                {/* Seccion de texto, Forgot your password te llevara a Forgot.tsx */}
                 <div className="ion-text-center ion-margin-bottom ion-padding">
                     <span className="ion-text-bold">Don't have an account?  </span>
                     <a className="ion-text-underline user-passORsing" onClick={handleSignIn}>Sing up</a>

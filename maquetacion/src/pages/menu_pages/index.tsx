@@ -4,6 +4,7 @@ import Settings from './Settings';
 import library from './Library';
 import Search from './Search';
 
+{/* Paginas de la aplicacion */}
 export const pages = [
 
     {

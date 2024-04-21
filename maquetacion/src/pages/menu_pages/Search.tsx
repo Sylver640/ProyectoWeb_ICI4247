@@ -9,6 +9,7 @@ const Search = () => {
 
             <div className="contenedor-search">
 
+                {/* Barra de busqueda */}
                 <IonItem lines="full" className="search-bar">
                     <IonInput
                         type="text"
@@ -17,8 +18,10 @@ const Search = () => {
                 </IonItem>
             
 
+                {/* Texto de busqueda reciente */}
                 <p className="text-search">Recent searches</p>
 
+                {/* Lista de canciones buscadas */}
                 <div className="contenedor-songs">    
                     <IonCardContent className="search-list">
                         <IonList className="search-list">

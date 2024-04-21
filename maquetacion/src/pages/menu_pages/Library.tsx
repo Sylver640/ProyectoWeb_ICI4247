@@ -1,5 +1,6 @@
 import { IonContent, IonText } from "@ionic/react";
 
+{/* Libreria aun sin maquetar */}
 const library = () => {
     return (
         <IonContent>

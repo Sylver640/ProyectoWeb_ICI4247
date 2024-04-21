@@ -186,8 +186,12 @@ const SignIn: React.FC = () =>{
 
                     <div className="contenedor-signIn">
 
+                        {/* Seccion del titulo */}
                         <div id="titulo-signIn">Create a new account</div>
 
+                        {/* Formulario */}
+
+                        {/* Nombre de nuevo usuario */}
                         <IonItem className="singIn">
                             <IonInput 
                             className={`${isNamed && 'ion-valid'} ${isNamed === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
@@ -198,7 +202,8 @@ const SignIn: React.FC = () =>{
                             onIonBlur={() => markTouched()}
                             ></IonInput>
                         </IonItem>
-
+                        
+                         {/* Rut del nuevo usuario */}
                         <IonItem className="singIn">
                             <IonInput
                             className={`${isValidrut && 'ion-valid'} ${isValidrut === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
@@ -212,6 +217,7 @@ const SignIn: React.FC = () =>{
                             ></IonInput>
                         </IonItem>
 
+                        {/* Email del nuevo usuario */}
                         <IonItem className="singIn">
                             <IonInput
                             className={`set-input ${isValidEmail && 'ion-valid'} ${isValidEmail === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
@@ -224,6 +230,7 @@ const SignIn: React.FC = () =>{
                             ></IonInput>
                         </IonItem>
 
+                        {/* Region y comuna del nuevo usuario*/}
                         <IonItem className="singIn">
                             <IonSelect label="Regions" onIonChange={(event) => handleRegion(event)}>
                             <IonSelectOption value="Santiago">Santiago</IonSelectOption>
@@ -238,6 +245,7 @@ const SignIn: React.FC = () =>{
                             </IonSelect>
                         </IonItem>
 
+                        {/* Contraseña del nuevo usuario */}
                         <IonItem className="singIn">
                             <IonInput
                             className={`${isValidPassword && 'ion-valid'} ${isValidPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
@@ -250,6 +258,7 @@ const SignIn: React.FC = () =>{
                             ></IonInput>
                         </IonItem>
 
+                        {/* Confirmar contraseña */}
                         <IonItem className="singIn">
                             <IonInput
                             className={`${confirmPassword && 'ion-valid'} ${confirmPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
@@ -262,12 +271,16 @@ const SignIn: React.FC = () =>{
                             ></IonInput>
                         </IonItem>
 
+                        {/* Aceptar terminos y condiciones */}
                         <IonItem className="conditions">
                             <IonCheckbox 
                                 onIonChange={(e) => handleCheckBox(e)}
                                 >Accept the terms and conditions</IonCheckbox>
                         </IonItem>
+
+                        {/* Fin del formulario */}
                         
+                        {/* Boton de inicio de sesion */}
                         <IonButton className="btn-signIn" id="alert" onClick={() =>handleSingIn()}>Sign In</IonButton>
                         <IonAlert
                                 trigger="alert"
@@ -276,6 +289,7 @@ const SignIn: React.FC = () =>{
                                 buttons={['OK']}
                         ></IonAlert>
 
+                        {/* Redes sociales */}
                         <div className="contenedor-redes">
 
                             <IonButton expand="block" shape='round' className='redes' id="face-color">

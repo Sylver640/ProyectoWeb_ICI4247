@@ -24,6 +24,8 @@ const Home = () => {
 
             <IonHeader translucent={true}>
 
+                {/* Logo de la aplicacion, por ahora es la del bitcoin */}
+                {/* Foto de perfil del usuario, por ahora es uno generico */}
                 <div className="header-menu">
                     <IonIcon icon={logoBitcoin} size="large"></IonIcon>
                     <IonAvatar id="usuario-avatar">
@@ -33,10 +35,12 @@ const Home = () => {
                 
             </IonHeader>
 
+            {/* Contenido del home */}
             <IonContent scrollX={true} scrollY={true}>
 
                 <div className="contenedor-menu">
 
+                    {/* Mensaje de bienvenida al usuario */}
                     <div className="welcome-text">
                         <IonAvatar id="usuario-avatar-small">
                             <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
@@ -44,10 +48,12 @@ const Home = () => {
                         <div className="titulo-scroll">Welcome User !!</div>
                     </div>
 
+                    {/* Recomendaciones para el usuario, en el futuro tendra mas protagonismo*/}
                     <div className="scroll-horizontal-header">
 
                         <div className="titulo-scroll">Recomendations</div>
 
+                        {/* Aqui se mostraran la musica recomendada */}
                         <div className="horizontal">
 
                             {cards.map((card) => {
@@ -62,14 +68,16 @@ const Home = () => {
                             })}
 
                     </div>
-
+                        
+                        {/* Nuevo album salido o insertado dentro de la aplicacion */}
                         <div className="contenedor-menu">
                             <div className="titulo-scroll-center">New Release</div>
                             <IonCard id="new-release">
                                 <IonCardTitle>Album</IonCardTitle>
                             </IonCard>
                         </div>
-
+                        
+                        {/* Top Tracks mas escuchados de la plataforma */}
                         <div>
                             <div className="titulo-scroll-center">Top Tracks</div>
 
@@ -89,7 +97,8 @@ const Home = () => {
                                 </IonList>
                             </IonCardContent>
                         </div>
-
+                        
+                        {/* Soundtracks de videojuegos */}
                         <div className="scroll-horizontal-header">
 
                             <div className="titulo-scroll">Game soundtracks</div>
