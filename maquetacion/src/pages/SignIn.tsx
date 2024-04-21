@@ -1,5 +1,6 @@
 import { IonPage, IonItem, IonInput, IonSelectOption, IonSelect, IonCheckbox, IonButton, IonIcon, IonContent, IonAlert } from "@ionic/react";
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 import '../styles/login/SignIn.css';
 import '../styles/login/LogIn.css';
@@ -22,6 +23,7 @@ const SignIn: React.FC = () =>{
     const [message, setMessage] = useState<string>('');
     const [header, setHeader] = useState<string>('');
     const [listCommunes, setListCommunes] = useState<string[]>([]);
+    const history = useHistory();
     var state = true;
 
     //Existe nombre de usuario
@@ -120,11 +122,16 @@ const SignIn: React.FC = () =>{
 
         setIsValidPassword(undefined);
 
-        if(value === '') return;
+        if(value === ''){
+            setPassword('');
+            return;
+        }
 
-        (value.length > 3) ? setIsValidPassword(true):setIsValidPassword(false);
+        (value.length >= 3) ? setIsValidPassword(true):setIsValidPassword(false);
 
         if(isValidPassword){setPassword(value);}
+
+        console.log(password);
     };
 
     const validationConfrim = (e:Event) => {
@@ -177,6 +184,7 @@ const SignIn: React.FC = () =>{
         if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed && !(region === '') && !(commune === '')){
             setMessage('User created successfully');
             setHeader('Success');
+            history.push('/LogIn');
         } else {
             setMessage('Please fill all the fields correctly');
             setHeader('Error');
@@ -188,6 +196,8 @@ const SignIn: React.FC = () =>{
     const markTouched = () => {
         setIsTouched(true);
     };
+
+
 
     return(
         <IonPage>
@@ -294,7 +304,7 @@ const SignIn: React.FC = () =>{
                         {/* Fin del formulario */}
                         
                         {/* Boton de inicio de sesion */}
-                        <IonButton className="btn-signIn" id="alert" onClick={() =>handleSingIn()}>Sign In</IonButton>
+                        <IonButton className="btn-signIn" id="alert" onClick={() =>handleSingIn()}>Sign Up</IonButton>
                         <IonAlert
                                 trigger="alert"
                                 header={header}
@@ -308,21 +318,21 @@ const SignIn: React.FC = () =>{
                             <IonButton expand="block" shape='round' className='redes' id="face-color">
                                 <div className='flex-row-vw'>
                                     <IonIcon icon={logoFacebook} size="small"></IonIcon>
-                                    <span>SIGN IN FACEBOOK</span>
+                                    <span>SIGN UP WITH FACEBOOK</span>
                                 </div>
                             </IonButton>
         
                             <IonButton expand="block" shape='round' className='redes'id='google-color'>
                                 <div className='flex-row-vw'>
                                     <IonIcon icon={logoGoogle} size='small'></IonIcon>
-                                    <span>SIGN IN GOOGLE</span>
+                                    <span>SIGN UP WITH GOOGLE</span>
                                 </div>
                             </IonButton>
         
                             <IonButton expand="block" shape='round' className='redes'id='apple-color'>
                                 <div className='flex-row-vw'>
                                     <IonIcon icon={logoApple} size='small'></IonIcon>
-                                    <span>SIGN IN APPLE ID</span>
+                                    <span>SIGN UP WITH APPLE ID</span>
                                 </div>
                             </IonButton>
 
