@@ -1,4 +1,4 @@
-import { IonPage, IonItem, IonInput, IonSelectOption, IonSelect, IonCheckbox, IonButton, IonIcon, IonContent } from "@ionic/react";
+import { IonPage, IonItem, IonInput, IonSelectOption, IonSelect, IonCheckbox, IonButton, IonIcon, IonContent, IonAlert } from "@ionic/react";
 import React, {useState} from "react";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 import '../styles/login/SignIn.css';
@@ -9,14 +9,36 @@ const SignIn: React.FC = () =>{
     const [email, setEmail] = useState<string>('');
     const [userName, setUserName] = useState<string>('');
     const [rut, setRut] = useState<string>('');
-    const [country, setCountry] = useState<string>('');
+    const [region, setregion] = useState<string>('');
+    const [commune, setCommune] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<boolean>();
     const [isValidrut, setIsValidrut] = useState<boolean>();
     const [isValidEmail, setIsValidEmail] = useState<boolean>();
     const [isValidPassword, setIsValidPassword] = useState<boolean>();
     const [isTouched, setIsTouched] = useState<boolean>(false);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [isNamed, setIsNamed] = useState<boolean>();
+    const [message, setMessage] = useState<string>('');
+    const [header, setHeader] = useState<string>('');
+    var state = true;
 
+    //Existe nombre de usuario
+    const getName = (e:Event) => {
+        const value = (e.target as HTMLInputElement).value;
+        
+        setIsNamed(undefined);
+
+        if(value === '') return;
+
+        (value.length > 3) ? setIsNamed(true):setIsNamed(false);
+
+        if(isNamed === true){setUserName(value);}
+    };
+    //-----------------------------------------
+
+
+    //Validación de email
     const validateEmail = (email: string) => {
         return email.match(/^(?=.{1,254}$)(?=.{1,64}@)[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
     };
@@ -32,7 +54,10 @@ const SignIn: React.FC = () =>{
 
         if(isValidEmail === true){setEmail(value);}
     };
+    //-----------------------------------------
 
+
+    //Validación de RUT
     const validateRut = (rut: string) => {
         /*El proceso aquí indicado hace referencia al que se encuentra en el sitio
         Valida Rut Chile*/
@@ -70,10 +95,8 @@ const SignIn: React.FC = () =>{
             digitoEncontrado = '0';
         }
 
-        console.log(digitoEncontrado);
-
         return (dv === digitoEncontrado);
-    }
+    };
 
     const rutValidation = (e:Event) =>{
         const value = (e.target as HTMLInputElement).value;
@@ -83,8 +106,13 @@ const SignIn: React.FC = () =>{
         if(value === '') return;
 
         validateRut(value) ? setIsValidrut(true) : setIsValidrut(false);
-    };
 
+        if(isValidrut === true){setRut(value)}
+    };
+    //-----------------------------------------
+
+
+    //Validación de contraseña
     const validarPassowrd = (e:Event) => {
         const value = (e.target as HTMLInputElement).value;
 
@@ -92,9 +120,9 @@ const SignIn: React.FC = () =>{
 
         if(value === '') return;
 
-        (value.length < 3) ? setIsValidPassword(false):setIsValidPassword(true);
+        (value.length > 3) ? setIsValidPassword(true):setIsValidPassword(false);
 
-        if(isValidPassword === true){setPassword(value);}
+        if(isValidPassword){setPassword(value);}
     };
 
     const validationConfrim = (e:Event) => {
@@ -107,9 +135,46 @@ const SignIn: React.FC = () =>{
         if(password === '') return;
 
         (value === password) ? setConfirmPassword(true):setConfirmPassword(false);
+    };
+    //-----------------------------------------
+
+        // Seleccionar region y comuna
+    const handleRegion = (e: Event) => {
+        setregion((e.target as HTMLInputElement).value);
     }
 
-    // Mark es tocado
+    const handleCommune = (e: Event) => {
+        setCommune((e.target as HTMLInputElement).value);
+    }
+    //-----------------------------------------
+
+
+    // Aceptar terminos y condiciones
+    const  handleCheckBox = (e: Event) => {
+        if(state){
+            setIsChecked(true);
+            state = false;
+        }else{
+            setIsChecked(false);
+            state = true;
+        }
+    }
+    //-----------------------------------------
+
+
+    // Crear Usuario
+    const handleSingIn = () => {
+        if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed && !(region === '') && !(commune === '')){
+            setMessage('User created successfully');
+            setHeader('Success');
+        } else {
+            setMessage('Please fill all the fields correctly');
+            setHeader('Error');
+        }        
+    }
+    //-----------------------------------------
+
+    // Si un input es tocado
     const markTouched = () => {
         setIsTouched(true);
     };
@@ -124,9 +189,12 @@ const SignIn: React.FC = () =>{
 
                         <IonItem className="singIn">
                             <IonInput 
+                            className={`${isNamed && 'ion-valid'} ${isNamed === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="User name"
                             type="text"
                             label-placement="floating"
+                            onIonInput={(event) => getName(event)}
+                            onIonBlur={() => markTouched()}
                             ></IonInput>
                         </IonItem>
 
@@ -156,16 +224,16 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         <IonItem className="singIn">
-                            <IonSelect label="Regions" placeholder="">
-                            <IonSelectOption value="region13">Santiago</IonSelectOption>
-                            <IonSelectOption value="region5">Valparaiso</IonSelectOption>
+                            <IonSelect label="Regions" onIonChange={(event) => handleRegion(event)}>
+                            <IonSelectOption value="Santiago">Santiago</IonSelectOption>
+                            <IonSelectOption value="Valparaiso">Valparaiso</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
                         <IonItem className="singIn">
-                            <IonSelect label="Communes" placeholder="">
-                            <IonSelectOption value="com1">Quillota</IonSelectOption>
-                            <IonSelectOption value="com2">Quillota</IonSelectOption>
+                            <IonSelect label="Communes" onIonChange={(event) => handleCommune(event)}>
+                            <IonSelectOption value="Quillota">Quillota</IonSelectOption>
+                            <IonSelectOption value="Calera">La Calera</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
@@ -194,10 +262,18 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         <IonItem className="conditions">
-                            <IonCheckbox>Accept the terms and conditions</IonCheckbox>
+                            <IonCheckbox 
+                                onIonChange={(e) => handleCheckBox(e)}
+                                >Accept the terms and conditions</IonCheckbox>
                         </IonItem>
-
-                        <IonButton className="btn-signIn">Sign In</IonButton>
+                        
+                        <IonButton className="btn-signIn" id="alert" onClick={() =>handleSingIn()}>Sign In</IonButton>
+                        <IonAlert
+                                trigger="alert"
+                                header={header}
+                                message={message}
+                                buttons={['OK']}
+                        ></IonAlert>
 
                         <div className="contenedor-redes">
 
