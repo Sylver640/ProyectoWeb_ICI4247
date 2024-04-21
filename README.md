@@ -6,11 +6,6 @@
 
 [![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
 
-
-[![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
-
-</div>[github-web] [![html5-badge-sm]][html5-web] [![ionic-badge-sm]][ionic-web] [![js-badge-sm]][js-web] [![mongodb-badge-sm]][mongodb-
-
 ## Descripción
 
 **TuneBytes** es una aplicación móvil que permite a los usuarios buscar y reproducir música de videojuegos. Con una UI inspirada en aplicaciones como Spotify o Youtube Music, siendo intuitiva y simple de manejar en dispositivos móviles, cada usuario puede crear y editar listas de reproducción, indicar cuáles son sus videojuegos favoritos y recibir recomendaciones de diferente tipo: género de videojuego o género músical.
