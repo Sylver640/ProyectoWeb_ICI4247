@@ -84,6 +84,7 @@ const SignIn: React.FC = () =>{
         let step6 = sum - restoMultiplicado;
         let step7 = 11 - step6;
 
+
         let digitoEncontrado = step7.toString();
 
 
