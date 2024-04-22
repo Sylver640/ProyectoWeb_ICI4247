@@ -48,6 +48,11 @@ git clone https://github.com/Sylver640/ProyectoWeb_ICI4247.git
 cd maquetacion
 ionic serve
 ```
+Inicio de sesion:
+```bash
+correo: generico@gmail.com
+password: 1234
+```
 </div>
 
 [js-badge-sm]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat
