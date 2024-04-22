@@ -155,21 +155,21 @@ const LogIn: React.FC = () => {
                     <IonButton expand="block" shape='round' className='redes' id="face-color">
                         <div className='flex-row-vw'>
                             <IonIcon icon={logoFacebook} size="small"></IonIcon>
-                            <span>LOG IN FACEBOOK</span>
+                            <span>LOG IN WITH FACEBOOK</span>
                         </div>
                     </IonButton>
   
                     <IonButton expand="block" shape='round' className='redes'id='google-color'>
                         <div className='flex-row-vw'>
                             <IonIcon icon={logoGoogle} size='small'></IonIcon>
-                            <span>LOG IN GOOGLE</span>
+                            <span>LOG IN WITH GOOGLE</span>
                         </div>
                     </IonButton>
   
                     <IonButton expand="block" shape='round' className='redes'id='apple-color'>
                         <div className='flex-row-vw'>
                             <IonIcon icon={logoApple} size='small'></IonIcon>
-                            <span>LOG IN APPLE ID</span>
+                            <span>LOG IN WITH APPLE ID</span>
                         </div>
                     </IonButton>
   
@@ -179,7 +179,7 @@ const LogIn: React.FC = () => {
                 {/* Seccion de texto, Forgot your password te llevara a Forgot.tsx */}
                 <div className="ion-text-center ion-margin-bottom ion-padding">
                     <span className="ion-text-bold">Don't have an account?  </span>
-                    <a className="ion-text-underline user-passORsing" onClick={handleSignIn}>Sing up</a>
+                    <a className="ion-text-underline user-passORsing" onClick={handleSignIn}>Sign Up</a>
                 </div>
   
                 <div className="ion-text-center ion-margin-top">

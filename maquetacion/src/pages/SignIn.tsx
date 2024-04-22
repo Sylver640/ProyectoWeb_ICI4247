@@ -252,14 +252,14 @@ const SignIn: React.FC = () =>{
 
                         {/* Region y comuna del nuevo usuario*/}
                         <IonItem className="singIn">
-                            <IonSelect label="Regions" onIonChange={(e) => handleRegion(e)}>
+                            <IonSelect label="Region" onIonChange={(e) => handleRegion(e)}>
                             <IonSelectOption value="Santiago">Metropolitana</IonSelectOption>
                             <IonSelectOption value="Valparaiso">Valparaiso</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
                         <IonItem className="singIn">
-                            <IonSelect label="Communes" onIonChange={handleCommune}>
+                            <IonSelect label="Commune" onIonChange={handleCommune}>
                             {listCommunes.map((commune) => (
                                 <IonSelectOption key={commune} value={commune}>
                                 {commune}
@@ -285,7 +285,7 @@ const SignIn: React.FC = () =>{
                         <IonItem className="singIn">
                             <IonInput
                             className={`${confirmPassword && 'ion-valid'} ${confirmPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
-                            label="Confirm password"
+                            label="Confirm Password"
                             type="password"
                             errorText="Passwords do not match"
                             label-placement="floating"
@@ -298,7 +298,7 @@ const SignIn: React.FC = () =>{
                         <IonItem className="conditions">
                             <IonCheckbox 
                                 onIonChange={(e) => handleCheckBox(e)}
-                                >Accept the terms and conditions</IonCheckbox>
+                                >Accept the Terms and Conditions</IonCheckbox>
                         </IonItem>
 
                         {/* Fin del formulario */}
