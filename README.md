@@ -6,23 +6,28 @@
 
 [![ios-development-badge-sm]][ios-development-web] [![android-development-badge-sm]][android-development-web]
 
-## Integrantes:
-*  Ademir Muñoz
-*  Rodrigo Araos
-*  Vicente Mercado
-*  Jorge Palacios
+### Integrantes:
+  
+  Ademir Muñoz<br>
+  Rodrigo Araos<br>
+  Vicente Mercado<br>
+  Jorge Palacios<br>
 
 ## Descripción
 
 **TuneBytes** es una aplicación móvil que permite a los usuarios buscar y reproducir música de videojuegos. Con una UI inspirada en aplicaciones como Spotify o Youtube Music, siendo intuitiva y simple de manejar en dispositivos móviles, cada usuario puede crear y editar listas de reproducción, indicar cuáles son sus videojuegos favoritos y recibir recomendaciones de diferente tipo: género de videojuego o género músical.
 
-### Funcionalidades
+## Funcionalidades
+
+<div align=left>
+  
 1. Creación de cuenta personal e inicio de sesión
 2. Escuchar música de videojuegos
 3. Buscar, con ayuda de una API, los videojuegos por su nombre
 4. Creación y edición de listas de reproducción personalizadas y personales
 5. Edición de perfil personal que indique los 4 videojuegos favoritos del usuario y sus listas de reproducción creadas
 6. Recomendación personalizada para cada usuario con respecto a dos criterios: género de videojuego o género músical de videojuego
+</div>
 
 ## Prototipo
 <div align="center">
