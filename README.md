@@ -27,8 +27,17 @@
 
 ## Maquetación web
 
-> [!NOTE]
-> Debe incluir los archivos de maquetación en la carpeta respectiva, e incluir una breve descripción de dichos archivos.
+<div align="left">
+  
+### Iniciar la aplicación
+
+La aplicación fue hecha en con el framework Ionic y React. Para iniciar la aplicacion se debe:
+```bash
+git clone https://github.com/Sylver640/ProyectoWeb_ICI4247.git
+cd maquetacion
+ionic serve
+```
+</div>
 
 [js-badge-sm]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat
 [js-web]: https://developer.mozilla.org/es/docs/Web/JavaScript
@@ -74,7 +83,6 @@
 [ios-development-web]: https://developer.apple.com/ios/
 [android-development-badge-sm]: https://img.shields.io/badge/Android_Development-3DDC84?logo=android&logoColor=fff&style=flat
 [android-development-web]: https://developer.android.com/
-
 [figma-prot-badge]: https://img.shields.io/badge/Ver%20prototipo%20en%20Figma-F24E1E?logo=figma&logoColor=fff&style=flat
 [figma-prot-url]: https://www.figma.com/file/Kcfe2qfNulpaNh0qzUn3sX/AppM%C3%BAsicaVG?type=design&node-id=0%3A1&mode=design&t=bAKoBhMZQBgrkb6o-1
 [figma-dis-badge]: https://img.shields.io/badge/Ver%20diseño%20UI%20en%20Figma-F24E1E?logo=figma&logoColor=fff&style=flat
