@@ -14,7 +14,10 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 
-import '../styles/login/LogIn.css';
+import "../theme/contenedores.css";
+import "../theme/position.css";
+import "../theme/ion.css";
+import "../theme/text.css";
 
 const LogIn: React.FC = () => {
 
@@ -104,15 +107,15 @@ const LogIn: React.FC = () => {
             <IonContent>
   
                 {/* Seccion del titulo */}
-                <div className='ion-padding inicio'><IonTitle>Log in to TuneBytes</IonTitle></div>
+                <div className='ion-padding align-center text-center'><IonTitle>Log in to TuneBytes</IonTitle></div>
 
 
                 {/* Seccion del email y password */}
                 <IonCol>
-                    <div className='flex-col'>
+                    <div className='flex-column flex-center align-center'>
 
                     <IonInput 
-                            className={`logIn-input ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                            className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
                             type="email"
                             fill="outline"
                             label="Email"
@@ -123,7 +126,7 @@ const LogIn: React.FC = () => {
                     ></IonInput>
 
                         <IonInput
-                            className={`logIn-input ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
+                            className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             type="password" 
                             fill="outline"
                             label='Password'
@@ -137,39 +140,39 @@ const LogIn: React.FC = () => {
                 </IonCol>
 
                 {/* Toggle Switch */}
-                <div className='ion-padding flex-row'>
-                    <IonText id='recordatorio'>Remember me</IonText>
-                    <IonToggle id="toggle" checked={false}></IonToggle>
+                <div className='ion-padding flex-row flex-between align-center'>
+                    <IonText >Remember me</IonText>
+                    <IonToggle className="ion-toggle-main" checked={false}></IonToggle>
                 </div>
 
                 {/* Boton de inicio de sesion */}
-                <div className='flex-row ion-padding'>
-                    <IonButton expand="block" shape='round'id='login-color' className='login' onClick={handleLogin}>Log In</IonButton>
+                <div className='flex-row flex-center align-center ion-padding'>
+                    <IonButton expand="block" shape='round' className='width-65-vw ion-wff-bg ion-main-txt' onClick={handleLogin}>Log In</IonButton>
                 </div>
 
                 <div className='ion-padding ion-text-center ion-text-bold ion-text-uppercase'>or</div>
   
                 {/* Botones de redes sociales */}
-                 <div className='flex-col ion-padding'>
+                 <div className='flex-column align-center ion-padding'>
   
-                    <IonButton expand="block" shape='round' className='redes' id="face-color">
-                        <div className='flex-row-vw'>
+                    <IonButton expand="block" shape='round' className='ion-b98-bg width-60-vw'>
+                        <div className='flex-row flex-center gap-15-px align-center'>
                             <IonIcon icon={logoFacebook} size="small"></IonIcon>
-                            <span>LOG IN WITH FACEBOOK</span>
+                            <span>LOG IN FACEBOOK</span>
                         </div>
                     </IonButton>
   
-                    <IonButton expand="block" shape='round' className='redes'id='google-color'>
-                        <div className='flex-row-vw'>
+                    <IonButton expand="block" shape='round' className='width-60-vw ion-r39-bg'>
+                        <div className='flex-row flex-center gap-15-px align-center'>
                             <IonIcon icon={logoGoogle} size='small'></IonIcon>
-                            <span>LOG IN WITH GOOGLE</span>
+                            <span>LOG IN GOOGLE</span>
                         </div>
                     </IonButton>
   
-                    <IonButton expand="block" shape='round' className='redes'id='apple-color'>
-                        <div className='flex-row-vw'>
+                    <IonButton expand="block" shape='round' className='width-60-vw ion-wf5-bg ion-main-txt'>
+                        <div className='flex-row flex-center gap-15-px align-center'>
                             <IonIcon icon={logoApple} size='small'></IonIcon>
-                            <span>LOG IN WITH APPLE ID</span>
+                            <span>LOG IN APPLE ID</span>
                         </div>
                     </IonButton>
   
@@ -179,11 +182,11 @@ const LogIn: React.FC = () => {
                 {/* Seccion de texto, Forgot your password te llevara a Forgot.tsx */}
                 <div className="ion-text-center ion-margin-bottom ion-padding">
                     <span className="ion-text-bold">Don't have an account?  </span>
-                    <a className="ion-text-underline user-passORsing" onClick={handleSignIn}>Sign Up</a>
+                    <a className="ion-text-underline look-txt" onClick={handleSignIn}>Sign up</a>
                 </div>
   
                 <div className="ion-text-center ion-margin-top">
-                    <a className="ion-text-bold user-passORsing" onClick={handleForgot}>Forgot your password?</a>
+                    <a className="ion-text-bold look-txt" onClick={handleForgot}>Forgot your password?</a>
                 </div>
 
             </IonContent>
