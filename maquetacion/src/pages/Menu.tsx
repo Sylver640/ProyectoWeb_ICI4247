@@ -1,8 +1,9 @@
 import { IonRouterOutlet,IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp} from "@ionic/react";
 import { Redirect, Route } from 'react-router-dom';
 import { IonReactRouter } from "@ionic/react-router";
-import {pages} from "./menu_pages";
-import '../styles/login/Menu.css';
+import {pages} from "../Data/index";
+
+import "../theme/ion.css";
 
 const Menu = () => {
     return (
@@ -20,7 +21,7 @@ const Menu = () => {
 
                     </IonRouterOutlet>
 
-                    <IonTabBar slot="bottom">
+                    <IonTabBar slot="bottom" className="ion-main-look ion-main-txt ion-secondary">
                         
                         {/*Botones inferiores de la aplicacion*/}
                         {pages.map((page) => {

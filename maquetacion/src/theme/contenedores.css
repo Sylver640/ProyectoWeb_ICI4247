@@ -1,0 +1,120 @@
+/* flexbox */
+.flex-row{
+    display: flex;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center{
+    justify-content: center;
+}
+
+.flex-start{
+    justify-content: flex-start;
+}
+
+.flex-end{
+    justify-content: flex-end;
+}
+
+.flex-between{
+    justify-content: space-between;
+}
+
+.flex-nowrap{
+    flex-wrap: nowrap;
+}
+
+.flex-wrap-2{
+    flex-wrap: 2;
+}
+
+.overflow-x-auto{
+    overflow-x: auto;
+}
+/*-----------------------------------------*/
+
+
+/* align y text */
+.align-center{
+    align-items: center;
+}
+
+.align-start{
+    align-items: flex-start;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+/*-----------------------------------------*/
+
+
+/* Border radius */
+.border-circle{
+    border-radius: 100px;
+}
+
+.border-circle-15{
+    border-radius: 15px;
+}
+/*-----------------------------------------*/
+
+
+/* background colors para los contenedores */
+.wff-bg{
+    background-color: #FFFFFF;
+}
+
+.wf5-bg{
+    background-color: #F0F3F5;
+}
+
+.b98-bg{
+    background-color: #3B5998;
+}
+
+.r39-bg{
+    background-color: #DB4A39;
+}
+
+.main-bg{
+    background-color: #151515;
+}
+
+.main-look{
+    background-color: #FB7E14;
+}
+
+.gray-bg{
+    background-color: #A0A0A0;
+}
+
+.web-bg{
+    background-color: #E8E9EB;
+}
+
+/* Background opaco */
+.opaque-bg{
+    background-color: rgba(21, 21, 21, 0.6);
+}
+/*-----------------------------------------*/
+
+/* No decoration */
+.no-decoration{
+    text-decoration: none;
+}
+
+
+/* Grid */
+.grid{
+    display: grid;
+}
+/*-----------------------------------------*/

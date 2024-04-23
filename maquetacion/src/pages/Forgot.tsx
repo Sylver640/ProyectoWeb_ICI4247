@@ -1,12 +1,11 @@
-import { IonButton, IonContent, IonPage, IonInput } from '@ionic/react';
-import '../styles/login/Forgot.css'
+import { IonContent, IonPage, IonInput } from '@ionic/react';
 
 const Forgot = () => {
     return(
         <IonPage>
             <IonContent>
                 
-                <div id='titulo-forfor'>Forgot your password</div>
+                <div>Forgot your password</div>
 
                 <IonInput></IonInput>
             </IonContent>            

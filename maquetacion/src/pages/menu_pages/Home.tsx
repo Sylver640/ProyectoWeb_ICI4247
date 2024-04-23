@@ -14,111 +14,120 @@ import {
     IonIcon
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
-import '../../styles/menu styles/Home.css';
-import {cards} from "../../components/cards";
+import {cards} from "../../Data/cards";
 import {logoBitcoin} from 'ionicons/icons';
+
+import "../../theme/contenedores.css";
+import "../../theme/position.css";
+import "../../theme/ion.css";
+import "../../theme/text.css";
+import "../../theme/icon.css";
 
 const Home = () => {
     return (
         <IonContent fullscreen={true}>
 
-            <IonHeader translucent={true}>
+            <IonHeader translucent={true} className="fixed">
 
                 {/* Logo de la aplicacion, por ahora es la del bitcoin */}
                 {/* Foto de perfil del usuario, por ahora es uno generico */}
-                <div className="header-menu">
+                <div className="flex-row flex-between align-center height-auto top-0 opaque-bg width-100-pe ion-padding">
                     <IonIcon icon={logoBitcoin} size="large"></IonIcon>
-                    <IonAvatar id="usuario-avatar">
-                        <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
+                    <IonAvatar className="icon-min width-max height-max">
+                        <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
                     </IonAvatar>
                 </div>
                 
             </IonHeader>
 
             {/* Contenido del home */}
-            <IonContent scrollX={true} scrollY={true}>
+            <IonContent scrollX={true}>
 
-                <div className="contenedor-menu">
+                {/* Mostrando una caja naranja */}
+                <div className="width-100-pe main-look height-120"></div>
 
-                    {/* Mensaje de bienvenida al usuario */}
-                    <div className="welcome-text">
-                        <IonAvatar id="usuario-avatar-small">
-                            <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
-                        </IonAvatar>
-                        <div className="titulo-scroll">Welcome User !!</div>
-                    </div>
+                <div className="ion-padding">
+                    <div className="flex-column flex-between width-100-pe gap-15-px">
 
-                    {/* Recomendaciones para el usuario, en el futuro tendra mas protagonismo*/}
-                    <div className="scroll-horizontal-header">
+                        {/* Mensaje de bienvenida al usuario */}
+                        <div className="flex-row flex-start align-center gap-3-vw">
+                            <IonAvatar className="flex-row flex-center align-center icon-mid width-max height-max">
+                                <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
+                            </IonAvatar>
+                            <div className="text-left font-25 ion-padding">Welcome User !!</div>
+                        </div>
 
-                        <div className="titulo-scroll">Recomendations</div>
+                        {/* Recomendaciones para el usuario, en el futuro tendra mas protagonismo*/}
+                        <div className="flex-column">
 
-                        {/* Aqui se mostraran la musica recomendada */}
-                        <div className="horizontal">
+                            <div className="text-left font-size-25 ion-padding">Recomendations</div>
 
-                            {cards.map((card) => {
-                                return(
-                                <IonCard key={card.id} id="song-card">
-                                    <IonCardHeader>
-                                        <IonCardTitle>{card.title}</IonCardTitle>
-                                        <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
-                                    </IonCardHeader>
+                            {/* Aqui se mostraran la musica recomendada */}
+                            <div className="flex-row flex-nowrap overflow-x-auto"> 
+
+                                {cards.map((card) => {
+                                    return(
+                                    <IonCard key={card.id} className="ion-r29-bg ion-wf5-txt ion-margin text-center width-min-110 height-110">
+                                        <IonCardHeader>
+                                            <IonCardTitle>{card.title}</IonCardTitle>
+                                            <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
+                                        </IonCardHeader>
+                                    </IonCard>
+                                );
+                                })}
+
+                        </div>
+                            
+                            {/* Nuevo album salido o insertado dentro de la aplicacion */}
+                            <div className="flex-column flex-between width-100-pe ion-padding gap-15-px">
+                                <div className="text-center font-size-25 ion-padding">New Release</div>
+                                <IonCard className="ion-r29-bg ion-border-circle-15 text-center height-320">
+                                    <IonCardTitle>Album</IonCardTitle>
                                 </IonCard>
-                            );
-                            })}
+                            </div>
+                            
+                            {/* Top Tracks mas escuchados de la plataforma */}
+                            <div>
+                                <div className="text-center font-size-25 ion-padding">Top Tracks</div>
 
-                    </div>
-                        
-                        {/* Nuevo album salido o insertado dentro de la aplicacion */}
-                        <div className="contenedor-menu">
-                            <div className="titulo-scroll-center">New Release</div>
-                            <IonCard id="new-release">
-                                <IonCardTitle>Album</IonCardTitle>
-                            </IonCard>
-                        </div>
-                        
-                        {/* Top Tracks mas escuchados de la plataforma */}
-                        <div>
-                            <div className="titulo-scroll-center">Top Tracks</div>
+                                <IonCardContent className="main-bg">
+                                    <IonList inset={true} className="main-bg">
 
-                            <IonCardContent className="lista-track">
-                                <IonList inset={true} className="lista-track">
+                                        {cards.map((card) => {
+                                            return(
+                                                <IonItem key={card.id} button={true} className="ion-padding ion-border-circle-15 ion-border-transparent ripple-color-look">
+                                                    <IonThumbnail slot="start">
+                                                        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                                                    </IonThumbnail>
+                                                    <IonLabel>{card.title}</IonLabel>
+                                                </IonItem>
+                                            );
+                                        })}
+                                    </IonList>
+                                </IonCardContent>
+                            </div>
+                            
+                            {/* Soundtracks de videojuegos */}
+                            <div className="flex-column">
 
-                                    {cards.map((card) => {
-                                        return(
-                                            <IonItem key={card.id} button={true} id="song-tracklist">
-                                                <IonThumbnail slot="start">
-                                                    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                                                </IonThumbnail>
-                                                <IonLabel>{card.title}</IonLabel>
-                                            </IonItem>
-                                    );
-                            })}
-                                </IonList>
-                            </IonCardContent>
-                        </div>
-                        
-                        {/* Soundtracks de videojuegos */}
-                        <div className="scroll-horizontal-header">
+                                <div className="text-center font-size-25 ion-padding ion-padding">Game soundtracks</div>
 
-                            <div className="titulo-scroll">Game soundtracks</div>
+                                    <div className="flex-row flex-nowrap overflow-x-auto">
 
-                                <div className="horizontal">
-
-                                    {cards.map((card) => {
-                                        return(
-                                            <IonCard key={card.id} id="game-card">
-                                                <IonCardHeader>
-                                                    <IonCardTitle>{card.game}</IonCardTitle>
-                                                </IonCardHeader>
-                                            </IonCard>
+                                        {cards.map((card) => {
+                                            return(
+                                                <IonCard key={card.id} className="width-min-110 height-110 border-circle text-center">
+                                                    <IonCardHeader>
+                                                        <IonCardTitle>{card.game}</IonCardTitle>
+                                                    </IonCardHeader>
+                                                </IonCard>
                                             );
                                         })}
 
-                                </div>
+                                    </div>
                             </div>
                         </div>
-
+                    </div>
                 </div>
 
             </IonContent>

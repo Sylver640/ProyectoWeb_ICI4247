@@ -1,22 +1,27 @@
 import { IonContent, IonImg, IonAvatar, IonButton, IonItem, IonLabel, IonToggle } from "@ionic/react";
-import '../../styles/menu styles/Settings.css';
+
+import "../../theme/contenedores.css";
+import "../../theme/position.css";
+import "../../theme/ion.css";
+import "../../theme/text.css";
+import "../../theme/icon.css";
 
 const Settings = () => {
     return (
         <IonContent>
             <div>
-                <div className="contenedor-col">
+                <div className="flex-column flex-center align-center gap-15-px ion-padding">
 
                     {/* Foto de perfil del usuario */}
-                    <div className="center-av">
-                        <IonAvatar id="usuario-avatar-settings">
-                            <IonImg className="img-user" src="https://www.w3schools.com/howto/img_avatar.png" />
+                    <div className="flex-row align-center flex-center">
+                        <IonAvatar className="icon-big">
+                            <IonImg src="https://www.w3schools.com/howto/img_avatar.png" />
                         </IonAvatar>
                     </div>
 
                     {/* Boton para cambiar la foto de perfil */}
                     <div>
-                        <IonButton id="btn-avatar">CHANGE PROFILE PICTURE</IonButton>
+                        <IonButton className="ion-border-circle ion-main-look ion-main-txt">CHANGE PROFILE PICTURE</IonButton>
                     </div>
 
                 </div>
@@ -24,15 +29,15 @@ const Settings = () => {
                 {/* Configuraciones de la cuenta */}
 
                 {/* Seccion de la cuenta */}
-                <div className="left-av">
-                    <div className="texto-titulo">ACCOUNT</div>
-                    <IonItem button className="full-width-button">
+                <div className="flex-column flex-start ion-padding width-100-pe gap-5-px">
+                    <div className="font-bold font-size-15">ACCOUNT</div>
+                    <IonItem button className="ion-main-bg ion-wf5-bg ion-border-main ripple-color-look">
                         <IonLabel>
                             <h3>Premium Plan</h3>
                              <p>View Plans</p>
                          </IonLabel>
                     </IonItem>
-                    <IonItem button className="full-width-button">
+                    <IonItem button className="ion-main-bg ion-wf5-bg ion-border-main ripple-color-look">
                         <IonLabel>
                             <h3>Email</h3>
                              <p>generico@gmail.com</p>
@@ -41,35 +46,33 @@ const Settings = () => {
                 </div>
 
                 {/* Seccion de la aplicacion */}
-                <div className="left-av">
-                    <div className="texto-titulo">PLAYBACK SETTINGS</div>
+                <div className="flex-column flex-start ion-padding width-100-pe gap-5-px">
 
-                    <div className="two-rows">
-                        <div className="setting">
-                                <IonItem className="fifthy-width-button">
+                    <div className="font-bold font-size-15">PLAYBACK SETTINGS</div>
+
+                        <div className="flex-row align-center flex-wrap-2 width-100-pe gap-5-px">
+                                <IonItem className="width-90-pe ion-main-bg ion-wf5-bg ion-border-main">
                                     <IonLabel>
                                         <h3>Offline mode</h3>
                                         <p>Play downloaded songs offline</p>
                                     </IonLabel>
                                 </IonItem>
-                                <div className="toggle-container">
-                                    <IonToggle className="toggle-settings" checked={false}></IonToggle>
+                                <div>
+                                    <IonToggle className="ion-toggle-main" checked={false}></IonToggle>
                                 </div>
                             </div>
 
-                            <div className="setting">
-                                <IonItem className="fifthy-width-button">
+                            <div className="flex-row align-center flex-wrap-2 width-100-pe gap-5-px">
+                                <IonItem className="width-90-pe ion-main-bg ion-wf5-bg ion-border-main">
                                     <IonLabel>
                                         <h3>Breaktime between songs</h3>
                                         <p>Adjust app delay between songs to 5 seconds</p>
                                     </IonLabel>
                                 </IonItem>
-                                <div className="toggle-container">
-                                    <IonToggle className="toggle-settings" checked={false}></IonToggle>
+                                <div>
+                                    <IonToggle className="ion-toggle-main" checked={false}></IonToggle>
                                 </div>
                         </div>
-
-                    </div>
                 </div>
 
             </div>    

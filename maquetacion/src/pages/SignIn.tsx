@@ -2,8 +2,11 @@ import { IonPage, IonItem, IonInput, IonSelectOption, IonSelect, IonCheckbox, Io
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
-import '../styles/login/SignIn.css';
-import '../styles/login/LogIn.css';
+
+import "../theme/contenedores.css";
+import "../theme/position.css";
+import "../theme/ion.css";
+import "../theme/text.css";
 
 const SignIn: React.FC = () =>{
 
@@ -203,15 +206,15 @@ const SignIn: React.FC = () =>{
         <IonPage>
             <IonContent>
 
-                    <div className="contenedor-signIn">
+                    <div className="flex-column align-center flex-center gap-3-vw width-100-pe">
 
                         {/* Seccion del titulo */}
-                        <div id="titulo-signIn">Create a new account</div>
+                        <div className="flex-row flex-center align-center font-bold ion-padding font-size-25 wf5-txt">Create a new account</div>
 
                         {/* Formulario */}
 
                         {/* Nombre de nuevo usuario */}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonInput 
                             className={`${isNamed && 'ion-valid'} ${isNamed === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="User name"
@@ -224,7 +227,7 @@ const SignIn: React.FC = () =>{
                         </IonItem>
                         
                          {/* Rut del nuevo usuario */}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonInput
                             className={`${isValidrut && 'ion-valid'} ${isValidrut === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="Rut"
@@ -238,9 +241,9 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         {/* Email del nuevo usuario */}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonInput
-                            className={`set-input ${isValidEmail && 'ion-valid'} ${isValidEmail === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
+                            className={`${isValidEmail && 'ion-valid'} ${isValidEmail === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="Email"
                             type="email"
                             errorText="Invalid email"
@@ -251,14 +254,14 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         {/* Region y comuna del nuevo usuario*/}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonSelect label="Region" onIonChange={(e) => handleRegion(e)}>
                             <IonSelectOption value="Santiago">Metropolitana</IonSelectOption>
                             <IonSelectOption value="Valparaiso">Valparaiso</IonSelectOption>
                             </IonSelect>
                         </IonItem>
 
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonSelect label="Commune" onIonChange={handleCommune}>
                             {listCommunes.map((commune) => (
                                 <IonSelectOption key={commune} value={commune}>
@@ -269,7 +272,7 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         {/* Contraseña del nuevo usuario */}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonInput
                             className={`${isValidPassword && 'ion-valid'} ${isValidPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="Password"
@@ -282,10 +285,10 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         {/* Confirmar contraseña */}
-                        <IonItem className="singIn">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
                             <IonInput
                             className={`${confirmPassword && 'ion-valid'} ${confirmPassword === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
-                            label="Confirm Password"
+                            label="Confirm password"
                             type="password"
                             errorText="Passwords do not match"
                             label-placement="floating"
@@ -295,16 +298,16 @@ const SignIn: React.FC = () =>{
                         </IonItem>
 
                         {/* Aceptar terminos y condiciones */}
-                        <IonItem className="conditions">
+                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-primary">
                             <IonCheckbox 
                                 onIonChange={(e) => handleCheckBox(e)}
-                                >Accept the Terms and Conditions</IonCheckbox>
+                                >Accept the terms and conditions</IonCheckbox>
                         </IonItem>
 
                         {/* Fin del formulario */}
                         
                         {/* Boton de inicio de sesion */}
-                        <IonButton className="btn-signIn" id="alert" onClick={() =>handleSingIn()}>Sign Up</IonButton>
+                        <IonButton className="width-70-vw ion-main-look ion-main-txt ion-border-circle" id="alert" onClick={() =>handleSingIn()}>Sign Up</IonButton>
                         <IonAlert
                                 trigger="alert"
                                 header={header}
@@ -313,24 +316,24 @@ const SignIn: React.FC = () =>{
                         ></IonAlert>
 
                         {/* Redes sociales */}
-                        <div className="contenedor-redes">
+                        <div className="flex-column align-center ion-padding">
 
-                            <IonButton expand="block" shape='round' className='redes' id="face-color">
-                                <div className='flex-row-vw'>
+                            <IonButton expand="block" shape='round' className='ion-b98-bg'>
+                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
                                     <IonIcon icon={logoFacebook} size="small"></IonIcon>
                                     <span>SIGN UP WITH FACEBOOK</span>
                                 </div>
                             </IonButton>
         
-                            <IonButton expand="block" shape='round' className='redes'id='google-color'>
-                                <div className='flex-row-vw'>
+                            <IonButton expand="block" shape='round' className='ion-r39-bg'>
+                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
                                     <IonIcon icon={logoGoogle} size='small'></IonIcon>
                                     <span>SIGN UP WITH GOOGLE</span>
                                 </div>
                             </IonButton>
         
-                            <IonButton expand="block" shape='round' className='redes'id='apple-color'>
-                                <div className='flex-row-vw'>
+                            <IonButton expand="block" shape='round' className='ion-wf5-bg ion-main-txt'>
+                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
                                     <IonIcon icon={logoApple} size='small'></IonIcon>
                                     <span>SIGN UP WITH APPLE ID</span>
                                 </div>
