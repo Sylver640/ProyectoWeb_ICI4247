@@ -1,4 +1,3 @@
-import React from 'react';
 import { IonContent, IonImg, IonAvatar, IonButton, IonItem, IonLabel, IonToggle } from "@ionic/react";
 
 import "../../theme/contenedores.css";

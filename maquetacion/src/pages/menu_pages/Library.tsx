@@ -1,4 +1,3 @@
-import React from 'react';
 import { IonContent, IonImg, IonIcon, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { addCircleOutline } from 'ionicons/icons';

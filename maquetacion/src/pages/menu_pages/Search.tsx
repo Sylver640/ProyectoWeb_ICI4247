@@ -1,4 +1,3 @@
-import React from 'react';
 import { IonInput, IonContent, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonCardSubtitle } from "@ionic/react";
 import {cards} from "../../Data/cards";
 

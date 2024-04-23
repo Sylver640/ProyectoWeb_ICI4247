@@ -112,29 +112,29 @@ const LogIn: React.FC = () => {
 
                 {/* Seccion del email y password */}
                 <IonCol>
-                    <div className='flex-column flex-center align-center'>
+                    <div className='flex-column flex-center align-center gap-15-px'>
 
-                    <IonInput 
-                            className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
-                            type="email"
-                            fill="outline"
-                            label="Email"
-                            labelPlacement="floating"
-                            errorText="Invalid email"
-                            onIonInput={(event) => validate(event)}
-                            onIonBlur={() => markTouched()}
-                    ></IonInput>
-
-                        <IonInput
-                            className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
-                            type="password" 
-                            fill="outline"
-                            label='Password'
-                            labelPlacement='floating'
-                            errorText='Invalid password'
-                            onIonInput={(event) => validatePassword(event)}
-                            onIonBlur={() => markTouched()}
+                        <IonInput 
+                                className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}
+                                type="email"
+                                fill="outline"
+                                label="Email"
+                                labelPlacement="floating"
+                                errorText="Invalid email"
+                                onIonInput={(event) => validate(event)}
+                                onIonBlur={() => markTouched()}
                         ></IonInput>
+
+                            <IonInput
+                                className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isError && 'ion-valid'} ${isError === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
+                                type="password" 
+                                fill="outline"
+                                label='Password'
+                                labelPlacement='floating'
+                                errorText='Invalid password'
+                                onIonInput={(event) => validatePassword(event)}
+                                onIonBlur={() => markTouched()}
+                            ></IonInput>
 
                     </div>
                 </IonCol>

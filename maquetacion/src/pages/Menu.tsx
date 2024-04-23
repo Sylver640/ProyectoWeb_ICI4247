@@ -1,8 +1,7 @@
-import React from "react";
 import { IonRouterOutlet,IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp} from "@ionic/react";
 import { Redirect, Route } from 'react-router-dom';
 import { IonReactRouter } from "@ionic/react-router";
-import {pages} from "../Data";
+import {pages} from "../Data/index";
 
 import "../theme/ion.css";
 
