@@ -1,3 +1,4 @@
+import React from "react";
 import { 
     IonContent, 
     IonHeader,  
@@ -67,8 +68,9 @@ const Home = () => {
 
                                 {cards.map((card) => {
                                     return(
-                                    <IonCard key={card.id} className="ion-r29-bg ion-wf5-txt ion-margin text-center width-min-110 height-110">
-                                        <IonCardHeader>
+                                    <IonCard button key={card.id} className="ion-main-bg ion-wf5-txt ion-margin width-min-190 ripple-color-look">
+                                        <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                                        <IonCardHeader className="ion-main-bg">
                                             <IonCardTitle>{card.title}</IonCardTitle>
                                             <IonCardSubtitle>{card.subtitle}</IonCardSubtitle>
                                         </IonCardHeader>
@@ -81,8 +83,8 @@ const Home = () => {
                             {/* Nuevo album salido o insertado dentro de la aplicacion */}
                             <div className="flex-column flex-between width-100-pe ion-padding gap-15-px">
                                 <div className="text-center font-size-25 ion-padding">New Release</div>
-                                <IonCard className="ion-r29-bg ion-border-circle-15 text-center height-320">
-                                    <IonCardTitle>Album</IonCardTitle>
+                                <IonCard button className="ion-main-border ion-border-circle-15 text-center height-320 ripple-color-look">
+                                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
                                 </IonCard>
                             </div>
                             
@@ -110,13 +112,14 @@ const Home = () => {
                             {/* Soundtracks de videojuegos */}
                             <div className="flex-column">
 
-                                <div className="text-center font-size-25 ion-padding ion-padding">Game soundtracks</div>
+                                <div className="text-left font-size-25 ion-padding">Game soundtracks</div>
 
                                     <div className="flex-row flex-nowrap overflow-x-auto">
 
                                         {cards.map((card) => {
                                             return(
-                                                <IonCard key={card.id} className="width-min-110 height-110 border-circle text-center">
+                                                <IonCard button key={card.id} className="width-min-110 border-circle-15 text-center ion-main-bg width-min-190 ripple-color-look">
+                                                    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
                                                     <IonCardHeader>
                                                         <IonCardTitle>{card.game}</IonCardTitle>
                                                     </IonCardHeader>

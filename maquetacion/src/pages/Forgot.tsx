@@ -1,3 +1,4 @@
+import React from 'react';
 import { IonContent, IonPage, IonInput } from '@ionic/react';
 
 const Forgot = () => {
