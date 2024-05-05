@@ -85,7 +85,7 @@
 /*-----------------------------------------*/
 
 
-/* border */
+/* border Color*/
 .ion-border-main{
     --border-color: #151515;
 }
@@ -93,6 +93,16 @@
 .ion-border-primary{
     --border-color: #FB7E14;
 }
+
+.ion-border-main-ow{
+    border-color: #151515;
+}
+
+.ion-border-primary-ow{
+    border-color: #FB7E14;
+}
+
+/* border*/
 
 .ion-border-transparent{
     --border-color: transparent;
@@ -104,6 +114,10 @@
 
 .ion-border-circle-15{
     --border-radius: 15px;
+}
+
+.ion-border-circle-ow{
+    border-radius: 100px;
 }
 /*-----------------------------------------*/
 
@@ -125,4 +139,29 @@
 
     --handle-max-height: auto;
     --handle-box-shadow: none;
+}
+
+.ion-tab-home{
+    --background: rgba(0, 0, 0, 0.8);
+    border-color: transparent;
+    --color: #A0A0A0;
+    --ion-color-primary: #FB7E14;
+    --ripple-color: #E8E9EB;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+}
+
+.ion-tab-button{
+    font-size: 10px;
+}
+
+ion-menu::part(backdrop){
+    background-color: rgba(251, 126, 20, 0.3);
+}
+
+ion-menu::part(container){
+    border-radius:  20px 0 0 20px;
+    width: 80%;
 }

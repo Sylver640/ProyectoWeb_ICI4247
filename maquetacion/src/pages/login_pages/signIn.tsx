@@ -3,10 +3,10 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 
-import "../theme/contenedores.css";
-import "../theme/position.css";
-import "../theme/ion.css";
-import "../theme/text.css";
+import "../../theme/contenedores.css";
+import "../../theme/position.css";
+import "../../theme/ion.css";
+import "../../theme/text.css";
 
 const SignIn: React.FC = () =>{
 

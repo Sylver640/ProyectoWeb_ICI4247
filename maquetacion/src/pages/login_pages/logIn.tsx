@@ -14,10 +14,11 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 
-import "../theme/contenedores.css";
-import "../theme/position.css";
-import "../theme/ion.css";
-import "../theme/text.css";
+// Import de los themes css
+import "../../theme/contenedores.css";
+import "../../theme/position.css";
+import "../../theme/ion.css";
+import "../../theme/text.css";
 
 const LogIn: React.FC = () => {
 
@@ -40,7 +41,7 @@ const LogIn: React.FC = () => {
 
         setIsValid(undefined);
 
-        if(value === '') return;
+        if(value === '') {setIsValid(false); return;}
 
         validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
 
@@ -112,7 +113,7 @@ const LogIn: React.FC = () => {
 
                 {/* Seccion del email y password */}
                 <IonCol>
-                    <div className='flex-column flex-center align-center'>
+                    <div className='flex-column flex-center align-center gap-15-px'>
 
                     <IonInput 
                             className={`ion-main-bg ion-wf5-txt ion-primary width-70-vw ${isValid && 'ion-valid'} ${isValid === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`}

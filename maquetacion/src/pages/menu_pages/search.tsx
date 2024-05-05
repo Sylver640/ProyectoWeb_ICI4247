@@ -1,7 +1,20 @@
 import React from 'react';
-import { IonInput, IonContent, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonCardSubtitle } from "@ionic/react";
+import { 
+    IonContent, 
+    IonCardContent, 
+    IonList, IonItem, 
+    IonThumbnail, 
+    IonLabel, 
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonSearchbar,
+    IonAvatar,
+    IonImg
+} from "@ionic/react";
 import {cards} from "../../Data/cards";
 
+// Import de los themes css
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
 import "../../theme/ion.css";
@@ -11,16 +24,26 @@ import "../../theme/icon.css";
 const Search = () => {
     return (
         <IonContent>
+            <IonHeader>
+                <div className='flex-column padding-top-15'>
+                    <div className='flex-row ion-padding'>
+                        <IonAvatar className="icon-min width-max height-max">
+                            <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
+                        </IonAvatar>
+
+                        <IonTitle className='font-size-25'>Search</IonTitle>
+                    </div>
+
+                    <IonToolbar className='ion-main-bg'>
+                        <IonSearchbar 
+                            className='ion-wff-bg ion-txt-look ion-border-circle-15'
+                            placeholder="What do you want to hear?"
+                        ></IonSearchbar>
+                    </IonToolbar>
+                </div>
+            </IonHeader>
 
             <div className="flex-column flex-center ion-padding gap-5-px">
-
-                {/* Barra de busqueda */}
-                <IonItem lines="full" className="ion-web-bg ion-main-txt ion-border-circle ion-border ion-tertiary ion-border-main">
-                    <IonInput
-                        type="text"
-                        placeholder="Search for a song"
-                    ></IonInput>
-                </IonItem>
 
                 {/* Lista de canciones buscadas */}
                 <div className='flex-column flex-start'>

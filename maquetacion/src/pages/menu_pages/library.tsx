@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 import { IonContent, IonImg, IonIcon, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { addCircleOutline } from 'ionicons/icons';
 import {cards} from "../../Data/cards";
 
+// Import de los themes css
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
 import "../../theme/ion.css";

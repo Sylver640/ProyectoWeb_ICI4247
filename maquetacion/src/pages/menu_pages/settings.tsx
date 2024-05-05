@@ -1,6 +1,7 @@
 import React from 'react';
 import { IonContent, IonImg, IonAvatar, IonButton, IonItem, IonLabel, IonToggle } from "@ionic/react";
 
+// Import de los themes css
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
 import "../../theme/ion.css";

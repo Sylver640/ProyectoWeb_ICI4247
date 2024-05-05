@@ -1,16 +1,19 @@
 import React from "react";
-import { IonRouterOutlet,IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp} from "@ionic/react";
-import { Redirect, Route } from 'react-router-dom';
+import { IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp, IonRouterOutlet} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {pages} from "../Data";
+import { Redirect, Route } from "react-router";
 
-import "../theme/ion.css";
+// Import provisorio de las paginas de la aplicacion
+import {pages} from "../../Data";
+
+// Import de los themes de css
+import "../../theme/ion.css";
 
 const Menu = () => {
     return (
         <IonApp>
             <IonReactRouter>
-                <IonTabs>
+                <IonTabs className="flex-row flex-center align-center">
                     <IonRouterOutlet>
                         {/*Paginas que tendra los botones inferiores de la aplicacion, dirigiendolos a su respectiva ubicacion*/}
                         {pages.map((page) => {
@@ -21,17 +24,17 @@ const Menu = () => {
                         <Redirect exact path="/menu" to="/home" />
 
                     </IonRouterOutlet>
-
-                    <IonTabBar slot="bottom" className="ion-main-look ion-main-txt ion-secondary">
+                    
+                    <IonTabBar slot="bottom" translucent={true} className="ion-tab-home">
                         
                         {/*Botones inferiores de la aplicacion*/}
                         {pages.map((page) => {
-                            const {label , path, icon} = page;
+                            if(!page.isTab) return null;
+                            const {label, path, icon} = page;
                             
                             return(
-                                <IonTabButton key={page.id} tab={label} href={path}>
-                                    <IonIcon icon={icon}/>
-                                    <IonLabel>{label}</IonLabel>
+                                <IonTabButton key={page.id} tab={label} href={path} mode="md" className="ion-tab-button">
+                                    <IonIcon icon={icon} size="large"/>
                                 </IonTabButton>    
                             );
                         })}

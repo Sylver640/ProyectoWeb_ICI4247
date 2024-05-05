@@ -1,8 +1,10 @@
 import {homeOutline, settingsOutline, libraryOutline, searchOutline} from 'ionicons/icons';
-import Home from '../pages/menu_pages/Home';
-import Settings from '../pages/menu_pages/Settings';
-import library from '../pages/menu_pages/Library';
-import Search from '../pages/menu_pages/Search';
+import Home from '../pages/menu_pages/home';
+import Settings from '../pages/menu_pages/settings';
+import library from '../pages/menu_pages/library';
+import Search from '../pages/menu_pages/search';
+import Game from '../pages/menu_pages/id_pages/game';
+import Song from '../pages/menu_pages/id_pages/song';
 
 {/* Paginas de la aplicacion */}
 export const pages = [
@@ -13,7 +15,7 @@ export const pages = [
         path:"/home",
         icon:homeOutline,
         component:Home,
-        redirect:true
+        isTab: true
     },
 
     {
@@ -22,7 +24,7 @@ export const pages = [
         path:"/settings",
         icon:settingsOutline,
         component:Settings,
-        redirect:true
+        isTab: false
     },
 
     {
@@ -31,7 +33,7 @@ export const pages = [
         path:"/library",
         icon:libraryOutline,
         component:library,
-        redirect:true
+        isTab: true
     },
 
     {
@@ -40,7 +42,25 @@ export const pages = [
         path:"/search",
         icon:searchOutline,
         component:Search,
-        redirect:true
+        isTab: true
+    },
+
+    {
+        id:4,
+        label:"Game",
+        path:"/tunebytes/games/:id",
+        icon:homeOutline,
+        component:Game,
+        isTab: false
+    },
+
+    {
+        id:5,
+        label:"Song",
+        path:"/tunebytes/songs/:id",
+        icon:homeOutline,
+        component:Song,
+        isTab: false
     }
 
 ];
