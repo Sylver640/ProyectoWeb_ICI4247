@@ -2,7 +2,6 @@ import React from "react";
 import { IonContent, IonImg, IonIcon, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { addCircleOutline } from 'ionicons/icons';
-import {cards} from "../../Data/cards";
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -34,20 +33,6 @@ const library = () => {
 
                 <div>    
                     <IonCardContent className="ion-main-bg">
-                        <IonList className="ion-main-bg padding-0">
-
-                            {cards.map((card) => {
-                                return(
-                                    <IonItem key={card.id} button={true} className='ion-main-bg ion-border-main ripple-color-look'>
-                                        <IonThumbnail slot="start">
-                                                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                                        </IonThumbnail>
-                                        <IonLabel>{card.libreria}</IonLabel>
-                                    </IonItem>
-                                    );
-                                })}
-
-                        </IonList>
                     </IonCardContent>
                 </div>
             </div>

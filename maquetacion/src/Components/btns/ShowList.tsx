@@ -1,14 +1,14 @@
 import { IonCardContent, IonList, IonItem, IonThumbnail, IonLabel ,IonRouterLink} from '@ionic/react';
-import {cards} from '../../Data/cards';
 import React from 'react';
 
 interface ShowListProps{
     clases?: string;
     tipo: 'games' | 'songs';
     title?: string;
+    type: any[];
 }
 
-const ShowList: React.FC<ShowListProps> = ({clases, tipo, title}) => {
+const ShowList: React.FC<ShowListProps> = ({clases, tipo, title, type}) => {
 
     return(
         <div>
@@ -17,14 +17,14 @@ const ShowList: React.FC<ShowListProps> = ({clases, tipo, title}) => {
         <IonCardContent className="main-bg">
             <IonList inset={true} className="main-bg">
 
-                {cards.map((card) => {
+                {type.map((card) => {
                     return(
-                    <IonRouterLink key={card.id} routerLink={`/tunebytes/${tipo}/${card.id}`}> 
+                    <IonRouterLink key={card._id} routerLink={`/tunebytes/${tipo}/${card._id}`}> 
                         <IonItem button={true} className={`ion-padding ion-border-circle-15 ion-border-transparent ripple-color-look ${clases}`}>
                             <IonThumbnail slot="start">
-                                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                                <img alt="Silhouette of mountains" src={card.url} />
                             </IonThumbnail>
-                            <IonLabel>{`${tipo} : ${card.title}`}</IonLabel>
+                            <IonLabel>{card.name}</IonLabel>
                         </IonItem>
                     </IonRouterLink>
                     );

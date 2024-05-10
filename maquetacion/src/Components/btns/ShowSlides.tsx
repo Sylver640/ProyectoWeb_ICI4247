@@ -1,4 +1,4 @@
-import { IonCard, IonCardHeader, IonCardTitle, IonRouterLink, IonNote, IonLabel} from '@ionic/react';
+import { IonCard, IonCardHeader, IonRouterLink, IonNote, IonLabel} from '@ionic/react';
 import React from 'react';
 
 interface ShowSlidesProps {
@@ -16,7 +16,7 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
 
                 <div className="flex-row flex-nowrap overflow-x-auto"> 
 
-                    {type.map((card) => {
+                {type.map((card) => {
                         return(
                             <IonRouterLink key={card._id} routerLink={`/tunebytes/${tipo}/${card._id}`}> 
                                 <IonCard button  className={`width-min-190 ion-main-bg ripple-color-look ${clases}`}>
@@ -27,7 +27,7 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
                                     </IonCardHeader>
                                 </IonCard>
                             </IonRouterLink>  
-                    );
+                        );
                     })}
 
                 </div>

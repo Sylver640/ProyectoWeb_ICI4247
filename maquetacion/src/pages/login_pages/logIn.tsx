@@ -10,9 +10,10 @@ import {
     IonInput, 
     IonButton,
 } from '@ionic/react';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
+import {useLocalStorage} from "../../Data/useLocalStorage"
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -22,13 +23,15 @@ import "../../theme/text.css";
 
 const LogIn: React.FC = () => {
 
+    // Declaraciones de librerias
+    const { getValue, setValue } = useLocalStorage('rememberMe');
+    const history = useHistory();
+
     // Declaracion de variables
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
     const [isValid, setIsValid] = useState<boolean>();
     const [isError, setIsError] = useState<boolean>();
     const [isTouched, setIsTouched] = useState<boolean>(false);
-    const history = useHistory();
+    let rememberMe:boolean = (getValue() === 'true' ? true: false);
 
     // Validar Email, sacado de la pagina de Ionic
     const validateEmail = (email: string) => {
@@ -45,7 +48,7 @@ const LogIn: React.FC = () => {
 
         validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
 
-        if(isValid === true){setEmail(value);}
+        if(isValid === true){useLocalStorage('user').setValue(value);}
     };
     //-----------------------------------------------------------------------------------
 
@@ -68,7 +71,7 @@ const LogIn: React.FC = () => {
         
         passwordValidation(value) ? setIsError(true) : setIsError(false);
 
-        if(isError === true){setPassword(value);}
+        if(isError === true){useLocalStorage('password').setValue(value);}
     };
     //-----------------------------------------------------------------------------------
 
@@ -87,19 +90,47 @@ const LogIn: React.FC = () => {
     // Funcion de inicio de sesion, el correo para entrar es generico@gmail y la contraseña 1234
     // En un futuro se cambiara por una base de datos
     const handleLogin = () => {
-        if(email === 'generico@gmail.com' && password === '1234'){
-            history.push('/menu');
-        }else{
-            setIsError(false);
-            setIsValid(false);
-        }
+        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.push('/menu');}
+        
+        useLocalStorage('user').setValue('');
+        useLocalStorage('password').setValue('');
+        setIsError(false);
+        setIsValid(false);
+        return;
     };
     //-----------------------------------------------------------------------------------
+
 
     // Mark es tocado
     const markTouched = () => {
         setIsTouched(true);
     };
+    //-----------------------------------------------------------------------------------
+
+
+    // Guardar en local storage
+    const setLocalStorage = () => {
+        try{
+            rememberMe = !rememberMe;
+            setValue(rememberMe.toString());
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+    //-----------------------------------------------------------------------------------
+
+
+    // Renderizado de la pagina
+    useEffect(() => {
+        try{
+            (getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234') ? history.push('/menu') : console.log('Don\'t remember you or you tried to cheat bastard.');
+        }
+        catch(e){
+            console.error(e);
+        }
+    },[]);
+    //-----------------------------------------------------------------------------------
 
     return(
         <IonPage>
@@ -143,7 +174,7 @@ const LogIn: React.FC = () => {
                 {/* Toggle Switch */}
                 <div className='ion-padding flex-row flex-between align-center'>
                     <IonText >Remember me</IonText>
-                    <IonToggle className="ion-toggle-main" checked={false}></IonToggle>
+                    <IonToggle className="ion-toggle-main" checked={rememberMe} onIonChange={setLocalStorage}></IonToggle>
                 </div>
 
                 {/* Boton de inicio de sesion */}

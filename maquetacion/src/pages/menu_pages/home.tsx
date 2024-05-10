@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { 
     IonContent, 
     IonHeader,  
@@ -14,7 +14,8 @@ import {
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import {logoBitcoin} from 'ionicons/icons';
-import axios from 'axios';
+import { useLocalStorage } from "../../Data/useLocalStorage";
+import useApi from '../../hooks/apiCall';
 
 // Import de los componentes
 import ShowSlides from '../../Components/btns/ShowSlides';
@@ -30,24 +31,22 @@ import "../../theme/icon.css";
 
 const Home = () => {
 
+    // Llamar a la constante de la API
+    const { searchData } = useApi();
+
     // Data de canciones
     const [songs, setSongs] = useState<any>([]);
-
-    // Variables para axios get de songs
-    var options = {
-        method: 'GET',
-        url: 'http://localhost:3000/songs?limit=5',
-      };
 
     useEffect(()=>{
         const fetchData = async () => {
             try{
-                const response = await axios.request(options);
-                setSongs(response.data.songs);
-            }catch(error){
-                console.error('Error fetching Data: ',error);
-            };
-        }
+                const list_songs = await searchData("http://54.233.215.80:3000/songs?limit=10");
+                setSongs(list_songs);
+            }
+            catch(e){
+                console.log(e);
+            }
+        };
 
         fetchData();
     }, []);
@@ -81,9 +80,11 @@ const Home = () => {
                             </IonItem>
                         </IonRouterLink>
 
-                        <IonItem button className="ion-main-bg ripple-color-look">
-                            <IonLabel className="font-bold">Log out</IonLabel>
-                        </IonItem>
+                        <IonRouterLink routerLink="/login">
+                            <IonItem button className="ion-main-bg ripple-color-look" onClick={() => (useLocalStorage('rememberMe').getValue() === 'true') ? useLocalStorage('rememberMe').setValue('false') : console.log("bye bye")}>
+                                <IonLabel className="font-bold">Log out</IonLabel>
+                            </IonItem>
+                        </IonRouterLink>
 
                     </IonList>
                 </IonContent>
@@ -129,10 +130,10 @@ const Home = () => {
                                 <ShowSlides clases="border-circle-15" tipo="songs" title="Recomendations" type={songs}/>
 
                                 {/* Nuevo album salido o insertado dentro de la aplicacion */}
-                                <ShowRelease />
+                                <ShowRelease type="games" data={songs[0]}/>
                                 
                                 {/* Top Tracks mas escuchados de la plataforma */}
-                                <ShowList tipo="songs" title="Top Tracks"/>
+                                <ShowList tipo="songs" title="Top Tracks" type={songs}/>
                                 
                                 {/* Soundtracks de videojuegos */}
                                 <ShowSlides clases="border-circle-15" tipo="games" title="Game sountracks" type={songs}/>
