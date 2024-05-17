@@ -34,6 +34,10 @@
 .ion-web-bg{
     --background: #E8E9EB;
 }
+
+.ion-grad{
+    --background: linear-gradient(to top,#71460a, #151515);
+}
 /*-----------------------------------------*/
 
 /* Text color para los strings */

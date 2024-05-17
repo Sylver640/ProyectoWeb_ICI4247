@@ -19,7 +19,7 @@ import "../../theme/icon.css";
 
 const Search = () => {
     return (
-        <IonContent>
+        <IonContent className='ion-grad'>
             <IonHeader>
                 <div className='flex-column padding-top-15'>
                     <div className='flex-row ion-padding'>

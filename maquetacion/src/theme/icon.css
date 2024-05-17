@@ -9,6 +9,11 @@
     height: 50px;
 }
 
+.icon-title{
+    width: 230px;
+    height: 230px;
+}
+
 .icon-big{
     width: 50vw;
     height: 50vw;
@@ -35,7 +40,7 @@
 }
 
 .height-120{
-    height: 78px;
+    height: 46px;
 }
 
 .height-320{

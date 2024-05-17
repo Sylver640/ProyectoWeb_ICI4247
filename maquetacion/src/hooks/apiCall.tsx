@@ -1,8 +1,6 @@
-import axios from 'axios';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
 export const apiCall = () => {
-    let url: string;
 
     const searchData = async (url: string): Promise<any> => {
         try{
@@ -32,11 +30,15 @@ export const apiCall = () => {
 
             const options = {
                 method: 'GET',
-                url: url
+                url: url,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
             };
 
             const response: HttpResponse = await CapacitorHttp.request(options);
-            return (response.data.songs);
+            console.log(response);
+            return (response.data.game);
         
         }catch(error){
             console.error('Something is wrong: ',error);

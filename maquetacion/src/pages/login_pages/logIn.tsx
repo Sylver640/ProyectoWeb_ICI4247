@@ -1,9 +1,8 @@
 import {
     IonContent,
     IonPage,
-    IonTitle,
+    IonImg,
     IonGrid,
-    IonIcon,
     IonCol, 
     IonText, 
     IonToggle, 
@@ -139,11 +138,10 @@ const LogIn: React.FC = () => {
             <IonContent>
   
                 {/* Seccion del titulo */}
-                <div className='ion-padding align-center text-center'><IonTitle>Log in to TuneBytes</IonTitle></div>
-
+                <div className='flex-row flex-center'><IonImg className="icon-title" src="./main.png" alt='Main icon' /></div>
 
                 {/* Seccion del email y password */}
-                <IonCol>
+                <IonCol className='ion-margin'>
                     <div className='flex-column flex-center align-center gap-15-px'>
 
                     <IonInput 
@@ -172,43 +170,15 @@ const LogIn: React.FC = () => {
                 </IonCol>
 
                 {/* Toggle Switch */}
-                <div className='ion-padding flex-row flex-between align-center'>
+                <div className='ion-padding flex-row flex-center gap-15-vw align-center'>
                     <IonText >Remember me</IonText>
                     <IonToggle className="ion-toggle-main" checked={rememberMe} onIonChange={setLocalStorage}></IonToggle>
                 </div>
 
                 {/* Boton de inicio de sesion */}
                 <div className='flex-row flex-center align-center ion-padding'>
-                    <IonButton expand="block" shape='round' className='width-65-vw ion-wff-bg ion-main-txt' onClick={handleLogin}>Log In</IonButton>
-                </div>
-
-                <div className='ion-padding ion-text-center ion-text-bold ion-text-uppercase'>or</div>
-  
-                {/* Botones de redes sociales */}
-                 <div className='flex-column align-center ion-padding'>
-  
-                    <IonButton expand="block" shape='round' className='ion-b98-bg width-60-vw'>
-                        <div className='flex-row flex-center gap-15-px align-center'>
-                            <IonIcon icon={logoFacebook} size="small"></IonIcon>
-                            <span>LOG IN FACEBOOK</span>
-                        </div>
-                    </IonButton>
-  
-                    <IonButton expand="block" shape='round' className='width-60-vw ion-r39-bg'>
-                        <div className='flex-row flex-center gap-15-px align-center'>
-                            <IonIcon icon={logoGoogle} size='small'></IonIcon>
-                            <span>LOG IN GOOGLE</span>
-                        </div>
-                    </IonButton>
-  
-                    <IonButton expand="block" shape='round' className='width-60-vw ion-wf5-bg ion-main-txt'>
-                        <div className='flex-row flex-center gap-15-px align-center'>
-                            <IonIcon icon={logoApple} size='small'></IonIcon>
-                            <span>LOG IN APPLE ID</span>
-                        </div>
-                    </IonButton>
-  
-                </div>
+                    <IonButton expand="block" shape='round' className='width-65-vw ion-wff-bg ion-main-txt ripple-color-look' onClick={handleLogin}>Log In</IonButton>
+                </div>  
 
                 {/* Seccion de texto, Sing Up te llevara a SingIn.tsx */}
                 {/* Seccion de texto, Forgot your password te llevara a Forgot.tsx */}

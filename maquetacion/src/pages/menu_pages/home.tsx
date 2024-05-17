@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import { 
     IonContent, 
     IonHeader,  
@@ -20,7 +20,7 @@ import useApi from '../../hooks/apiCall';
 // Import de los componentes
 import ShowSlides from '../../Components/btns/ShowSlides';
 import ShowRelease from "../../Components/btns/ShowRelease";
-import ShowList from "../../Components/btns/ShowList";
+import ShowTop from "../../Components/btns/showTop";
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -40,7 +40,7 @@ const Home = () => {
     useEffect(()=>{
         const fetchData = async () => {
             try{
-                const list_songs = await searchData("http://54.233.215.80:3000/songs?limit=10");
+                const list_songs = await searchData("http://54.233.215.80:3000/songs?limit=5");
                 setSongs(list_songs);
             }
             catch(e){
@@ -99,18 +99,18 @@ const Home = () => {
 
                     {/* Logo de la aplicacion, por ahora es la del bitcoin */}
                     {/* Foto de perfil del usuario, por ahora es uno generico */}
-                    <div className="flex-row flex-between align-center opaque-bg ion-padding">
-                        <IonIcon icon={logoBitcoin} size="large"></IonIcon>
-                        <IonButton slot="start" className="ion-border-circle ion-main-bg ion-txt-look ripple-color-look icon-min"><IonMenuButton /></IonButton>
+                    <div className="flex-row flex-between align-center opaque-bg">
+                        <IonImg className="icon-min margin-left-2" alt="logo" src="./fish.png" />
+                        <IonButton slot="start" className="ion-border-circle ion-main-bg ion-txt-look ripple-color-look icon-min margin-right-2"><IonMenuButton /></IonButton>
                     </div>
                     
                 </IonHeader>
 
                 {/* Contenido del home */}
-                <IonContent scrollX={true}>
+                <IonContent scrollX={true} className="ion-grad">
 
                     {/* Mostrando una caja naranja */}
-                    <div className="width-100-pe main-look height-120"></div>
+                    <div className="width-100-pe opaque-bg height-120"></div>
 
                         <div className="ion-padding">
                             <div className="flex-column flex-between width-100-pe gap-15-px">
@@ -133,7 +133,7 @@ const Home = () => {
                                 <ShowRelease type="games" data={songs[0]}/>
                                 
                                 {/* Top Tracks mas escuchados de la plataforma */}
-                                <ShowList tipo="songs" title="Top Tracks" type={songs}/>
+                                <ShowTop tipo="songs" title="Top Tracks" type={songs}/>
                                 
                                 {/* Soundtracks de videojuegos */}
                                 <ShowSlides clases="border-circle-15" tipo="games" title="Game sountracks" type={songs}/>
@@ -141,6 +141,8 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
+
+                    <div className="width-100-pe height-120"></div>
 
                 </IonContent>
             </IonContent>

@@ -314,32 +314,6 @@ const SignIn: React.FC = () =>{
                                 message={message}
                                 buttons={['OK']}
                         ></IonAlert>
-
-                        {/* Redes sociales */}
-                        <div className="flex-column align-center ion-padding">
-
-                            <IonButton expand="block" shape='round' className='ion-b98-bg'>
-                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
-                                    <IonIcon icon={logoFacebook} size="small"></IonIcon>
-                                    <span>SIGN UP WITH FACEBOOK</span>
-                                </div>
-                            </IonButton>
-        
-                            <IonButton expand="block" shape='round' className='ion-r39-bg'>
-                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
-                                    <IonIcon icon={logoGoogle} size='small'></IonIcon>
-                                    <span>SIGN UP WITH GOOGLE</span>
-                                </div>
-                            </IonButton>
-        
-                            <IonButton expand="block" shape='round' className='ion-wf5-bg ion-main-txt'>
-                                <div className='width-60-vw flex-row flex-center gap-15-px align-center'>
-                                    <IonIcon icon={logoApple} size='small'></IonIcon>
-                                    <span>SIGN UP WITH APPLE ID</span>
-                                </div>
-                            </IonButton>
-
-                        </div>
                     </div>
             </IonContent>
         </IonPage>

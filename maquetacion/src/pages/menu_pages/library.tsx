@@ -1,7 +1,7 @@
 import React from "react";
-import { IonContent, IonImg, IonIcon, IonButton, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/react";
+import { IonContent, IonImg, IonIcon, IonButton, IonCardContent } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
-import { addCircleOutline } from 'ionicons/icons';
+import { addCircleSharp } from 'ionicons/icons';
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -13,7 +13,7 @@ import "../../theme/icon.css";
 {/* Libreria aun sin maquetar */} 
 const library = () => {
     return (
-        <IonContent>
+        <IonContent className="ion-grad">
             <div>
                 <div className="ion-padding flex-row align-center flex-between">
                     <IonAvatar className='icon-mid'>
@@ -22,7 +22,9 @@ const library = () => {
                     
                     <div className="font-size-25 font-bold">Your Library</div>
 
-                    <IonButton className='ion-main-look ion-border-circle' size='small'><IonIcon icon={addCircleOutline} size="large"></IonIcon></IonButton>
+                    <IonButton className="ion-main-look" aria-label="Favorite" shape="round" size="small" fill="solid">
+                        <IonIcon icon={addCircleSharp} aria-hidden="true" className="font-size-20"/>
+                    </IonButton>
                 </div>
 
                 <div className="flex-row gap-15-px ion-padding">
