@@ -133,6 +133,14 @@
 /*-----------------------------------------*/
 
 
+/* Shadow */
+.no-shadow{
+    --box-shadow: none;
+    box-shadow: none;
+}
+/*-----------------------------------------*/
+
+
 /* Componentes de Ion especificos */
 .ion-toggle-main{
     --track-background: #E8E9EB;

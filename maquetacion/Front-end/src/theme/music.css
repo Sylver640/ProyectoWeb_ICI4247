@@ -1,0 +1,46 @@
+.rhap_container{
+    background-color: #151515;
+    border-radius: 15px;
+    box-shadow: none;
+    padding: 10px;
+}
+
+.rhap_time{
+    color: #FB7E14;
+}
+
+.rhap_download-progress {
+    background-color: #F0F3F5 !important;
+}
+
+.rhap_progress-filled{
+    background-color: #FB7E14 !important;
+}
+
+.rhap_progress-indicator{
+    background-color: #FB7E14 !important;
+}
+
+.rhap_main-controls-button {
+    color: #FB7E14 !important;
+}
+
+.rhap_main-controls-button:hover {
+    color: #FB7E14 !important;
+}
+
+.rhap_volume-button{
+    color: #FB7E14 !important;
+}
+
+.rhap_volume-bar{
+    background-color: #F0F3F5 !important;
+}
+
+.rhap_volume-indicator{
+    background-color: #FB7E14 !important;
+}
+
+.rhap_volume-filled{
+    background-color: #FB7E14 !important;
+}

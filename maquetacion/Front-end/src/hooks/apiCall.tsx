@@ -37,7 +37,6 @@ export const apiCall = () => {
             };
 
             const response: HttpResponse = await CapacitorHttp.request(options);
-            console.log(response);
             return (response.data.game);
         
         }catch(error){
