@@ -1,7 +1,0 @@
-{
-  "name": "TuneBytes",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}

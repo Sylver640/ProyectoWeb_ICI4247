@@ -1,0 +1,10 @@
+{
+  "name": "TuneBytes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "build": {
+    "chunkSizeWarningLimit": 1024
+  }
+}

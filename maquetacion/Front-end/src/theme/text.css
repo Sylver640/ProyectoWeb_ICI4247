@@ -1,0 +1,51 @@
+/* Text color para los strings */
+.wff-txt{
+    color: #FFFFFF;
+}
+
+.wf5-txt{
+    color: #F0F3F5;
+}
+
+.b98-txt{
+    color: #3B5998;
+}
+
+.r39-txt{
+    color: #DB4A39;
+}
+
+.main-txt{
+    color: #151515;
+}
+
+.look-txt{
+    color: #FB7E14;
+}
+
+.gray-txt{
+    color: #A0A0A0;
+}
+
+.web-txt{
+    color: #E8E9EB;
+}
+/*-----------------------------------------*/
+
+
+/* Font */
+.font-bold{
+    font-weight: bold;
+}
+
+.font-size-25{
+    font-size: 25px;
+}
+
+.font-size-15{
+    font-size: 15px;
+}
+
+.font-size-20{
+    font-size: 20px;
+}

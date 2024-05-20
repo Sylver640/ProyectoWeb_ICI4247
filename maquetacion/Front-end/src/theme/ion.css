@@ -1,0 +1,179 @@
+/* background colors para los componentes de ion */
+.ion-wff-bg{
+    --background: #FFFFFF;
+}
+
+.ion-wf5-bg{
+    --background: #F0F3F5;
+}
+
+.ion-r29-bg{
+    --background: #a12929;
+}
+
+.ion-b98-bg{
+    --background: #3B5998;
+}
+
+.ion-r39-bg{
+    --background: #DB4A39;
+}
+
+.ion-main-bg{
+    --background: #151515;
+}
+
+.ion-main-look{
+    --background: #FB7E14;
+}
+
+.ion-gray-bg{
+    --background: #A0A0A0;
+}
+
+.ion-web-bg{
+    --background: #E8E9EB;
+}
+
+.ion-grad{
+    --background: linear-gradient(to top,#71460a, #151515);
+}
+/*-----------------------------------------*/
+
+/* Text color para los strings */
+.ion-wff-txt{
+    --color: #FFFFFF;
+}
+
+.ion-wf5-txt{
+    --color: #F0F3F5;
+}
+
+.ion-b98-txt{
+    --color: #3B5998;
+}
+
+.ion-r39-txt{
+    --color: #DB4A39;
+}
+
+.ion-main-txt{
+    --color: #151515;
+}
+
+.ion-txt-look{
+    --color: #FB7E14;
+}
+
+.ion-gray-txt{
+    --color: #A0A0A0;
+}
+
+.ion-web-txt{
+    --color: #E8E9EB;
+}
+/*-----------------------------------------*/
+
+/* Color primario */
+.ion-primary{
+    --ion-color-primary: #FB7E14;
+}
+
+.ion-secondary{
+    --ion-color-primary: #F3F5F3;
+}
+
+.ion-tertiary{
+    --ion-color-primary: #151515;
+}
+/*-----------------------------------------*/
+
+
+/* border Color*/
+.ion-border-main{
+    --border-color: #151515;
+}
+
+.ion-border-primary{
+    --border-color: #FB7E14;
+}
+
+.ion-border-main-ow{
+    border-color: #151515;
+}
+
+.ion-border-primary-ow{
+    border-color: #FB7E14;
+}
+
+/* border*/
+
+.ion-border-transparent{
+    --border-color: transparent;
+}
+
+.ion-border-circle{
+    --border-radius: 100px;
+}
+
+.ion-border-circle-15{
+    --border-radius: 15px;
+}
+
+.ion-border-circle-ow{
+    border-radius: 100px;
+}
+/*-----------------------------------------*/
+
+
+/* Ripple */
+.ripple-color-look{
+    --ripple-color: #FB7E14;
+}
+/*-----------------------------------------*/
+
+
+/* Shadow */
+.no-shadow{
+    --box-shadow: none;
+    box-shadow: none;
+}
+/*-----------------------------------------*/
+
+
+/* Componentes de Ion especificos */
+.ion-toggle-main{
+    --track-background: #E8E9EB;
+    --track-background-checked: #E8E9EB;
+  
+    --handle-background: #A0A0A0;
+    --handle-background-checked: #FB7E14;
+
+    --handle-max-height: auto;
+    --handle-box-shadow: none;
+}
+
+.ion-tab-home{
+    --background: rgba(0, 0, 0, 0.8);
+    border-color: transparent;
+    --color: #A0A0A0;
+    --ion-color-primary: #FB7E14;
+    --ripple-color: #E8E9EB;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+}
+
+.ion-tab-button{
+    font-size: 10px;
+}
+
+ion-menu::part(backdrop){
+    background-color: rgba(251, 126, 20, 0.3);
+}
+
+ion-menu::part(container){
+    border-radius:  20px 0 0 20px;
+    width: 80%;
+}
