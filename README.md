@@ -46,6 +46,7 @@ La aplicación fue hecha en con el framework Ionic y React. Para iniciar la apli
 ```bash
 git clone https://github.com/Sylver640/ProyectoWeb_ICI4247.git
 cd maquetacion
+npm install
 ionic serve
 ```
 Inicio de sesion:
