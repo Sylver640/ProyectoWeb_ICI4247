@@ -11,7 +11,6 @@ import {
 } from '@ionic/react';
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
-import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 import {useLocalStorage} from "../../Data/useLocalStorage"
 
 // Import de los themes css
@@ -123,7 +122,11 @@ const LogIn: React.FC = () => {
     // Renderizado de la pagina
     useEffect(() => {
         try{
-            (getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234') ? history.push('/menu') : console.log('Don\'t remember you or you tried to cheat bastard.');
+            if(getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){
+                history.push('/menu')
+            }else{
+                console.log('Don\'t remember you or you tried to cheat bastard.');
+            }
         }
         catch(e){
             console.error(e);

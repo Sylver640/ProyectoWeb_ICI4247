@@ -1,13 +1,18 @@
 import React from 'react';
-import { IonContent, IonPage, IonInput, IonButton } from '@ionic/react';
+import { IonContent, IonPage, IonInput, IonButton, IonBackButton, IonHeader } from '@ionic/react';
 
 const Forgot = () => {
     return(
         <IonPage>
             <IonContent>
-                <div className='flex-column flex-center align-center ion-padding ion-margin'>
-
+                <div className='flex-row'>
+                    <IonButton className='ion-border-circle ion-main-bg no-shadow ion-txt-look align-center' slot='start'>
+                        <IonBackButton defaultHref='/login' />
+                    </IonButton>
                     <h1 className='look-txt font-bold'>Reset your password</h1>
+                </div>
+                
+                <div className='flex-column flex-center align-center ion-padding ion-margin'>
 
                     <div className='flex-column flex-center gap-15-px align-center'>
                         <p className='font-bold'>Enter your email, and we will send you a link to get back into your account.</p>

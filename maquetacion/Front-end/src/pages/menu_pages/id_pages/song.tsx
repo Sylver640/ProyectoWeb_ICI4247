@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonToolbar, IonIcon } from "@ionic/react";
+import { IonContent, IonHeader, IonToolbar } from "@ionic/react";
 import { useParams } from "react-router";
-import { play, pause, playSkipBack, playSkipForward } from 'ionicons/icons';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import apiCall from "../../../hooks/apiCall"
@@ -52,7 +51,7 @@ const Song: React.FC = () =>{
 
         <IonHeader className="no-shadow">
             <IonToolbar className="ion-border-main ion-main-bg">
-                <div className=" flex-row flex-between align-center main-bg">
+                <div className=" flex-row flex-between align-center main-bg ion-padding">
                     <p>a</p>
                     <p>a</p>
                 </div>

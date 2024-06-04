@@ -5,7 +5,7 @@ export const songCall = () => {
 
         try{
             const response: HttpResponse = await CapacitorHttp.get({
-                url: `http://localhost:3000/?key=${key}`
+                url: `http://54.233.215.80:3001/?key=${key}`
             });
 
             return response.data;
