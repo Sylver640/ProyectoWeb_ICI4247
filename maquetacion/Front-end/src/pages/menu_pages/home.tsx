@@ -13,8 +13,8 @@ import {
     IonRouterLink
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
-import {logoBitcoin} from 'ionicons/icons';
 import { useLocalStorage } from "../../Data/useLocalStorage";
+import { useHistory } from "react-router";
 import useApi from '../../hooks/apiCall';
 
 // Import de los componentes
@@ -34,6 +34,8 @@ const Home = () => {
     // Llamar a la constante de la API
     const { searchData } = useApi();
 
+    const history = useHistory();
+
     // Data de canciones
     const [songs, setSongs] = useState<any>([]);
 
@@ -50,6 +52,18 @@ const Home = () => {
 
         fetchData();
     }, []);
+
+    const goTo = (path: string) => {
+        history.push(path);
+    }
+
+    const getBack = () => {
+        if(useLocalStorage('rememberMe').getValue() === 'true'){ 
+            useLocalStorage('rememberMe').setValue('false');
+        }
+
+        history.replace("/login");
+    }
 
     return (
         <>  
@@ -74,17 +88,13 @@ const Home = () => {
                             <IonLabel className="font-bold">View perfil</IonLabel>
                         </IonItem>
 
-                        <IonRouterLink routerLink="/settings">
-                            <IonItem button className="ion-main-bg ripple-color-look">
-                                <IonLabel className="font-bold">Settings</IonLabel>
-                            </IonItem>
-                        </IonRouterLink>
+                        <IonItem button className="ion-main-bg ripple-color-look" onClick={() => goTo("/settings")}>
+                            <IonLabel className="font-bold">Settings</IonLabel>
+                        </IonItem>
 
-                        <IonRouterLink routerLink="/login">
-                            <IonItem button className="ion-main-bg ripple-color-look" onClick={() => (useLocalStorage('rememberMe').getValue() === 'true') ? useLocalStorage('rememberMe').setValue('false') : console.log("bye bye")}>
+                        <IonItem button className="ion-main-bg ripple-color-look" onClick={() => getBack()}>
                                 <IonLabel className="font-bold">Log out</IonLabel>
-                            </IonItem>
-                        </IonRouterLink>
+                        </IonItem>
 
                     </IonList>
                 </IonContent>

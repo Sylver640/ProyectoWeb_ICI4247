@@ -1,5 +1,5 @@
 import React from "react";
-import { IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp, IonRouterOutlet} from "@ionic/react";
+import { IonTabBar,IonTabButton,IonTabs, IonIcon, IonApp, IonRouterOutlet} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router";
 
@@ -10,6 +10,7 @@ import {pages} from "../../Data";
 import "../../theme/ion.css";
 
 const Menu = () => {
+
     return (
         <IonApp>
             <IonReactRouter>

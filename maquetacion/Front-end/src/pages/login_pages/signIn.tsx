@@ -9,10 +9,11 @@ import
     IonAlert, 
     IonText, 
     IonHeader,
-    IonBackButton
+    IonIcon,
 } from "@ionic/react";
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import {chevronBackOutline} from "ionicons/icons";
 
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
@@ -251,7 +252,7 @@ const SignIn: React.FC = () =>{
         if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed){
             setMessage('User created successfully');
             setHeader('Success');
-            history.push('/LogIn');
+            history.replace('/LogIn');
         } else {
             setMessage('Please fill all the fields correctly');
             setHeader('Error');
@@ -264,12 +265,16 @@ const SignIn: React.FC = () =>{
         setIsTouched(true);
     };
 
+    const getBack = () => {
+        history.goBack();
+    }
+
     return(
         <IonPage>
             <IonContent>
                     <IonHeader className="flex-row no-shadow align-center">
-                        <IonButton slot="start" className="ion-border-circle ion-main-bg no-shadow ion-txt-look">
-                            <IonBackButton defaultHref="/LogIn"/>
+                        <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
+                            <IonIcon slot="icon-only" icon={chevronBackOutline}/>
                         </IonButton>
                         {/* Seccion del titulo */}
                         <div className="font-bold ion-padding font-size-25 wf5-txt">New account</div>

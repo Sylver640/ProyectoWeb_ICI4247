@@ -1,4 +1,5 @@
-import { IonRouterLink, IonCard, IonCardContent, IonNote, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonNote, IonCardTitle } from '@ionic/react';
+import { useHistory } from 'react-router';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import React from 'react';
@@ -15,6 +16,11 @@ interface ShowSlidesProps {
 }
 
 const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
+    const history = useHistory();
+
+    const handleNavigate = (cardId: string) => {{
+        history.push(`/tunebytes/${tipo}/${cardId}`);
+    }}
 
     return(
             <div>
@@ -34,8 +40,7 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
                         return (
                             
                             <SwiperSlide key={card._id}>
-                                <IonRouterLink routerLink={`/tunebytes/${tipo}/${card._id}`}>
-                            
+                                <div onClick={() => handleNavigate(card._id)}>
                                     <IonCard button  className={`width-min-190 ion-main-bg ripple-color-look ${clases}`}>
 
                                         <img alt={`${tipo}`} src={card.url} />
@@ -46,8 +51,7 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
                                         </IonCardContent>
 
                                     </IonCard>
-                                    
-                                </IonRouterLink>
+                                </div>
                             </SwiperSlide>
 
                         );

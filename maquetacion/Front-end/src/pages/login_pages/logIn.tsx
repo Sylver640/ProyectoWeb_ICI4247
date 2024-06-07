@@ -80,7 +80,7 @@ const LogIn: React.FC = () => {
     };
 
     const handleForgot = () => {
-        history.push('/forgot');
+        history.replace('/forgot');
     };
     //-----------------------------------------------------------------------------------
 
