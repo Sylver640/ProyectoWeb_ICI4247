@@ -1,7 +1,19 @@
-import { IonPage, IonItem, IonInput, IonSelectOption, IonSelect, IonCheckbox, IonButton, IonIcon, IonContent, IonAlert } from "@ionic/react";
+import 
+{ 
+    IonPage, 
+    IonItem, 
+    IonInput, 
+    IonCheckbox, 
+    IonButton, 
+    IonContent, 
+    IonAlert, 
+    IonText, 
+    IonHeader,
+    IonIcon,
+} from "@ionic/react";
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
-import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
+import {chevronBackOutline} from "ionicons/icons";
 
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
@@ -10,22 +22,49 @@ import "../../theme/text.css";
 
 const SignIn: React.FC = () =>{
 
+    // Datos del registro de usuario
     const [email, setEmail] = useState<string>('');
     const [userName, setUserName] = useState<string>('');
     const [rut, setRut] = useState<string>('');
-    const [region, setregion] = useState<string>('');
-    const [commune, setCommune] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<boolean>();
+
+    // Validaciones de los datos
     const [isValidrut, setIsValidrut] = useState<boolean>();
     const [isValidEmail, setIsValidEmail] = useState<boolean>();
     const [isValidPassword, setIsValidPassword] = useState<boolean>();
     const [isTouched, setIsTouched] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isNamed, setIsNamed] = useState<boolean>();
+
+    // Mensaje de alerta
     const [message, setMessage] = useState<string>('');
     const [header, setHeader] = useState<string>('');
-    const [listCommunes, setListCommunes] = useState<string[]>([]);
+    const [userMessage, setUserMessage] = useState<string>('');
+    const [emailMessage, setEmailMessage] = useState<string>('');
+    const [rutMessage, setRutMessage] = useState<string>('');
+
+    // inicial stado de las validaciones
+    const initialValidationState = {
+        length: false,
+        uppercase: false,
+        lowercase: false,
+        number: false,
+        specialChar: false
+    };
+
+    // Validación de contraseña por partes
+    const [passwordValidation, setPasswordValidation] = useState(initialValidationState);
+
+    // Expreciones regulares para validar la contraseña
+    const lenght_validate = /.{8,}/;
+    const uppercase_validate = /[A-Z]/;
+    const lowercase_validate = /[a-z]/;
+    const number_validate = /\d/;
+    const specialChar_validate = /[^A-Za-z0-9]/;
+    const length_name = /.{4,}/;
+    const valid_name = /^[a-z0-9]+$/;
+
     const history = useHistory();
     var state = true;
 
@@ -35,11 +74,23 @@ const SignIn: React.FC = () =>{
         
         setIsNamed(undefined);
 
-        if(value === '') return;
+        if(value === ''){
+            setUserName('');
+            setUserMessage('Not allowed empty field');
+            setIsNamed(false);
+            return;
+        }
 
-        (value.length > 3) ? setIsNamed(true):setIsNamed(false);
+        let lenght:boolean = length_name.test(value);
+        let valid:boolean = valid_name.test(value);
 
-        if(isNamed === true){setUserName(value);}
+        if(lenght && valid){
+            setIsNamed(true);
+            setUserName(value);
+        }else{
+            (lenght)? setUserMessage('allowed only lowercase letters and numbers'): setUserMessage('User name must contain at least four characters');
+            setIsNamed(false);
+        }
     };
     //-----------------------------------------
 
@@ -54,11 +105,22 @@ const SignIn: React.FC = () =>{
 
         setIsValidEmail(undefined);
 
-        if(value === '') return;
+        if(value === ''){
+            setEmail('');
+            setEmailMessage('Not allowed empty field');
+            setIsValidEmail(false);
+            return;
+        };
 
-        validateEmail(value) !== null ? setIsValidEmail(true) : setIsValidEmail(false);
+        if(validateEmail(value) !== null) {
+            setIsValidEmail(true);
+        }
+        else{
+            setEmailMessage('Invalid email');
+            setIsValidEmail(false);
+        };  
 
-        if(isValidEmail === true){setEmail(value);}
+        if(isValidEmail === true) setEmail(value);
     };
     //-----------------------------------------
 
@@ -110,11 +172,21 @@ const SignIn: React.FC = () =>{
 
         setIsValidrut(undefined);
 
-        if(value === '') return;
+        if(value === ''){
+            setRut('');
+            setRutMessage('Not allowed empty field');
+            setIsValidrut(false);
+            return;
+        }
 
-        validateRut(value) ? setIsValidrut(true) : setIsValidrut(false);
+        if(validateRut(value)) {
+            setIsValidrut(true)
+        }else{
+            setRutMessage('Invalid rut'); 
+            setIsValidrut(false);
+        };
 
-        if(isValidrut === true){setRut(value)}
+        if(isValidrut)setRut(value);
     };
     //-----------------------------------------
 
@@ -126,15 +198,21 @@ const SignIn: React.FC = () =>{
         setIsValidPassword(undefined);
 
         if(value === ''){
-            setPassword('');
+            resetValidations()
             return;
-        }
+        };
 
-        (value.length >= 3) ? setIsValidPassword(true):setIsValidPassword(false);
+        setPasswordValidation({
+            length: lenght_validate.test(value),
+            uppercase: uppercase_validate.test(value),
+            lowercase: lowercase_validate.test(value),
+            number:number_validate.test(value),
+            specialChar: specialChar_validate.test(value),
+        });
 
-        if(isValidPassword){setPassword(value);}
+        setIsValidPassword(Object.values(passwordValidation).every(Boolean));
 
-        console.log(password);
+        (isValidPassword)? setPassword(value): setPassword('');
     };
 
     const validationConfrim = (e:Event) => {
@@ -142,30 +220,15 @@ const SignIn: React.FC = () =>{
 
         setConfirmPassword(undefined);
 
-        if(value === '') return;
-
-        if(password === '') return;
+        if(value === '' || password === '') return;
 
         (value === password) ? setConfirmPassword(true):setConfirmPassword(false);
     };
-    //-----------------------------------------
 
-        // Seleccionar region y comuna
-    const handleRegion = (e: any) => {
-        const region = e.detail.value;
-
-        setregion(region);
-
-        if(region === 'Santiago'){
-            setListCommunes(['Maipú', 'Santiago', 'La Florida', 'La Reina']);
-        }else{
-            setListCommunes(['Valparaiso', 'Viña del Mar', 'Quilpue', 'Villa Alemana']);
-        }
-    }
-
-    const handleCommune = (e: any) => {
-        setCommune(e.detail.value);
-    }
+    const resetValidations = () => {
+        setPassword('');
+        setPasswordValidation(initialValidationState);
+    };
     //-----------------------------------------
 
 
@@ -184,10 +247,16 @@ const SignIn: React.FC = () =>{
 
     // Crear Usuario
     const handleSingIn = () => {
-        if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed && !(region === '') && !(commune === '')){
+        if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed){
             setMessage('User created successfully');
             setHeader('Success');
-            history.push('/LogIn');
+            const newUser = {
+                name: userName,
+                rut: rut,
+                email: email,
+                password: password
+            }
+            history.replace('/LogIn');
         } else {
             setMessage('Please fill all the fields correctly');
             setHeader('Error');
@@ -200,16 +269,22 @@ const SignIn: React.FC = () =>{
         setIsTouched(true);
     };
 
-
+    const getBack = () => {
+        history.goBack();
+    }
 
     return(
         <IonPage>
             <IonContent>
+                    <IonHeader className="flex-row no-shadow align-center">
+                        <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
+                            <IonIcon slot="icon-only" icon={chevronBackOutline}/>
+                        </IonButton>
+                        {/* Seccion del titulo */}
+                        <div className="font-bold ion-padding font-size-25 wf5-txt">New account</div>
+                    </IonHeader>
 
                     <div className="flex-column align-center flex-center gap-3-vw width-100-pe">
-
-                        {/* Seccion del titulo */}
-                        <div className="flex-row flex-center align-center font-bold ion-padding font-size-25 wf5-txt">Create a new account</div>
 
                         {/* Formulario */}
 
@@ -219,7 +294,7 @@ const SignIn: React.FC = () =>{
                             className={`${isNamed && 'ion-valid'} ${isNamed === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="User name"
                             type="text"
-                            errorText="Invalid user name"
+                            errorText={userMessage}
                             label-placement="floating"
                             onIonInput={(event) => getName(event)}
                             onIonBlur={() => markTouched()}
@@ -232,7 +307,7 @@ const SignIn: React.FC = () =>{
                             className={`${isValidrut && 'ion-valid'} ${isValidrut === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="Rut"
                             type="text"
-                            errorText="Invalid rut"
+                            errorText={rutMessage}
                             label-placement="floating"
                             placeholder="xx.xxx.xxx-x"
                             onIonInput={(event) => rutValidation(event)}
@@ -246,29 +321,11 @@ const SignIn: React.FC = () =>{
                             className={`${isValidEmail && 'ion-valid'} ${isValidEmail === false && 'ion-invalid'} ${isTouched && 'ion-touched'}`} 
                             label="Email"
                             type="email"
-                            errorText="Invalid email"
+                            errorText={emailMessage}
                             label-placement="floating"
                             onIonInput={(event) => validate(event)}
                             onIonBlur={() => markTouched()}
                             ></IonInput>
-                        </IonItem>
-
-                        {/* Region y comuna del nuevo usuario*/}
-                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
-                            <IonSelect label="Region" onIonChange={(e) => handleRegion(e)}>
-                            <IonSelectOption value="Santiago">Metropolitana</IonSelectOption>
-                            <IonSelectOption value="Valparaiso">Valparaiso</IonSelectOption>
-                            </IonSelect>
-                        </IonItem>
-
-                        <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
-                            <IonSelect label="Commune" onIonChange={handleCommune}>
-                            {listCommunes.map((commune) => (
-                                <IonSelectOption key={commune} value={commune}>
-                                {commune}
-                                </IonSelectOption>
-                            ))}
-                            </IonSelect>
                         </IonItem>
 
                         {/* Contraseña del nuevo usuario */}
@@ -283,6 +340,17 @@ const SignIn: React.FC = () =>{
                             onIonBlur={() => markTouched()}
                             ></IonInput>
                         </IonItem>
+
+                        <div className="flex-column">
+                            <p className="font-bold">This password must contain:</p>
+                            <ul>
+                                <li><IonText color={passwordValidation.length? 'success' : 'danger'}>At least 8 characters</IonText></li>
+                                <li><IonText color={passwordValidation.uppercase? 'success' : 'danger'}>At least one uppercase letter</IonText></li>
+                                <li><IonText color={passwordValidation.lowercase? 'success' : 'danger'}>At least one lowercase letter</IonText></li>
+                                <li><IonText color={passwordValidation.number? 'success' : 'danger'}>At least one number</IonText></li>
+                                <li><IonText color={passwordValidation.specialChar? 'success' : 'danger'}>At least one special character</IonText></li>
+                            </ul>
+                        </div>
 
                         {/* Confirmar contraseña */}
                         <IonItem className="ion-main-bg ion-web-txt ion-primary ion-border-main width-70-vw">
@@ -306,7 +374,7 @@ const SignIn: React.FC = () =>{
 
                         {/* Fin del formulario */}
                         
-                        {/* Boton de inicio de sesion */}
+                        {/* Boton de registrar el usuario */}
                         <IonButton className="width-70-vw ion-main-look ion-main-txt ion-border-circle" id="alert" onClick={() =>handleSingIn()}>Sign Up</IonButton>
                         <IonAlert
                                 trigger="alert"

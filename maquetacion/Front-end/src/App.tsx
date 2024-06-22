@@ -4,10 +4,10 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 // Direcciones de las paginas
-import logIn from './pages/login_pages/logIn';
-import signIn from './pages/login_pages/signIn';
+import LogIn from './pages/login_pages/logIn';
+import SignIn from './pages/login_pages/signIn';
 import menu from './pages/login_pages/menu';
-import forgot from './pages/login_pages/forgot';
+import Forgot from './pages/login_pages/forgot';
 import home from './pages/menu_pages/home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -28,6 +28,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Menu from './pages/login_pages/menu';
 
 setupIonicReact();
 
@@ -35,12 +36,11 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/login" component={logIn}/>
-        <Route path="/signin" component={signIn}/>
-        <Route path="/menu" component={menu}/>
-        <Route path="/forgot" component={forgot}/>
-        <Route path="/home" component={home}/>
-        <Redirect exact path="/" to="/login" />
+        <Route path="/login" render={() => <LogIn />}/>
+        <Route path="/signin" render={() => <SignIn />}/>
+        <Route path="/menu" render={props => <Menu />}/>
+        <Route path="/forgot" render={() => <Forgot />}/>
+        <Route exact path="/" render={() => <Redirect to="/login"/>} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

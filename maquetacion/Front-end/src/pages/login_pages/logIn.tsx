@@ -11,7 +11,6 @@ import {
 } from '@ionic/react';
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
-import {logoFacebook, logoGoogle, logoApple} from 'ionicons/icons';
 import {useLocalStorage} from "../../Data/useLocalStorage"
 
 // Import de los themes css
@@ -89,7 +88,7 @@ const LogIn: React.FC = () => {
     // Funcion de inicio de sesion, el correo para entrar es generico@gmail y la contraseña 1234
     // En un futuro se cambiara por una base de datos
     const handleLogin = () => {
-        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.push('/menu');}
+        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.replace('/menu'); return;}
         
         useLocalStorage('user').setValue('');
         useLocalStorage('password').setValue('');
@@ -123,7 +122,11 @@ const LogIn: React.FC = () => {
     // Renderizado de la pagina
     useEffect(() => {
         try{
-            (getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234') ? history.push('/menu') : console.log('Don\'t remember you or you tried to cheat bastard.');
+            if(getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){
+                history.replace('/menu')
+            }else{
+                console.log('Don\'t remember you or you tried to cheat bastard.');
+            }
         }
         catch(e){
             console.error(e);

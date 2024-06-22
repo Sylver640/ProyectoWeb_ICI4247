@@ -1,5 +1,5 @@
 import React from "react";
-import { IonTabBar,IonTabButton,IonTabs, IonIcon, IonLabel, IonApp, IonRouterOutlet} from "@ionic/react";
+import { IonTabBar,IonTabButton,IonTabs, IonIcon, IonApp, IonRouterOutlet} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route } from "react-router";
 
@@ -10,6 +10,7 @@ import {pages} from "../../Data";
 import "../../theme/ion.css";
 
 const Menu = () => {
+
     return (
         <IonApp>
             <IonReactRouter>
@@ -17,11 +18,11 @@ const Menu = () => {
                     <IonRouterOutlet>
                         {/*Paginas que tendra los botones inferiores de la aplicacion, dirigiendolos a su respectiva ubicacion*/}
                         {pages.map((page) => {
-                            return <Route key={page.id} exact path={page.path} component={page.component}/>;
+                            return <Route key={page.id} exact path={page.path} render={() => <page.component />} />;
                         })}
 
                         {/*Redireccionamiento a la pagina de inicio*/}
-                        <Redirect exact path="/menu" to="/home" />
+                        <Route exact path="/menu" render={() => <Redirect to="/home" />} />
 
                     </IonRouterOutlet>
                     

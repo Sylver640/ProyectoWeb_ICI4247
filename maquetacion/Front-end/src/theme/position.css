@@ -26,6 +26,11 @@
     width: 15%;
 }
 
+.width-10-pe{
+    width: 10%;
+
+}
+
 /* viewport width */
 .width-70-vw{
     width: 70vw;

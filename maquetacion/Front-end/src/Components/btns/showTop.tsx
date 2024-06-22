@@ -1,4 +1,5 @@
-import { IonRouterLink, IonImg, IonTitle } from '@ionic/react';
+import { IonImg } from '@ionic/react';
+import { useHistory } from 'react-router';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import React from 'react';
@@ -17,6 +18,12 @@ interface ShowListProps{
 }
 
 const showTop: React.FC<ShowListProps> = ({clases, tipo, title, type}) => {
+    const history = useHistory();
+
+
+    const handleNavigate = (cardId: string) => {{
+        history.push(`/tunebytes/${tipo}/${cardId}`);
+    }}
 
     return(
         <div>
@@ -42,10 +49,10 @@ const showTop: React.FC<ShowListProps> = ({clases, tipo, title, type}) => {
                 {type.map((card) => {
                     return(
                         <SwiperSlide key={card._id}>
-                            <IonRouterLink routerLink={`/tunebytes/${tipo}/${card._id}`}>
+                            <div onClick={() => handleNavigate(card._id)}>
                                 <IonImg alt={`${tipo}`} src={card.url}/>
                                 <p className='wf5-txt'>{`${card.name}`}</p>
-                            </IonRouterLink>
+                            </div>
                         </SwiperSlide>
                     );
                 })}
