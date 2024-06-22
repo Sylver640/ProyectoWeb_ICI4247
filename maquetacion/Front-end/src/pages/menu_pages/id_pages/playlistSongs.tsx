@@ -128,6 +128,7 @@ const PlaylistSongs: React.FC = () =>{
                 src={currentSong}
                 onClickPrevious={handlePrev}
                 onClickNext={handleNext}
+                autoPlayAfterSrcChange={false}
             />
 
         </IonContent>
