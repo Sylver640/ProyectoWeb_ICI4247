@@ -119,7 +119,6 @@ const Search = () => {
 
             <IonList>
                 {results.map((item, index) => {
-                    console.log(item);
                     return(
                         <IonItem key={item._id} button className='no-shadow ripple-color-look' onClick={() => handleNavigate(item._id)}>
                             <IonAvatar aria-hidden="true" slot='start'>

@@ -23,7 +23,7 @@ const PlaylistSongs: React.FC = () =>{
     const { searchDataId } = apiCall();
     const { searchAudio } = songCall();
 
-    const [list, setlist] = useState<any[]>([]);
+    const [list , setList] = useState<any[]>([]);
     const [currentIndex, setIndex] = useState<number>(0);
 
     const [playlist, setPlaylist] = useState<any[]>([]);
@@ -38,45 +38,45 @@ const PlaylistSongs: React.FC = () =>{
     const [songList, setSongList] = useState<any[]>([]);
     const [currentSong, setCurrentSong] = useState<string>('');
 
-    useEffect(() => {
-        if (location.state) {
-            let newlist = location.state.list.filter( song => song.id);
-            setlist(newlist);
-            setIndex(location.state.index);
-        }
-    }, [location]);
-
     useEffect( () => {
 
         const fetchData = async () => {
-            if(list.length === 0) return;
+            if(location.state){
+                const list = location.state.list;
+                const newIndex = location.state.index;
 
-            try{
-                    let songs: any[] = []
-                    for(let i = 0; i < list.length; i++){
-                        const song = await searchDataId(list[i].id, 'songs');
-                        songs.push(song);
-                    }
-                    setPlaylist(songs);
+                setIndex(newIndex);
+                setList(list);
 
-                    setCurrent(songs[currentIndex]);
+                if(list.length === 0) return;
 
-                    let sources: any[] = [];
-                    for(let i = 0; i < songs.length; i++){
-                        const audioUrl = await searchAudio(songs[i].game, songs[i].key);
-                        sources.push(audioUrl);
-                    }
+                try{
+                        let songs: any[] = [];
+                        for(let i = 0; i < list.length; i++){
+                            const song = await searchDataId(list[i].song_id, 'songs');
+                            songs.push(song);
+                        }
+                        setPlaylist(songs);
 
-                    setSongList(sources);
-                    setCurrentSong(sources[currentIndex]);
-            }catch(e){
-                console.log(e);
+                        setCurrent(songs[currentIndex]);
+
+                        let sources: any[] = [];
+                        for(let i = 0; i < songs.length; i++){
+                            const audioUrl = await searchAudio(songs[i].game, songs[i].key);
+                            sources.push(audioUrl);
+                        }
+
+                        setSongList(sources);
+                        setCurrentSong(sources[currentIndex]);
+                }catch(e){
+                    console.log(e);
+                }
             }
         };
 
         fetchData();
         
-    }, []);
+    }, [location.state]);
 
     const handleNext = () => {
         if(currentIndex < list.length - 1){

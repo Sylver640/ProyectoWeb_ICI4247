@@ -47,7 +47,7 @@ const Playlist = () => {
                     {filterPlaylist[0].list.map((item, indentation) => {
 
                         return(
-                            <IonItem button key={item.index} onClick={() => goTo(item.id, indentation)}>
+                            <IonItem button key={item.index} onClick={() => goTo(item.song_id, indentation)}>
 
                                 <IonThumbnail slot="start" className="">
                                     <img alt="Song photo" src={item.url} />

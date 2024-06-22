@@ -7,14 +7,14 @@ export const playlist = [
             {
                 'index': 0,
                 'name': 'Super Mario 64 Main Theme',
-                'id': '66315ad86d32dcca46ed7fb2',
+                'song_id': '66315ad86d32dcca46ed7fb2',
                 'url': 'https://th.bing.com/th/id/OIP.BvriPJra1wbseYngRo0dpwAAAA?rs=1&pid=ImgDetMain'
             },
 
             {
                 'index': 1,
                 'name': 'Show Mountain',
-                'id': '66315e1f6d32dcca46ed7fb8',
+                'song_id': '66315e1f6d32dcca46ed7fb8',
                 'url': 'https://th.bing.com/th/id/OIP.BvriPJra1wbseYngRo0dpwAAAA?rs=1&pid=ImgDetMain'
             }
 
@@ -28,14 +28,14 @@ export const playlist = [
             {
                 'index': 0,
                 'name': 'Super Mario 64 Main Theme',
-                'id': '66315ad86d32dcca46ed7fb2',
+                'song_id': '66315ad86d32dcca46ed7fb2',
                 'url': 'https://th.bing.com/th/id/OIP.BvriPJra1wbseYngRo0dpwAAAA?rs=1&pid=ImgDetMain'
             },
 
             {
                 'index': 1,
                 'name': 'Show Mountain',
-                'id': '66315e1f6d32dcca46ed7fb8',
+                'song_id': '66315e1f6d32dcca46ed7fb8',
                 'url': 'https://th.bing.com/th/id/OIP.BvriPJra1wbseYngRo0dpwAAAA?rs=1&pid=ImgDetMain'
             }
 
