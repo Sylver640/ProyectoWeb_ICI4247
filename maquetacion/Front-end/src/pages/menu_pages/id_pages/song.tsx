@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { IonContent, IonHeader, IonButton, IonIcon } from "@ionic/react";
 import { useParams } from "react-router";
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
+import { useHistory } from "react-router";
+import {chevronBackOutline} from "ionicons/icons";
 import apiCall from "../../../hooks/apiCall"
 import songCall from "../../../hooks/songCall";
-import {chevronBackOutline} from "ionicons/icons";
-import { useHistory } from "react-router";
+import SongPlayer from "../../../Components/player/songPlayer";
 
 // Import de los themes css
 import "../../../theme/contenedores.css";
@@ -14,7 +13,6 @@ import "../../../theme/position.css";
 import "../../../theme/ion.css";
 import "../../../theme/text.css";
 import "../../../theme/icon.css";
-import "../../../theme/music.css";
 
 const Song: React.FC = () =>{
     const { id } = useParams<{id: string}>();
@@ -31,8 +29,7 @@ const Song: React.FC = () =>{
 
         const fetchSong = async () => {
             try{
-
-                const song = await searchDataId(`http://54.233.215.80:3000/songs/${id}`);
+                const song = await searchDataId(id, 'songs');
 
                 if (isMounted){
                     setName(song.name);
@@ -41,7 +38,6 @@ const Song: React.FC = () =>{
 
                     const audioUrl = await searchAudio(song.game,song.key);
                     setAudio(audioUrl);
-                    isMounted = false;
                 }
 
 
@@ -52,43 +48,25 @@ const Song: React.FC = () =>{
 
         fetchSong();
 
-        return () => { isMounted = false; }
+        return () => { isMounted = false; setAudio(''); }
     },[]);
 
 
-    const getBack = () => {
-        history.replace('/home');
-    }
-
+    const getBack = () => {history.push('/home');}
 
     return(
         <>
 
         <IonHeader className="no-shadow">
-
+            <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
+                <IonIcon slot="icon-only" icon={chevronBackOutline}/>
+            </IonButton>
         </IonHeader>
 
         <IonContent className="ion-padding">
-            <div className="flex-column flex-center align-center gap-15-px">
-                <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
-                    <IonIcon slot="icon-only" icon={chevronBackOutline}/>
-                </IonButton>
 
-                <div className="width-100-pe opaque-bg height-120"></div>
+            <SongPlayer src={audio} name={name} url={url} game={game} />
 
-                <div className="flex-column flex-center align-center ion-padding">
-                    <img src={url} alt="Album Cover" className="border-circle-15" />
-                    <h2>{name}</h2>
-                    <h3 className="gray-txt">{game}</h3>
-                </div>
-
-                <AudioPlayer
-                    className="player"
-                    autoPlay={false}
-                    src={audio}
-                />
-
-            </div>
         </IonContent>
       </>
     );

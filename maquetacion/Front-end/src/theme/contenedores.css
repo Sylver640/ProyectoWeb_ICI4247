@@ -105,6 +105,10 @@
 .opaque-bg{
     background-color: rgba(21, 21, 21, 0.6);
 }
+
+.opaque-total{
+    background-color: rgba(21, 21, 21, 0);
+}   
 /*-----------------------------------------*/
 
 /* No decoration */

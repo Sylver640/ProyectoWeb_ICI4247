@@ -3,14 +3,12 @@ import {
     IonContent, 
     IonHeader,  
     IonImg, 
-    IonIcon,
     IonMenu,
     IonMenuButton,
     IonButton,
     IonList,
     IonItem,
     IonLabel,
-    IonRouterLink
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { useLocalStorage } from "../../Data/useLocalStorage";
@@ -42,7 +40,7 @@ const Home = () => {
     useEffect(()=>{
         const fetchData = async () => {
             try{
-                const list_songs = await searchData("http://54.233.215.80:3000/songs?limit=5");
+                const list_songs = await searchData('songs', "?limit=5");
                 setSongs(list_songs);
             }
             catch(e){

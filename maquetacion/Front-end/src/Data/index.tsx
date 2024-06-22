@@ -5,6 +5,8 @@ import library from '../pages/menu_pages/library';
 import Search from '../pages/menu_pages/search';
 import Game from '../pages/menu_pages/id_pages/game';
 import Song from '../pages/menu_pages/id_pages/song';
+import Playlist from '../pages/menu_pages/id_pages/playlist';
+import PlaylistSongs from '../pages/menu_pages/id_pages/playlistSongs';
 
 {/* Paginas de la aplicacion */}
 export const pages = [
@@ -60,6 +62,24 @@ export const pages = [
         path:"/tunebytes/songs/:id",
         icon:homeOutline,
         component:Song,
+        isTab: false
+    },
+    
+    {
+        id:6,
+        label: "Playlist",
+        path: "/tunebytes/playlist/:id",
+        icon: homeOutline,
+        component: Playlist,
+        isTab: false
+    },
+
+    {
+        id:7,
+        label: "PlaylistSongs",
+        path: "/tunebytes/playlist/songs/:id",
+        icon: homeOutline,
+        component: PlaylistSongs,
         isTab: false
     }
 

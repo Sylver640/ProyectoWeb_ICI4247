@@ -202,8 +202,6 @@ const SignIn: React.FC = () =>{
             return;
         };
 
-        ///^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/
-
         setPasswordValidation({
             length: lenght_validate.test(value),
             uppercase: uppercase_validate.test(value),
@@ -252,6 +250,12 @@ const SignIn: React.FC = () =>{
         if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed){
             setMessage('User created successfully');
             setHeader('Success');
+            const newUser = {
+                name: userName,
+                rut: rut,
+                email: email,
+                password: password
+            }
             history.replace('/LogIn');
         } else {
             setMessage('Please fill all the fields correctly');

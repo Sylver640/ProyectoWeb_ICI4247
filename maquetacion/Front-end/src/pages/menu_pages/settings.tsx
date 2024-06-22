@@ -9,6 +9,7 @@ import "../../theme/text.css";
 import "../../theme/icon.css";
 
 const Settings = () => {
+    
     return (
         <IonContent>
             <div>

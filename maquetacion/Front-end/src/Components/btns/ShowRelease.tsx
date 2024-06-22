@@ -12,7 +12,6 @@ interface Song{
     game_id: string
 }
 
-
 interface ShowReleaseProps {
     type: 'games' | 'songs';
     data: Song;

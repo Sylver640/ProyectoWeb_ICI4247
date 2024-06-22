@@ -80,7 +80,7 @@ const LogIn: React.FC = () => {
     };
 
     const handleForgot = () => {
-        history.replace('/forgot');
+        history.push('/forgot');
     };
     //-----------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ const LogIn: React.FC = () => {
     // Funcion de inicio de sesion, el correo para entrar es generico@gmail y la contraseña 1234
     // En un futuro se cambiara por una base de datos
     const handleLogin = () => {
-        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.push('/menu');}
+        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.replace('/menu'); return;}
         
         useLocalStorage('user').setValue('');
         useLocalStorage('password').setValue('');
@@ -123,7 +123,7 @@ const LogIn: React.FC = () => {
     useEffect(() => {
         try{
             if(getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){
-                history.push('/menu')
+                history.replace('/menu')
             }else{
                 console.log('Don\'t remember you or you tried to cheat bastard.');
             }
