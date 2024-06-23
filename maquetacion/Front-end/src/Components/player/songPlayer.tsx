@@ -34,6 +34,7 @@ const SongPlayer: React.FC<source> = ({src, name, url, game}) => {
             showSkipControls={true}
             showFilledVolume={true}
             src={src}
+            autoPlayAfterSrcChange={false}
         />
 
     </div>

@@ -47,7 +47,7 @@ const Game = () => {
     };
 
     return(
-        <IonContent>
+        <IonContent className="ion-grad">
             <IonHeader>
                 <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
                     <IonIcon slot="icon-only" icon={chevronBackOutline}/>

@@ -63,7 +63,7 @@ const Song: React.FC = () =>{
             </IonButton>
         </IonHeader>
 
-        <IonContent className="ion-padding">
+        <IonContent className="ion-padding ion-grad">
 
             <SongPlayer src={audio} name={name} url={url} game={game} />
 

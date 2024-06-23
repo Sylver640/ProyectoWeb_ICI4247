@@ -52,9 +52,9 @@ const Search = () => {
         setSelectedOption(option);
 
         if(option === 'songs'){
-            setResults(songList);
+            setResults(selectRandomElement(songList, 9));
         }else{
-            setResults(gameList);
+            setResults(selectRandomElement(gameList, 2));
         }
     }
 
@@ -72,6 +72,11 @@ const Search = () => {
     const handleNavigate = (id: string) => {{
         history.push(`/tunebytes/${selectedOption}/${id}`);
     }}
+
+    const selectRandomElement = (list:any[], count:number) => {
+        const shuffled = [...list].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    };
 
     return (
         <IonContent className='ion-grad'>
@@ -117,7 +122,7 @@ const Search = () => {
 
             </div>
 
-            <IonList>
+            <IonList className='no-shadow'>
                 {results.map((item, index) => {
                     return(
                         <IonItem key={item._id} button className='no-shadow ripple-color-look' onClick={() => handleNavigate(item._id)}>

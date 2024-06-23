@@ -105,7 +105,7 @@ const PlaylistSongs: React.FC = () =>{
             </IonButton>
         </IonHeader>
 
-        <IonContent className="ion-padding">
+        <IonContent className="ion-padding ion-grad">
 
             <div className="flex-column flex-center align-center gap-15-px">
                 
