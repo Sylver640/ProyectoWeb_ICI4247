@@ -49,6 +49,16 @@ cd ProyectoWeb_ICI4247/maquetacion
 npm install
 ionic serve
 ```
+En el caso del backend, éste utiliza el framework de Flask con Python, junto con un servidor de MySQL y XAMPP.
+Para iniciarlo debe instalar XAMPP y Python respectivamente, y debe instalar las siguientes librerías:
+```bash
+pip install flask mysql-connector-python
+pip install flask-bcrypt
+pip install flask flask-jwt-extended
+```
+El servidor se encontrará en el localhost con dirección 127.0.0.1 en el puerto 5000, con la base de datos ejecutándose en el puerto 3306.
+El archivo SQL con la creación de tablas se encuentra adjunta en el apartado de "Backend" de este repositorio.
+
 Inicio de sesion:
 ```bash
 correo: generico@gmail.com
