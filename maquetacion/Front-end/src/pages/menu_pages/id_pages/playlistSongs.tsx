@@ -97,34 +97,29 @@ const PlaylistSongs: React.FC = () =>{
     const getBack = () => {history.push('/home');}
 
     return(
-        <>
+        <IonContent className="ion-padding ion-grad">
+            <IonHeader className="no-shadow flex-row flex-between">
+                <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent"  onClick={() => getBack()}>
+                    <IonIcon slot="icon-only" icon={chevronBackOutline}/>
+                </IonButton>
+                <IonButton id="popover" className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent">
+                    <IonIcon slot="icon-only" icon={reorderTwoOutline} />
+                    <IonPopover trigger="popover" dismissOnSelect={true}>
+                        <IonList>
+                            <IonItem button detail={false}>
+                                Add to a playlist
+                            </IonItem>
 
-        <IonHeader className="no-shadow flex-row flex-between">
-            <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
-                <IonIcon slot="icon-only" icon={chevronBackOutline}/>
-            </IonButton>
-            <IonButton id="popover" className="ion-border-circle no-shadow ion-main-bg ion-txt-look">
-                <IonIcon slot="icon-only" icon={reorderTwoOutline} />
-                <IonPopover trigger="popover" dismissOnSelect={true}>
-                    <IonList>
-                        <IonItem button detail={false}>
-                            Add to a playlist
-                        </IonItem>
+                            <IonItem button detail={false}>
+                                delete from a playlist
+                            </IonItem>
 
-                        <IonItem button detail={false}>
-                            delete from a playlist
-                        </IonItem>
-
-                    </IonList>
-                </IonPopover>
-            </IonButton>
+                        </IonList>
+                    </IonPopover>
+                </IonButton>
         </IonHeader>
 
-        <IonContent className="ion-padding ion-grad">
-
-            <div className="flex-column flex-center align-center gap-15-px">
-                
-                <div className="width-100-pe opaque-bg height-120"></div>
+        <div className="flex-column flex-center align-center gap-15-px">
 
                 <div className="flex-column flex-center align-center ion-padding">
                     <img src={current.url} alt="Album Cover" className="border-circle-15" />
@@ -147,7 +142,6 @@ const PlaylistSongs: React.FC = () =>{
             />
 
         </IonContent>
-      </>
     );
 };
 

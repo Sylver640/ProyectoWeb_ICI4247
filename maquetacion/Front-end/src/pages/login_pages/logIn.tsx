@@ -121,16 +121,7 @@ const LogIn: React.FC = () => {
 
     // Renderizado de la pagina
     useEffect(() => {
-        try{
-            if(getValue() === 'true' && useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){
-                history.replace('/menu')
-            }else{
-                console.log('Don\'t remember you or you tried to cheat bastard.');
-            }
-        }
-        catch(e){
-            console.error(e);
-        }
+        console.log('Remember me: ', rememberMe);
     },[]);
     //-----------------------------------------------------------------------------------
 
