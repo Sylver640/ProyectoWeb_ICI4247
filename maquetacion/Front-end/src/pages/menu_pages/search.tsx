@@ -122,10 +122,10 @@ const Search = () => {
 
             </div>
 
-            <IonList className='no-shadow'>
+            <IonList className='no-shadow opaque-total ion-margin'>
                 {results.map((item, index) => {
                     return(
-                        <IonItem key={item._id} button className='no-shadow ripple-color-look' onClick={() => handleNavigate(item._id)}>
+                        <IonItem key={item._id} button className='no-shadow ion-transparent ion-border-transparent' onClick={() => handleNavigate(item._id)}>
                             <IonAvatar aria-hidden="true" slot='start'>
                                 <img src={item.url} alt="imagen"/>
                             </IonAvatar>

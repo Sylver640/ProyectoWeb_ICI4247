@@ -1,5 +1,5 @@
 import React from "react";
-import { IonContent, IonCard, IonButton, IonIcon, IonImg, IonText, IonList, IonItem, IonThumbnail, IonLabel } from "@ionic/react";
+import { IonContent, IonCard, IonButton, IonIcon, IonImg, IonText, IonList, IonItem, IonThumbnail, IonLabel, IonPopover } from "@ionic/react";
 import { chevronBackOutline, ellipsisVertical } from "ionicons/icons";
 import { useHistory, useParams } from "react-router";
 import { playlist } from "../../../Data/playlist";
@@ -38,24 +38,27 @@ const Playlist = () => {
                 <div className="flex-row flex-between align-center width-70-pe">
                     <IonText className="font-bold">{filterPlaylist[0].name}</IonText>
 
-                    <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look">
+                    <IonButton slot="start" id="playlist-button" className="ion-border-circle no-shadow ion-transparent">
                         <IonIcon slot="icon-only" icon={ellipsisVertical}/>
+                        <IonPopover trigger="playlist-button" dismissOnSelect={true}>
+                            <IonList>
+                                <IonItem button detail={false}>
+                                    Delete playlist
+                                </IonItem>
+                            </IonList>
+                        </IonPopover>
                     </IonButton>
                 </div>
 
-                <IonList className="width-100-pe">
+                <IonList className="width-100-pe no-shadow opaque-total ion-padding">
                     {filterPlaylist[0].list.map((item, indentation) => {
 
                         return(
-                            <IonItem button key={item.index} onClick={() => goTo(item.song_id, indentation)}>
+                            <IonItem button className='no-shadow ion-transparent ion-border-transparent' key={item.index} onClick={() => goTo(item.song_id, indentation)}>
 
                                 <IonThumbnail slot="start" className="">
                                     <img alt="Song photo" src={item.url} />
                                 </IonThumbnail>
-
-                                <IonButton slot="start" className="ion-border-circle no-shadow ion-main-look ion-wf5-txt">
-                                    <IonIcon slot="icon-only" icon={ellipsisVertical}/>
-                                </IonButton>
 
                                 <IonLabel>{item.name}</IonLabel>
                                 

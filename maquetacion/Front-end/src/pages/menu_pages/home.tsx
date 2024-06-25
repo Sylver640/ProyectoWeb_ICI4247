@@ -69,7 +69,7 @@ const Home = () => {
             <IonMenu side="end" contentId="main-content">
                 
                 {/* Header del menu */}
-                <IonHeader>
+                <IonHeader className="no-shadow">
                     <div className="flex-row align-center ion-padding gap-15-px">
                         <IonAvatar className="icon-mid width-max height-max">
                             <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
@@ -109,7 +109,7 @@ const Home = () => {
                     {/* Foto de perfil del usuario, por ahora es uno generico */}
                     <div className="flex-row flex-between align-center opaque-bg">
                         <IonImg className="icon-min margin-left-2" alt="logo" src="./fish.png" />
-                        <IonButton slot="start" className="ion-border-circle ion-main-bg ion-txt-look ripple-color-look icon-min margin-right-2"><IonMenuButton /></IonButton>
+                        <IonButton slot="start" className="ion-border-circle ion-txt-look ripple-color-look icon-min margin-right-2 no-shadow ion-transparent"><IonMenuButton /></IonButton>
                     </div>
                     
                 </IonHeader>
