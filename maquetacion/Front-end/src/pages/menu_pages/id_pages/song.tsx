@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonButton, IonIcon } from "@ionic/react";
+import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem } from "@ionic/react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
-import {chevronBackOutline} from "ionicons/icons";
+import {chevronBackOutline, reorderTwoOutline} from "ionicons/icons";
 import apiCall from "../../../hooks/apiCall"
 import songCall from "../../../hooks/songCall";
 import SongPlayer from "../../../Components/player/songPlayer";
@@ -57,10 +57,23 @@ const Song: React.FC = () =>{
     return(
         <>
 
-        <IonHeader className="no-shadow">
+        <IonHeader className="no-shadow flex-row flex-between">
+
             <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
                 <IonIcon slot="icon-only" icon={chevronBackOutline}/>
             </IonButton>
+                
+            <IonButton id="popover-button" className="ion-border-circle no-shadow ion-main-bg ion-txt-look">
+                <IonIcon slot="icon-only" icon={reorderTwoOutline} />
+                <IonPopover trigger="popover-button" dismissOnSelect={true}>
+                    <IonList>
+                        <IonItem button detail={false}>
+                            Add to a playlist
+                        </IonItem>
+                    </IonList>
+                </IonPopover>
+            </IonButton>
+
         </IonHeader>
 
         <IonContent className="ion-padding ion-grad">
