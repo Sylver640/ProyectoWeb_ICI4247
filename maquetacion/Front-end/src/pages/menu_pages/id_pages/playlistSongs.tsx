@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonButton, IonIcon } from "@ionic/react";
+import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem } from "@ionic/react";
 import { useParams, useHistory, useLocation } from "react-router";
-import {chevronBackOutline} from "ionicons/icons";
+import {chevronBackOutline, reorderTwoOutline} from "ionicons/icons";
 import AudioPlayer from 'react-h5-audio-player';
 import apiCall from "../../../hooks/apiCall"
 import songCall from "../../../hooks/songCall";
@@ -99,9 +99,24 @@ const PlaylistSongs: React.FC = () =>{
     return(
         <>
 
-        <IonHeader className="no-shadow">
+        <IonHeader className="no-shadow flex-row flex-between">
             <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look"  onClick={() => getBack()}>
                 <IonIcon slot="icon-only" icon={chevronBackOutline}/>
+            </IonButton>
+            <IonButton id="popover" className="ion-border-circle no-shadow ion-main-bg ion-txt-look">
+                <IonIcon slot="icon-only" icon={reorderTwoOutline} />
+                <IonPopover trigger="popover" dismissOnSelect={true}>
+                    <IonList>
+                        <IonItem button detail={false}>
+                            Add to a playlist
+                        </IonItem>
+
+                        <IonItem button detail={false}>
+                            delete from a playlist
+                        </IonItem>
+
+                    </IonList>
+                </IonPopover>
             </IonButton>
         </IonHeader>
 

@@ -38,6 +38,10 @@
 .ion-grad{
     --background: linear-gradient(to top,#71460a, #151515);
 }
+
+.ion-transparent{
+    --background: transparent;
+}
 /*-----------------------------------------*/
 
 /* Text color para los strings */
@@ -90,6 +94,10 @@
 
 
 /* border Color*/
+.ion-border-transparent{
+    --border-color: transparent;
+}
+
 .ion-border-main{
     --border-color: #151515;
 }

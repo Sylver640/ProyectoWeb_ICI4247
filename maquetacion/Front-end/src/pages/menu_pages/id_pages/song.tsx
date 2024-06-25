@@ -70,6 +70,11 @@ const Song: React.FC = () =>{
                         <IonItem button detail={false}>
                             Add to a playlist
                         </IonItem>
+
+                        <IonItem button detail={false}>
+                            delete from a playlist
+                        </IonItem>
+
                     </IonList>
                 </IonPopover>
             </IonButton>

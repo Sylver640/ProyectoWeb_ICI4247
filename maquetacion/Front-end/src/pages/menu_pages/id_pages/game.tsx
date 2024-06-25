@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonButton, IonIcon, IonAvatar, IonItem, IonLabel } from "@ionic/react";
+import { IonContent, IonHeader, IonButton, IonIcon, IonAvatar, IonItem, IonLabel, IonList } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 import { useHistory } from "react-router";
 import { useParams } from "react-router";
@@ -61,16 +61,18 @@ const Game = () => {
                     <h3 className="font-bold gray-txt">{company}</h3>
                 </div>
 
-                {songList.map((song, index) => {
-                    return(
-                        <IonItem button key={index} className="no-shadow ripple-color-look" onClick={() => goTo(song._id, index)}>
-                            <IonAvatar aria-hidden="true" slot='start'>
-                                <img src={url} alt="cancion"/>
-                            </IonAvatar>
-                            <IonLabel className="font-bold">{song.name}</IonLabel>
-                        </IonItem>
-                    );
-                })}
+                <IonList className="ion-margin opaque-total">
+                    {songList.map((song, index) => {
+                        return(
+                            <IonItem button key={index} className="no-shadow ripple-color-look ion-transparent ion-border-transparent" onClick={() => goTo(song._id, index)}>
+                                <IonAvatar aria-hidden="true" slot='start'>
+                                    <img src={url} alt="cancion"/>
+                                </IonAvatar>
+                                <IonLabel className="font-bold">{song.name}</IonLabel>
+                            </IonItem>
+                        );
+                    })}
+                </IonList>
 
                 <div className="opaque-total ion-padding ion-margin"></div>
             </div>
