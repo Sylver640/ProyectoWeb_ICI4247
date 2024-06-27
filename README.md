@@ -59,11 +59,6 @@ pip install flask flask-jwt-extended
 El servidor se encontrará en el localhost con dirección 127.0.0.1 en el puerto 5000, con la base de datos ejecutándose en el puerto 3306.
 El archivo SQL con la creación de tablas se encuentra adjunta en el apartado de "Backend" de este repositorio.
 
-Inicio de sesion:
-```bash
-correo: generico@gmail.com
-password: 1234
-```
 </div>
 
 [js-badge-sm]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat
