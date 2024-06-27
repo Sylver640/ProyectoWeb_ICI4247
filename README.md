@@ -25,8 +25,7 @@
 2. Escuchar música de videojuegos
 3. Buscar, con ayuda de una API, los videojuegos por su nombre
 4. Creación y edición de listas de reproducción personalizadas y personales
-5. Edición de perfil personal que indique los 4 videojuegos favoritos del usuario y sus listas de reproducción creadas
-6. Recomendación personalizada para cada usuario con respecto a dos criterios: género de videojuego o género músical de videojuego
+5. Edición de perfil del usuario, donde puede cambiar su foto de perfil o su contraseña
 </div>
 
 ## Prototipo
@@ -42,10 +41,19 @@
   
 ### Iniciar la aplicación
 
-La aplicación fue hecha en con el framework Ionic y React. Para iniciar la aplicacion se debe:
+Debe tener instalado nodejs
+```bash
+https://nodejs.org/en/download/package-manager
+```
+Usando npm debe instalar ionic
+```bash
+npm i -g @ionic/cli
+```
+
+Para iniciar la aplicacion se debe colocar los siguientes comandos en el cmd:
 ```bash
 git clone https://github.com/Sylver640/ProyectoWeb_ICI4247.git
-cd ProyectoWeb_ICI4247/maquetacion
+cd ProyectoWeb_ICI4247/maquetacion/Front-end
 npm install
 ionic serve
 ```
@@ -69,8 +77,6 @@ El archivo SQL con la creación de tablas se encuentra adjunta en el apartado de
 [html5-web]: https://developer.mozilla.org/es/docs/Web/HTML
 [css3-badge-sm]: https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat
 [css3-web]: https://developer.mozilla.org/es/docs/Web/CSS
-[tailwind-badge-sm]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=fff&style=flat
-[tailwind-web]: https://tailwindcss.com/
 [react-badge-sm]: https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=fff&style=flat
 [react-web]: https://reactjs.org/
 [nodejs-badge-sm]: https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=fff&style=flat
@@ -79,8 +85,6 @@ El archivo SQL con la creación de tablas se encuentra adjunta en el apartado de
 [express-web]: https://expressjs.com/
 [mongodb-badge-sm]: https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=fff&style=flat
 [mongodb-web]: https://www.mongodb.com/
-[postgresql-badge-sm]: https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=fff&style=flat
-[postgresql-web]: https://www.postgresql.org/
 [mysql-badge-sm]: https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff&style=flat
 [mysql-web]: https://www.mysql.com/
 [git-badge-sm]: https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=flat
@@ -89,20 +93,14 @@ El archivo SQL con la creación de tablas se encuentra adjunta en el apartado de
 [github-web]: https://github.com
 [npm-badge-sm]: https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff&style=flat
 [npm-web]: https://www.npmjs.com/
-[yarn-badge-sm]: https://img.shields.io/badge/Yarn-2C8EBB?logo=yarn&logoColor=fff&style=flat
-[yarn-web]: https://yarnpkg.com/
 [prettier-badge-sm]: https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=flat
 [prettier-web]: https://prettier.io/
-[eslint-badge-sm]: https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=fff&style=flat
-[eslint-web]: https://eslint.org/
 [vscode-badge-sm]: https://img.shields.io/badge/Visual_Studio_Code-007ACC?logo=visual-studio-code&logoColor=fff&style=flat
 [vscode-web]: https://code.visualstudio.com/
 [ionic-badge-sm]: https://img.shields.io/badge/Ionic-3880FF?logo=ionic&logoColor=fff&style=flat
 [ionic-web]: https://ionicframework.com/
 [figma-badge-sm]: https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=fff&style=flat
 [figma-web]: https://www.figma.com/
-[ios-development-badge-sm]: https://img.shields.io/badge/iOS_Development-000000?logo=ios&logoColor=fff&style=flat
-[ios-development-web]: https://developer.apple.com/ios/
 [android-development-badge-sm]: https://img.shields.io/badge/Android_Development-3DDC84?logo=android&logoColor=fff&style=flat
 [android-development-web]: https://developer.android.com/
 [figma-prot-badge]: https://img.shields.io/badge/Ver%20prototipo%20en%20Figma-F24E1E?logo=figma&logoColor=fff&style=flat
