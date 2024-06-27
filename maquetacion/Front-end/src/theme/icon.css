@@ -19,6 +19,11 @@
     height: 50vw;
 }
 
+.icon-big2{
+    width: 70vw;
+    height: 70vw;
+}
+
 .width-max{
     max-width: 100%;
 }

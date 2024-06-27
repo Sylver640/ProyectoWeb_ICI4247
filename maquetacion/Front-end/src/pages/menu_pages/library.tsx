@@ -11,13 +11,17 @@ import {
     IonTitle,
     IonItem,
     IonPage,
-    useIonModal
+    useIonModal,
+    IonText,
+    IonList,
+    IonCard
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { addCircleSharp } from 'ionicons/icons';
-import ListPlaylist from "../../Components/playlist/listPlaylist";
-import { playlist } from "../../Data/playlist";
 import { OverlayEventDetail } from '@ionic/core/components';
+import { useLocalStorage } from "../../Data/useLocalStorage";
+import {UsersCall} from "../../hooks/usersCall";
+import { useHistory } from "react-router";
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -61,20 +65,47 @@ const ModalPlaylist = ({ dismiss }: { dismiss: (data?: string | null | undefined
   };
 
 const library = () => {
-    const [playlists, setPlaylists] = useState(playlist);
+    const [playlists, setPlaylists] = useState<any[]>([]);
     const [present, dismiss] = useIonModal(ModalPlaylist, {
         dismiss: (data: string, role: string) => dismiss(data, role),
     });
+    const {getPlaylistUser, createPlaylist} = UsersCall();
+    const history = useHistory();
+    const [message , setMessage] = useState<string>();
+    const [url, setUrl] = useState<string>('');
 
-    const addPlaylist = (name: string) => {
-        const newPlaylist = {
-            id: playlists.length + 1,
-            name: name,
-            url: "https://www.w3schools.com/howto/img_avatar.png",
-            list: []
-        };
+    useEffect(() => {
+      const fetchList = async () => {
+          try{
+              let email = useLocalStorage('user').getValue();
+              const list_user = await getPlaylistUser(email);
+              setPlaylists(list_user);
 
-        setPlaylists([...playlists, newPlaylist]);
+              let url = useLocalStorage('url').getValue();
+              setUrl(url);
+          }catch(e){
+              console.log(e);
+          }
+
+      }
+
+      fetchList();
+  }, []);
+
+    const addPlaylist = async (name: string) => {
+        let id = useLocalStorage('id').getValue();
+
+        try{
+            const response = await createPlaylist(id, name);
+            if(response.status === "playlist_created"){
+                setMessage("Playlist created successfully");
+            }else{
+                setMessage("Error creating playlist");
+            }
+
+        }catch(e){
+            console.log(e);
+        }
     }
 
     const openModal = () => {
@@ -87,12 +118,17 @@ const library = () => {
         });
     };
 
+
+    const goto = (path: string) => {
+      history.push(path);
+    };
+
     return (
         <IonContent className="ion-grad">
             <div className="flex-column">
                 <div className="ion-padding flex-row align-center flex-between">
                     <IonAvatar className='icon-mid'>
-                            <IonImg src="https://www.w3schools.com/howto/img_avatar.png" />
+                            <IonImg src={url} />
                     </IonAvatar>
                     
                     <div className="font-size-25 font-bold">Playlists</div>
@@ -103,7 +139,20 @@ const library = () => {
 
                     </div>
 
-                <ListPlaylist/>
+                <IonList className='opaque-total'>
+                  {playlists.map((card) => {
+                      return(
+                          <IonCard 
+                              button key={card.idPlaylist} 
+                              className='ion-main-bg ion-wff-txt text-center ripple-color-look ion-margin ion-padding'
+                              onClick={() => goto(`/tunebytes/playlist/${card.idPlaylist}`)}
+                              >
+                              <img className="icon-big2" alt="Playlist" src={card.Url} />
+                              <IonText className="font-bold font-size-20">{card.Nombre}</IonText>
+                          </IonCard>
+                      );
+                  })}
+              </IonList>
 
             </div>
         </IonContent>

@@ -14,6 +14,7 @@ import
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 import {chevronBackOutline} from "ionicons/icons";
+import { UsersCall } from "../../hooks/usersCall";
 
 import "../../theme/contenedores.css";
 import "../../theme/position.css";
@@ -27,7 +28,7 @@ const SignIn: React.FC = () =>{
     const [userName, setUserName] = useState<string>('');
     const [rut, setRut] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<boolean>();
+    
 
     // Validaciones de los datos
     const [isValidrut, setIsValidrut] = useState<boolean>();
@@ -36,6 +37,7 @@ const SignIn: React.FC = () =>{
     const [isTouched, setIsTouched] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [isNamed, setIsNamed] = useState<boolean>();
+    const [confirmPassword, setConfirmPassword] = useState<boolean>();
 
     // Mensaje de alerta
     const [message, setMessage] = useState<string>('');
@@ -43,6 +45,8 @@ const SignIn: React.FC = () =>{
     const [userMessage, setUserMessage] = useState<string>('');
     const [emailMessage, setEmailMessage] = useState<string>('');
     const [rutMessage, setRutMessage] = useState<string>('');
+
+    const {createUser} = UsersCall();
 
     // inicial stado de las validaciones
     const initialValidationState = {
@@ -66,7 +70,7 @@ const SignIn: React.FC = () =>{
     const valid_name = /^[a-z0-9]+$/;
 
     const history = useHistory();
-    var state = true;
+    const [state, setState] = useState<boolean>(false);
 
     //Existe nombre de usuario
     const getName = (e:Event) => {
@@ -181,12 +185,11 @@ const SignIn: React.FC = () =>{
 
         if(validateRut(value)) {
             setIsValidrut(true)
+            setRut(value);
         }else{
             setRutMessage('Invalid rut'); 
             setIsValidrut(false);
         };
-
-        if(isValidrut)setRut(value);
     };
     //-----------------------------------------
 
@@ -199,9 +202,9 @@ const SignIn: React.FC = () =>{
 
         if(value === ''){
             resetValidations()
-            return;
         };
 
+        setPassword(value);
         setPasswordValidation({
             length: lenght_validate.test(value),
             uppercase: uppercase_validate.test(value),
@@ -211,8 +214,6 @@ const SignIn: React.FC = () =>{
         });
 
         setIsValidPassword(Object.values(passwordValidation).every(Boolean));
-
-        (isValidPassword)? setPassword(value): setPassword('');
     };
 
     const validationConfrim = (e:Event) => {
@@ -226,7 +227,6 @@ const SignIn: React.FC = () =>{
     };
 
     const resetValidations = () => {
-        setPassword('');
         setPasswordValidation(initialValidationState);
     };
     //-----------------------------------------
@@ -235,32 +235,30 @@ const SignIn: React.FC = () =>{
     // Aceptar terminos y condiciones
     const  handleCheckBox = (e: Event) => {
         if(state){
-            setIsChecked(true);
-            state = false;
-        }else{
             setIsChecked(false);
-            state = true;
+            setState(false);
+        }else{
+            setIsChecked(true);
+            setState(true);
         }
     }
     //-----------------------------------------
 
 
     // Crear Usuario
-    const handleSingIn = () => {
-        if (isValidrut && isValidEmail && isValidPassword && confirmPassword && isChecked && isNamed){
-            setMessage('User created successfully');
-            setHeader('Success');
-            const newUser = {
-                name: userName,
-                rut: rut,
-                email: email,
-                password: password
+    const handleSingIn = async () => {
+        if (isValidrut && isValidEmail && isValidPassword && isChecked && isNamed && confirmPassword){
+            try{
+                const users = await createUser(userName, rut, email, password);
+                setMessage('User created successfully');
+            }catch(e){
+                    console.log(e);
             }
-            history.replace('/LogIn');
-        } else {
+        }else 
+        {
             setMessage('Please fill all the fields correctly');
             setHeader('Error');
-        }        
+        }      
     }
     //-----------------------------------------
 
@@ -272,6 +270,8 @@ const SignIn: React.FC = () =>{
     const getBack = () => {
         history.goBack();
     }
+    //-----------------------------------------
+
 
     return(
         <IonPage>
@@ -347,7 +347,7 @@ const SignIn: React.FC = () =>{
                                 <li><IonText color={passwordValidation.length? 'success' : 'danger'}>At least 8 characters</IonText></li>
                                 <li><IonText color={passwordValidation.uppercase? 'success' : 'danger'}>At least one uppercase letter</IonText></li>
                                 <li><IonText color={passwordValidation.lowercase? 'success' : 'danger'}>At least one lowercase letter</IonText></li>
-                                <li><IonText color={passwordValidation.number? 'success' : 'danger'}>At least one number</IonText></li>
+                                <li><IonText color={passwordValidation.number? 'success' : 'danger'}>At least two numbers</IonText></li>
                                 <li><IonText color={passwordValidation.specialChar? 'success' : 'danger'}>At least one special character</IonText></li>
                             </ul>
                         </div>

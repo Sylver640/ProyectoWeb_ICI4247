@@ -14,6 +14,7 @@ import { IonAvatar } from '@ionic/react';
 import { useLocalStorage } from "../../Data/useLocalStorage";
 import { useHistory } from "react-router";
 import useApi from '../../hooks/apiCall';
+import {UsersCall} from "../../hooks/usersCall";
 
 // Import de los componentes
 import ShowSlides from '../../Components/btns/ShowSlides';
@@ -31,7 +32,10 @@ const Home = () => {
 
     // Llamar a la constante de la API
     const { searchData } = useApi();
-
+    const {getUserByEmail} = UsersCall();
+    const [name, setName] = useState<string>('');
+    const [url, setUrl] = useState<string>('');
+    const [gamelist, setGameList] = useState<any[]>([]);
     const history = useHistory();
 
     // Data de canciones
@@ -42,6 +46,20 @@ const Home = () => {
             try{
                 const list_songs = await searchData('songs', "?limit=5");
                 setSongs(list_songs);
+
+                const list_games = await searchData('games','');
+                setGameList(list_games);
+
+                let email = useLocalStorage('user').getValue();
+                const user = await getUserByEmail(email);
+
+                setName(user.Nombre);
+                setUrl(user.url);
+
+                useLocalStorage('nombre').setValue(user.Nombre);
+                useLocalStorage('url').setValue(user.url);
+
+
             }
             catch(e){
                 console.log(e);
@@ -60,7 +78,7 @@ const Home = () => {
             useLocalStorage('rememberMe').setValue('false');
         }
 
-        history.replace("/login");
+        history.push("/login");
     }
 
     return (
@@ -72,19 +90,15 @@ const Home = () => {
                 <IonHeader className="no-shadow">
                     <div className="flex-row align-center ion-padding gap-15-px">
                         <IonAvatar className="icon-mid width-max height-max">
-                            <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
+                            <IonImg className="width-max height-max" src={url}/>
                         </IonAvatar>
-                        <IonLabel className="font-bold">User</IonLabel>
+                        <IonLabel className="font-bold">{name}</IonLabel>
                     </div>
                 </IonHeader>
 
                 {/* Contenido del menu */}
                 <IonContent>
                     <IonList lines="none" className="padding-0">
-
-                        <IonItem button className="ion-main-bg ripple-color-look">
-                            <IonLabel className="font-bold">View perfil</IonLabel>
-                        </IonItem>
 
                         <IonItem button className="ion-main-bg ripple-color-look" onClick={() => goTo("/settings")}>
                             <IonLabel className="font-bold">Settings</IonLabel>
@@ -126,25 +140,25 @@ const Home = () => {
                             {/* Mensaje de bienvenida al usuario */}
                             <div className="flex-row flex-start align-center gap-3-vw">
                                 <IonAvatar className="flex-row flex-center align-center icon-mid width-max height-max">
-                                    <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
+                                    <IonImg className="width-max height-max" src={url} />
                                 </IonAvatar>
-                                <div className="text-left font-25 ion-padding">Welcome User !!</div>
+                                <div className="text-left font-25 ion-padding">Welcome {name} !!</div>
                             </div>
 
                             {/* Recomendaciones para el usuario, en el futuro tendra mas protagonismo*/}
                             <div className="flex-column">
 
                                 {/* Aqui se mostraran la musica recomendada */}
-                                <ShowSlides clases="border-circle-15" tipo="songs" title="Recomendations" type={songs}/>
+                                <ShowSlides clases="border-circle-15" tipo="songs" title="Recomendations" type={songs} spaceBetween={0.1} SlidesPerView={2}/>
 
                                 {/* Nuevo album salido o insertado dentro de la aplicacion */}
-                                <ShowRelease type="games" data={songs[0]}/>
+                                <ShowRelease type="games" data={gamelist[1]}/>
                                 
                                 {/* Top Tracks mas escuchados de la plataforma */}
                                 <ShowTop tipo="songs" title="Top Tracks" type={songs}/>
                                 
                                 {/* Soundtracks de videojuegos */}
-                                <ShowSlides clases="border-circle-15" tipo="games" title="Game sountracks" type={songs}/>
+                                <ShowSlides clases="border-circle-15" tipo="games" title="Game sountracks" type={gamelist} spaceBetween={0.1} SlidesPerView={1}/>
                             
                             </div>
                         </div>

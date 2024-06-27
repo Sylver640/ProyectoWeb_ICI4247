@@ -14,6 +14,7 @@ import {
 } from "@ionic/react";
 import useApi from '../../hooks/apiCall';
 import { useHistory } from 'react-router';
+import { useLocalStorage } from '../../Data/useLocalStorage';
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -28,6 +29,7 @@ const Search = () => {
     const [songList, setSongList] = useState<any[]>([]);
     const [gameList, setGameList] = useState<any[]>([]);
     const [results, setResults] = useState<any[]>([]);
+    const [url, setUrl] = useState<string>('');
     const history = useHistory();
 
     useEffect(() => {
@@ -38,7 +40,9 @@ const Search = () => {
 
                 const list_games = await searchData('games','');
                 setGameList(list_games);
-                
+
+                let url = useLocalStorage('url').getValue();
+                setUrl(url);
             }
             catch(e){
                 console.log(e);
@@ -84,7 +88,7 @@ const Search = () => {
                 <div className='flex-column padding-top-15'>
                     <div className='flex-row ion-padding'>
                         <IonAvatar className="icon-min width-max height-max">
-                            <IonImg className="width-max height-max" src="https://www.w3schools.com/howto/img_avatar.png" />
+                            <IonImg className="width-max height-max" src={url} />
                         </IonAvatar>
 
                         <IonTitle className='font-size-25'>Search</IonTitle>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem } from "@ionic/react";
+import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem, IonActionSheet } from "@ionic/react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
 import {chevronBackOutline, reorderTwoOutline} from "ionicons/icons";
 import apiCall from "../../../hooks/apiCall"
 import songCall from "../../../hooks/songCall";
 import SongPlayer from "../../../Components/player/songPlayer";
+import {useLocalStorage} from "../../../Data/useLocalStorage";
+import {UsersCall} from "../../../hooks/usersCall";
 
 // Import de los themes css
 import "../../../theme/contenedores.css";
@@ -22,7 +24,11 @@ const Song: React.FC = () =>{
     const [ url, setUrl ] = useState<string>('');
     const [ audio, setAudio ] = useState<string>('');
     const [ game, setGame ] = useState<string>('');
+    const [list, setList] = useState<any[]>([]);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [popOveropen, setPopOverOpen] = useState<boolean>(false);
     const history = useHistory();
+    const {getPlaylistUser, addSongPlaylist} = UsersCall();
 
     useEffect( () => {
         let isMounted = true;
@@ -40,6 +46,10 @@ const Song: React.FC = () =>{
                     setAudio(audioUrl);
                 }
 
+                let email = useLocalStorage('user').getValue();
+                const new_list = await getPlaylistUser(email);
+
+                setList(new_list);
 
             }catch(e){
                 console.log(e);
@@ -54,6 +64,14 @@ const Song: React.FC = () =>{
 
     const getBack = () => {history.push('/home');}
 
+    const addSong = async (name:string, id:string) => {
+        try{
+            const response = await addSongPlaylist(name, id);
+        }catch(e){
+            console.log(e);
+        }
+    }
+
     return(
         <IonContent className="ion-padding ion-grad">
             <IonHeader className="no-shadow flex-row flex-between">
@@ -62,23 +80,37 @@ const Song: React.FC = () =>{
                     <IonIcon slot="icon-only" icon={chevronBackOutline}/>
                 </IonButton>
                     
-                <IonButton id="popover-button" className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent">
+                <IonButton className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent" onClick={() => setIsOpen(true)}>
                     <IonIcon slot="icon-only" icon={reorderTwoOutline} />
-                    <IonPopover trigger="popover-button" dismissOnSelect={true}>
-                        <IonList>
-                            <IonItem button detail={false}>
-                                Add to a playlist
-                            </IonItem>
-
-                            <IonItem button detail={false}>
-                                delete from a playlist
-                            </IonItem>
-
-                        </IonList>
-                    </IonPopover>
                 </IonButton>
 
             </IonHeader>
+
+            <IonActionSheet
+                    isOpen={isOpen}
+                    buttons={[
+                        {
+                            text:"Add to playlist",
+                            handler: () => setPopOverOpen(true)
+                        },
+                        {
+                            text:"Cancel",
+                            role:"cancel",
+                            data:{
+                                action:'cancel'
+                            }
+                        }
+                    ]}
+                    onDidDismiss={() => setIsOpen(false)}
+            />
+
+            <IonPopover isOpen={popOveropen} onDidDismiss={() => setPopOverOpen(false)}>
+                <IonList>
+                    {list.map( (item) => (
+                        <IonItem key={item.idPlaylist} onClick={() => addSong(item.Nombre, id)}>{item.Nombre}</IonItem>
+                    ))}
+                </IonList>
+            </IonPopover>
 
             <SongPlayer src={audio} name={name} url={url} game={game} />
 

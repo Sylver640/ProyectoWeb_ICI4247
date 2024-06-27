@@ -13,9 +13,11 @@ interface ShowSlidesProps {
     tipo: 'games' | 'songs';
     title?: string;
     type: any[];
+    spaceBetween: number;
+    SlidesPerView: number;
 }
 
-const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
+const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type, spaceBetween, SlidesPerView}) => {
     const history = useHistory();
 
     const handleNavigate = (cardId: string) => {{
@@ -30,8 +32,8 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type}) => {
 
                 <Swiper
                     modules={[Pagination]}
-                    spaceBetween={0.1}
-                    slidesPerView={2}
+                    spaceBetween={spaceBetween}
+                    slidesPerView={SlidesPerView}
                     pagination={{ clickable: true }}
                     className='mySwiper'
                 >

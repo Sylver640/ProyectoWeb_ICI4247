@@ -3,12 +3,12 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
+
 // Direcciones de las paginas
 import LogIn from './pages/login_pages/logIn';
 import SignIn from './pages/login_pages/signIn';
-import menu from './pages/login_pages/menu';
 import Forgot from './pages/login_pages/forgot';
-import home from './pages/menu_pages/home';
+import Menu from './pages/login_pages/menu';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -28,7 +28,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Menu from './pages/login_pages/menu';
+
 
 setupIonicReact();
 

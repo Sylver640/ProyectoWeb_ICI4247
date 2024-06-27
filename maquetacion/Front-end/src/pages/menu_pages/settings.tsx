@@ -1,5 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { IonContent, IonImg, IonAvatar, IonButton, IonItem, IonLabel, IonToggle } from "@ionic/react";
+import {Camera, CameraResultType, CameraSource} from '@capacitor/camera';
+import {Filesystem} from '@capacitor/filesystem';
+import {Capacitor} from '@capacitor/core';
+import { useLocalStorage } from '../../Data/useLocalStorage';
+import {UsersCall} from '../../hooks/usersCall';
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -9,7 +14,72 @@ import "../../theme/text.css";
 import "../../theme/icon.css";
 
 const Settings = () => {
-    
+    const [email, setEmail] = useState<string>('');
+    const [url, setUrl] = useState<string>('');
+    const {update_user} = UsersCall();
+
+    useEffect(() => {
+        let email = useLocalStorage('user').getValue();
+        setEmail(email);
+        let url = useLocalStorage('url').getValue();
+        setUrl(url);
+    },[]);
+
+    const selectImage = async () => {
+        const platform = Capacitor.getPlatform();
+
+        const image = await Camera.getPhoto({
+            quality: 90,
+            allowEditing: false,
+            resultType: CameraResultType.Uri,
+            source: CameraSource.Photos
+        });
+
+        if(platform === 'web' && image.webPath){
+            let newUrl = image.webPath;
+            setUrl(image.webPath);
+            useLocalStorage('url').setValue(image.webPath);
+
+            try{
+                const response = await update_user(newUrl,'url', email);
+
+                if(response.status === "user_updated"){
+                    console.log("User updated");
+                }else{
+                    console.log("User not updated");
+                }
+
+            }catch(e){
+                console.log(e);
+                return;
+            }
+
+        }else{
+            try{
+                const file = await Filesystem.readFile({
+                    path: image.path!
+                });
+
+                const base64Data = `data:image/${image.format};base64,${file.data}`;
+                let newUrl = base64Data;
+                setUrl(base64Data);
+                useLocalStorage('url').setValue(base64Data);
+
+                const response = await update_user(newUrl,'url', email);
+
+                if(response.status === "user_updated"){
+                    console.log("User updated");
+                }else{
+                    console.log("User not updated");
+                }
+                
+            }catch(e){
+                console.log(e);
+                return;
+            }
+        }
+    }
+
     return (
         <IonContent>
             <div>
@@ -18,13 +88,13 @@ const Settings = () => {
                     {/* Foto de perfil del usuario */}
                     <div className="flex-row align-center flex-center">
                         <IonAvatar className="icon-big">
-                            <IonImg src="https://www.w3schools.com/howto/img_avatar.png" />
+                            <IonImg src={url} />
                         </IonAvatar>
                     </div>
 
                     {/* Boton para cambiar la foto de perfil */}
                     <div>
-                        <IonButton className="ion-border-circle ion-main-look ion-main-txt">CHANGE PROFILE PICTURE</IonButton>
+                        <IonButton className="ion-border-circle ion-main-look ion-main-txt" onClick={() => selectImage()}>CHANGE PROFILE PICTURE</IonButton>
                     </div>
 
                 </div>
@@ -43,7 +113,7 @@ const Settings = () => {
                     <IonItem button className="ion-main-bg ion-wf5-bg ion-border-main ripple-color-look">
                         <IonLabel>
                             <h3>Email</h3>
-                             <p>generico@gmail.com</p>
+                             <p>{email}</p>
                          </IonLabel>
                     </IonItem>
                 </div>

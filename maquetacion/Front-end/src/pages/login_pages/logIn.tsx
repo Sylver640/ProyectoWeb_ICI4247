@@ -12,6 +12,7 @@ import {
 import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import {useLocalStorage} from "../../Data/useLocalStorage"
+import { UsersCall } from "../../hooks/usersCall";
 
 // Import de los themes css
 import "../../theme/contenedores.css";
@@ -30,6 +31,7 @@ const LogIn: React.FC = () => {
     const [isError, setIsError] = useState<boolean>();
     const [isTouched, setIsTouched] = useState<boolean>(false);
     let rememberMe:boolean = (getValue() === 'true' ? true: false);
+    const {getUser} = UsersCall();
 
     // Validar Email, sacado de la pagina de Ionic
     const validateEmail = (email: string) => {
@@ -87,14 +89,31 @@ const LogIn: React.FC = () => {
 
     // Funcion de inicio de sesion, el correo para entrar es generico@gmail y la contraseña 1234
     // En un futuro se cambiara por una base de datos
-    const handleLogin = () => {
-        if(useLocalStorage('user').getValue() === 'generico@gmail.com' && useLocalStorage('password').getValue() === '1234'){history.replace('/menu'); return;}
-        
-        useLocalStorage('user').setValue('');
-        useLocalStorage('password').setValue('');
-        setIsError(false);
-        setIsValid(false);
-        return;
+    const handleLogin = async () => {
+        try{
+            let email = useLocalStorage('user').getValue();
+            let password = useLocalStorage('password').getValue();
+            const getting = await getUser(email, password);
+            if(getting.valid === true){
+                useLocalStorage('id').setValue(getting.id);
+                history.push('/menu');
+            }else{
+                useLocalStorage('user').setValue('');
+                useLocalStorage('password').setValue('');
+                setIsError(false);
+                setIsValid(false);
+            }
+
+
+        }catch(e){
+            console.log(e);  
+            useLocalStorage('user').setValue('');
+            useLocalStorage('password').setValue('');
+            setIsError(false);
+            setIsValid(false);
+            return;
+        }
+
     };
     //-----------------------------------------------------------------------------------
 
@@ -118,11 +137,24 @@ const LogIn: React.FC = () => {
     }
     //-----------------------------------------------------------------------------------
 
-
-    // Renderizado de la pagina
     useEffect(() => {
-        console.log('Remember me: ', rememberMe);
+        const remember = async () => {
+            let remember = getValue();
+
+            if(remember === 'true'){
+                let email = useLocalStorage('user').getValue();
+                let password = useLocalStorage('password').getValue();
+
+                const response = await getUser(email, password);
+                if(response.valid === true){
+                    history.push('/menu');
+                }
+            }
+        }
+
+        remember();
     },[]);
+
     //-----------------------------------------------------------------------------------
 
     return(
