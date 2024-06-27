@@ -42,7 +42,7 @@ const Game = () => {
     const goTo = (id: string, position:number) => {
         history.push({
             pathname:`/tunebytes/playlist/songs/${id}`,
-            state: {list: songList, index: position}
+            state: {list: songList, index: position, game: true}
         });
     };
 

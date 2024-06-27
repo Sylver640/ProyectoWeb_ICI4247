@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { IonContent, IonPage, IonInput, IonButton, IonIcon, IonItem, IonText } from '@ionic/react';
+import { IonContent, IonPage, IonInput, IonButton, IonIcon, IonItem, IonText, IonAlert } from '@ionic/react';
 import {chevronBackOutline} from "ionicons/icons";
 import {UsersCall} from "../../hooks/usersCall";
 import { useHistory } from 'react-router-dom';
@@ -10,6 +10,8 @@ const Forgot = () => {
     const [email, setEmail] = useState<string>('');
     const [canUpdate, setCanUpdate] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
+    const [header, setHeader] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
 
     const [isTouched, setIsTouched] = useState<boolean>(false);
     const [isValidPassword, setIsValidPassword] = useState<boolean>();
@@ -45,10 +47,12 @@ const Forgot = () => {
     const validate = async () => {
         try{
             const user = await getUserByEmail(email);
-            if(user){
-                setCanUpdate(true);
-            }else{
+            if(user.error === 'Usuario no encontrado'){
                 setCanUpdate(false);
+                return;
+            }else{
+                setCanUpdate(true);
+                return;
             }
 
         }catch(e){
@@ -94,14 +98,21 @@ const Forgot = () => {
             try{
                 const response = await update_user(password, 'password', email);
                 if(response.status === "user_updated"){
-                    console.log("User updated");
+                    setHeader("Password updated");
+                    setMessage("Your password has been updated successfully");
                     history.push('/login');
                 }else{
-                    console.log("User not updated");
+                    setHeader("Error");
+                    setMessage("There was an error updating your password");
                 }
             }catch(e){
+                setHeader("Error");
+                setMessage("There was an error updating your password");
                 console.log(e);
             }
+        }else{
+            setHeader("Error");
+            setMessage("The password does not meet the requirements");
         }
 
     }
@@ -163,7 +174,14 @@ const Forgot = () => {
                             </ul>
                         </div>
 
-                        <IonButton expand="block" shape='round' className='width-65-vw ion-main-look ion-main-txt' onClick={() => handleUpdate()}>Change</IonButton>
+                        <IonButton expand="block" shape='round' id="alert-pwd" className='width-65-vw ion-main-look ion-main-txt' onClick={() => handleUpdate()}>Change</IonButton>
+
+                        <IonAlert
+                                trigger="alert-pwd"
+                                header={header}
+                                message={message}
+                                buttons={['OK']}
+                        ></IonAlert>
 
                     </div>
                 }

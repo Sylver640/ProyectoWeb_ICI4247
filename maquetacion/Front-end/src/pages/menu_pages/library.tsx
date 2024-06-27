@@ -14,7 +14,8 @@ import {
     useIonModal,
     IonText,
     IonList,
-    IonCard
+    IonCard,
+    IonAlert
 } from "@ionic/react";
 import { IonAvatar } from '@ionic/react';
 import { addCircleSharp } from 'ionicons/icons';
@@ -50,7 +51,7 @@ const ModalPlaylist = ({ dismiss }: { dismiss: (data?: string | null | undefined
           </IonToolbar>
         </IonHeader>
         <IonContent className="ion-padding ion-grad">
-            <IonItem className="">
+            <IonItem>
                 <IonInput
                     className="ion-wf5-txt ion-primary"
                     ref={inputRef}
@@ -70,8 +71,10 @@ const library = () => {
         dismiss: (data: string, role: string) => dismiss(data, role),
     });
     const {getPlaylistUser, createPlaylist} = UsersCall();
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+    const [alertMessage, setAlertMessage] = useState<string>('');
+    const [header, setHeader] = useState<string>('');
     const history = useHistory();
-    const [message , setMessage] = useState<string>();
     const [url, setUrl] = useState<string>('');
 
     useEffect(() => {
@@ -98,13 +101,18 @@ const library = () => {
         try{
             const response = await createPlaylist(id, name);
             if(response.status === "playlist_created"){
-                setMessage("Playlist created successfully");
+                setHeader("Success");
+                setAlertMessage("Playlist created successfully, refresh de screen to see it");
             }else{
-                setMessage("Error creating playlist");
+                setHeader("Error");
+                setAlertMessage("This name is already in use, try another one");
             }
-
+            setShowAlert(true);
         }catch(e){
             console.log(e);
+            setHeader("Error");
+            setAlertMessage("There was an error creating the playlist");
+            setShowAlert(true);
         }
     }
 
@@ -147,12 +155,23 @@ const library = () => {
                               className='ion-main-bg ion-wff-txt text-center ripple-color-look ion-margin ion-padding'
                               onClick={() => goto(`/tunebytes/playlist/${card.idPlaylist}`)}
                               >
-                              <img className="icon-big2" alt="Playlist" src={card.Url} />
+
+                              <img alt="Playlist" src={card.Url} />
                               <IonText className="font-bold font-size-20">{card.Nombre}</IonText>
                           </IonCard>
                       );
                   })}
               </IonList>
+
+              <div className="opaque-total icon-min"></div>
+
+              <IonAlert
+                    isOpen={showAlert}
+                    onDidDismiss={() => setShowAlert(false)}
+                    header={header}
+                    message={alertMessage}
+                    buttons={['OK']}
+                />
 
             </div>
         </IonContent>

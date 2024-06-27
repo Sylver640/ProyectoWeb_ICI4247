@@ -250,9 +250,18 @@ const SignIn: React.FC = () =>{
         if (isValidrut && isValidEmail && isValidPassword && isChecked && isNamed && confirmPassword){
             try{
                 const users = await createUser(userName, rut, email, password);
-                setMessage('User created successfully');
+                if(users.status === "user_created"){
+                    setMessage('User created successfully');
+                    setHeader('Success');
+                    history.push('/login');
+                }else{
+                    setMessage('User already exists');
+                    setHeader('Error');
+                }
             }catch(e){
                     console.log(e);
+                    setMessage('Error creating user');
+                    setHeader('Error');
             }
         }else 
         {

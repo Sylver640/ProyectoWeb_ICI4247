@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem, IonActionSheet } from "@ionic/react";
+import { IonContent, IonHeader, IonButton, IonIcon, IonPopover, IonList, IonItem, IonActionSheet, IonAlert } from "@ionic/react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
 import {chevronBackOutline, reorderTwoOutline} from "ionicons/icons";
@@ -24,6 +24,9 @@ const Song: React.FC = () =>{
     const [ url, setUrl ] = useState<string>('');
     const [ audio, setAudio ] = useState<string>('');
     const [ game, setGame ] = useState<string>('');
+    const [header, setHeader] = useState<string>('')
+    const [message, setMessage] = useState<string>('');
+    const [alertOpen, setAlertOpen] = useState<boolean>(false);
     const [list, setList] = useState<any[]>([]);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [popOveropen, setPopOverOpen] = useState<boolean>(false);
@@ -67,8 +70,20 @@ const Song: React.FC = () =>{
     const addSong = async (name:string, id:string) => {
         try{
             const response = await addSongPlaylist(name, id);
+            if(response.status === "song_added_to_playlist"){
+                setHeader("Success");
+                setMessage("Song added to playlist");
+            }else{
+                setHeader("Error");
+                setMessage("Something went wrong, try again later");
+                console.log("Error");
+            }
+            setAlertOpen(true);
         }catch(e){
             console.log(e);
+            setHeader("Error");
+            setMessage("Something went wrong, try again later");
+            setAlertOpen(true);
         }
     }
 
@@ -113,6 +128,14 @@ const Song: React.FC = () =>{
             </IonPopover>
 
             <SongPlayer src={audio} name={name} url={url} game={game} />
+
+            <IonAlert
+                isOpen={alertOpen}
+                onDidDismiss={() => setAlertOpen(false)}
+                header={header}
+                message={message}
+                buttons={['OK']}
+            ></IonAlert>
 
         </IonContent>
     );

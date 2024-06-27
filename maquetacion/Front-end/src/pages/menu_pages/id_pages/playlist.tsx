@@ -13,7 +13,8 @@ import {
     IonPopover, 
     IonItemSliding,
     IonItemOptions,
-    IonItemOption
+    IonItemOption,
+    IonAlert
  } from "@ionic/react";
 import { chevronBackOutline, ellipsisVertical, trash } from "ionicons/icons";
 import { useHistory, useParams } from "react-router";
@@ -29,6 +30,9 @@ const Playlist = () => {
     const [name, setName] = useState<string>('');
     const { id } = useParams<{id: string}>();
     const [list, setList] = useState<any[]>([]);
+    const [header, setHeader] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
+    const [alertOpen, setAlertOpen] = useState<boolean>(false);
     const { getlistPlaylist, getPlaylist_byId, deletePlaylist, deleteSongPlaylist, update_playlist } = UsersCall();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -56,14 +60,33 @@ const Playlist = () => {
     const goTo = (id: string, position:number) => {
         history.push({
             pathname:`/tunebytes/playlist/songs/${id}`,
-            state: {list: list, index: position}
+            state: {list: list, index: position, game: false}
         });
     };
 
     const delplatlist = async () => {
         try{
+
+            if(list.length > 0){
+
+                for(let i = 0; i < list.length; i++){
+                    try{
+                        let id = list[i].song_id;
+                        const response = await deleteSongPlaylist(name, id);
+                    }catch(e){
+                        console.log(e);
+                        return;
+                    }
+                }
+            }
+
             const response = await deletePlaylist(name);
-            if(response.status === "playlist_deleted"){history.push("/menu");}
+            if(response.status === "playlist_deleted"){
+                history.push("/menu");
+            }else{
+                console.log("Algo ocurrio");
+                return;
+            }
         }catch(e){
             console.log(e);
         }
@@ -73,11 +96,19 @@ const Playlist = () => {
         try{
             const response = await deleteSongPlaylist(name, id);
             if(response.status === "song_deleted"){
-                const lista = await getlistPlaylist(useLocalStorage('user').getValue(), name);
-                setList(lista);
+                setHeader("Error");
+                setMessage("There was an error deleting the song");
+            }else{
+                setHeader("Success");
+                setMessage("Song deleted");
             }
+
+            setAlertOpen(true);
         }catch(e){
             console.log(e);
+            setHeader("Error");
+            setMessage("There was an error deleting the song");
+            setAlertOpen(true);
         }
     }
 
@@ -100,13 +131,19 @@ const Playlist = () => {
                 const response = await update_playlist("Url",newUrl, name);
                 
                 if(response.status === "playlist_updated"){
-                    console.log("Playlist updated");
+                    setHeader("Success");
+                    setMessage("Playlist updated");
                 }else{
-                    console.log("Playlist not updated");
+                    setHeader("Error");
+                    setMessage("There was an error updating the playlist");
                 }
+                setAlertOpen(true);
                     
             }catch(e){
                 console.log(e);
+                setHeader("Error");
+                setMessage("There was an error updating the playlist");
+                setAlertOpen(true);
                 return;
             }
 
@@ -141,10 +178,6 @@ const Playlist = () => {
         }catch(e){
             console.log(e);
         }
-    }
-
-    const changeName = async () => {
-
     }
 
     return(
@@ -208,6 +241,16 @@ const Playlist = () => {
                     })}
 
                 </IonList>
+
+                <div className="opaque-total icon-min"></div>
+
+                <IonAlert
+                    isOpen={alertOpen}
+                    onDidDismiss={() => setAlertOpen(false)}
+                    header={header}
+                    message={message}
+                    buttons={['OK']}
+                />
 
             </div>
 
