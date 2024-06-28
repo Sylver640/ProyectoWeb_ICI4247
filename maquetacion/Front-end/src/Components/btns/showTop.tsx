@@ -4,32 +4,45 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import React from 'react';
 
-
+// Import de los themes css
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
-
+// ========================================================================
+// Componente de la lista de canciones
 interface ShowListProps{
     clases?: string;
     tipo: 'games' | 'songs';
     title?: string;
     type: any[];
 }
+// ========================================================================
 
+
+// ========================================================================
+// Componente de la lista de canciones
 const showTop: React.FC<ShowListProps> = ({clases, tipo, title, type}) => {
+
+    // Llamar a la constante de la historia
     const history = useHistory();
 
-
+    // ========================================================================
+    // Función para navegar
     const handleNavigate = (cardId: string) => {{
         history.push(`/tunebytes/${tipo}/${cardId}`);
     }}
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado del componente
     return(
         <div>
 
+            {/* Título */}
             <div className="text-center font-size-25 ion-padding font-bold">{title}</div>
 
+            {/* Swiper */}
             <Swiper
                 modules={[EffectCoverflow, Pagination]}
                 effect={'coverflow'}
@@ -45,7 +58,8 @@ const showTop: React.FC<ShowListProps> = ({clases, tipo, title, type}) => {
                 pagination={{ clickable: true }}
                 className='mySwiper'
             >
-
+                    
+                {/* Mapeo de las cartas */}
                 {type.map((card) => {
                     return(
                         <SwiperSlide key={card._id}>

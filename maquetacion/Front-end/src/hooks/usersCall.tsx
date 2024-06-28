@@ -1,7 +1,11 @@
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
+// ========================================================================
+// ==================  USERS CALLS  =======================================
 export const UsersCall = () => {
 
+    // ========================================================================
+    // Obtener usuario por email
     const getUserByEmail = async(email: string) => {
         const options = {
             method: 'GET',
@@ -19,7 +23,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Crear usuario
     const createUser = async (user: string, rut:string, email:string, password: string) =>{
         
         const options = {
@@ -45,7 +52,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Obtener usuario
     const getUser = async(email: string, password: string): Promise<any> =>  {
 
         const options = {
@@ -70,7 +80,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Obtener playlist de usuario
     const getPlaylistUser = async(email:string) => {
             
             const options = {
@@ -89,7 +102,10 @@ export const UsersCall = () => {
                 return {error: e};
             }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Crear playlist
     const createPlaylist = async(id: string, name: string) => {
         const options = {
             method: 'POST',
@@ -113,7 +129,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Obtener lista de playlist
     const getlistPlaylist = async (email: string, playlist: string) => {
         const options = {
             method: 'GET',
@@ -132,7 +151,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Obtener playlist por id
     const getPlaylist_byId = async (playlist: string) => {
 
         const options = {
@@ -151,7 +173,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Añadir canción a playlist
     const addSongPlaylist = async (name: string, id: string) =>{
         const options = {
             method: 'POST',
@@ -172,7 +197,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Eliminar playlist
     const deletePlaylist = async (name: string) => {
 
         const options = {
@@ -191,7 +219,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Actualizar usuario
     const update_user = async (update:string, key:string, email:string) => {
         const options = {
             method: 'PUT',
@@ -213,7 +244,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Eliminar canción de playlist
     const deleteSongPlaylist = async (name: string, id: string) => {
         const options = {
             method: 'DELETE',
@@ -231,7 +265,10 @@ export const UsersCall = () => {
             return {error: e};
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Actualizar playlist
     const update_playlist = async (key:string, value:string, name:string) => {
         const options = {
             method: 'PUT',
@@ -254,7 +291,10 @@ export const UsersCall = () => {
         
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Retornar las funciones
     return { getUserByEmail, createUser, getUser, getPlaylistUser, createPlaylist, getlistPlaylist, getPlaylist_byId, addSongPlaylist, deletePlaylist, update_user, deleteSongPlaylist, update_playlist };
 
 };

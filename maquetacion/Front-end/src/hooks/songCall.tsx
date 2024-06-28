@@ -1,6 +1,11 @@
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
+// ========================================================================
+// ==================  SONG CALLS  =======================================
 export const songCall = () => {
+
+    // ========================================================================
+    // Buscar audio
     const searchAudio = async (directory:string, key:string): Promise<any> => {
 
         try{
@@ -15,7 +20,10 @@ export const songCall = () => {
             return [];
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Retornar funciones
     return { searchAudio };
 };
 

@@ -18,14 +18,23 @@ import "../../../theme/ion.css";
 import "../../../theme/text.css";
 import "../../../theme/icon.css";
 
+// ========================================================================
+// Página de la lista de canciones
 const PlaylistSongs: React.FC = () =>{
+
+    // Obtener el id de la canción
     const { id } = useParams<{id: string}>();
     const location = useLocation<{ list: any[], index: number, game: boolean }>();
+
+    // Llamar a la constante de la historia
     const history = useHistory();
+
+    // Llamar a la constante de la API
     const { searchDataId } = apiCall();
     const { searchAudio } = songCall();
     const { addSongPlaylist, getPlaylistUser } = UsersCall();
 
+    // Datos de la lista de canciones
     const [list , setList] = useState<any[]>([]);
     const [currentIndex, setIndex] = useState<number>(0);
     const [header, setHeader] = useState<string>('')
@@ -36,6 +45,7 @@ const PlaylistSongs: React.FC = () =>{
     const [isGame, setIsGame] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    // Datos de la canción actual
     const [playlist, setPlaylist] = useState<any[]>([]);
     const [current, setCurrent] = useState<any>({
         _id: "",
@@ -45,9 +55,12 @@ const PlaylistSongs: React.FC = () =>{
         url: ""
     });
 
+    // Datos de la lista de canciones
     const [songList, setSongList] = useState<any[]>([]);
     const [currentSong, setCurrentSong] = useState<string>('');
 
+    // ========================================================================
+    // Obtener los datos de la lista de canciones
     useEffect( () => {
 
         const fetchData = async () => {
@@ -95,7 +108,10 @@ const PlaylistSongs: React.FC = () =>{
         fetchData();
         
     }, [location.state]);
+    // ========================================================================
 
+    // ========================================================================
+    // Función para ir a la siguiente canción
     const handleNext = () => {
         if(currentIndex < list.length - 1){
             setIndex(currentIndex + 1);
@@ -103,7 +119,10 @@ const PlaylistSongs: React.FC = () =>{
             setCurrentSong(songList[currentIndex + 1]);
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Función para ir a la canción anterior
     const handlePrev = () => {
         if(currentIndex > 0){
             setIndex(currentIndex - 1);
@@ -111,7 +130,10 @@ const PlaylistSongs: React.FC = () =>{
             setCurrentSong(songList[currentIndex - 1]);
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Función para añadir una canción a la lista de reproducción
     const addSong = async (name:string, id: string) => {
         console.log(id);
         try{
@@ -132,15 +154,27 @@ const PlaylistSongs: React.FC = () =>{
             setAlertOpen(true);
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Función para regresar
     const getBack = () => {history.push('/home');}
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado de la página
     return(
         <IonContent className="ion-padding ion-grad">
+
+            {/* Cabecera de la página */}
             <IonHeader className="no-shadow flex-row flex-between">
+
+                {/* Botón para regresar */}
                 <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent"  onClick={() => getBack()}>
                     <IonIcon slot="icon-only" icon={chevronBackOutline}/>
                 </IonButton>
+
+                {/* Botón para añadir a la lista de reproducción */}
                 {isGame &&
                     <>
                         <IonButton onClick={() => setIsOpen(true)} className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent">
@@ -165,10 +199,13 @@ const PlaylistSongs: React.FC = () =>{
                         />
                     </>
                 }
+
         </IonHeader>
 
+        {/* Contenido de la página */}
         <div className="flex-column flex-center align-center gap-15-px">
 
+                {/* Datos del juego */}
                 <div className="flex-column flex-center align-center ion-padding">
                     <img src={current.url} alt="Album Cover" className="border-circle-15" />
                     <h2>{current.name}</h2>
@@ -176,7 +213,8 @@ const PlaylistSongs: React.FC = () =>{
                 </div>
 
             </div>
-
+            
+            {/* Botones de control */}
             {isGame &&
                 <IonPopover isOpen={popOveropen} onDidDismiss={() => setPopOverOpen(false)}>
                     <IonList>
@@ -187,6 +225,7 @@ const PlaylistSongs: React.FC = () =>{
                 </IonPopover>
             }
 
+            {/* Reproductor de audio */}
             <AudioPlayer 
                 className="player"
                 autoPlay={false}
@@ -199,6 +238,7 @@ const PlaylistSongs: React.FC = () =>{
                 autoPlayAfterSrcChange={false}
             />
 
+            {/* Alerta */}
             <IonAlert
                 isOpen={alertOpen}
                 onDidDismiss={() => setAlertOpen(false)}

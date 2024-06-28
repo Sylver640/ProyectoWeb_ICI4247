@@ -24,8 +24,14 @@ import { Capacitor } from "@capacitor/core";
 import { Filesystem } from "@capacitor/filesystem";
 import {UsersCall} from "../../../hooks/usersCall";
 
+// ========================================================================
+// Pagina de playlist
 const Playlist = () => {
+
+    // Llamar a la constante de la historia
     const history = useHistory();
+
+    // Datos de la playlist
     const [url, setUrl] = useState<string>('');
     const [name, setName] = useState<string>('');
     const { id } = useParams<{id: string}>();
@@ -33,9 +39,13 @@ const Playlist = () => {
     const [header, setHeader] = useState<string>('');
     const [message, setMessage] = useState<string>('');
     const [alertOpen, setAlertOpen] = useState<boolean>(false);
-    const { getlistPlaylist, getPlaylist_byId, deletePlaylist, deleteSongPlaylist, update_playlist } = UsersCall();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    // Llamar a la constante de la API
+    const { getlistPlaylist, getPlaylist_byId, deletePlaylist, deleteSongPlaylist, update_playlist } = UsersCall();
+    
+    // ========================================================================
+    // Obtener los datos de la playlist
     useEffect( () => {
         const fetchData = async () => {
             try{
@@ -52,18 +62,27 @@ const Playlist = () => {
 
         fetchData();
     }, []);
+    // ========================================================================
 
+    // ========================================================================
+    // Función para regresar
     const getBack = () => {
         history.push("/menu");
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Función para ir a la canción
     const goTo = (id: string, position:number) => {
         history.push({
             pathname:`/tunebytes/playlist/songs/${id}`,
             state: {list: list, index: position, game: false}
         });
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Función para eliminar la playlist
     const delplatlist = async () => {
         try{
 
@@ -91,7 +110,10 @@ const Playlist = () => {
             console.log(e);
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Función para eliminar una canción
     const deleteSong = async (id: string) => {
         try{
             const response = await deleteSongPlaylist(name, id);
@@ -111,7 +133,10 @@ const Playlist = () => {
             setAlertOpen(true);
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Función para cambiar la foto
     const changePhoto = async () => {
         const platform = Capacitor.getPlatform();
 
@@ -170,39 +195,43 @@ const Playlist = () => {
                 return;
             }
         }
-
-        try{
-            
-
-
-        }catch(e){
-            console.log(e);
-        }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado de la página
     return(
         <IonContent className="ion-grad flex-column gap-15-px">
-
+    
+            {/* Botón para regresar */}
             <div className="flex-row flex-start">
                 <IonButton slot="start" className="ion-border-circle no-shadow ion-main-bg ion-txt-look ion-transparent"  onClick={() => getBack()}>
                     <IonIcon slot="icon-only" icon={chevronBackOutline}/>
                 </IonButton>
             </div>
 
+            {/* Contenido de la página */}
             <div className="width-100-pe flex-column flex-center align-center gap-15-px">
 
+                {/* Foto de la playlist */}
                 <IonCard className="width-70-pe">
                     <IonImg src={url} className="ion-border-circle-15" alt="foto playlist"/>
                 </IonCard>
                 
+                
                 <div className="flex-row flex-between align-center width-70-pe">
+
+                    {/* Nombre de la playlist */}
                     <IonText className="font-bold">{name}</IonText>
 
+                    {/* Botón para opciones */}
                     <IonButton slot="start" className="ion-border-circle no-shadow ion-transparent" onClick={() => setIsOpen(true)}>
                         <IonIcon slot="icon-only" icon={ellipsisVertical}/>
                     </IonButton>
+
                 </div>
 
+                {/* Popover de opciones */}                
                 <IonPopover isOpen={isOpen} dismissOnSelect={true} onDidDismiss={() => setIsOpen(false)}>
                     <IonList>
                         <IonItem button detail={false} onClick={() => delplatlist()}>
@@ -216,6 +245,7 @@ const Playlist = () => {
                     </IonList>
                 </IonPopover>
 
+                {/* Lista de canciones */}
                 <IonList className="width-100-pe no-shadow opaque-total ion-padding">
                     {list.map((item, indentation) => {
 
@@ -241,9 +271,11 @@ const Playlist = () => {
                     })}
 
                 </IonList>
-
+                
+                {/* Opaque total */}
                 <div className="opaque-total icon-min"></div>
 
+                {/* Alerta */}
                 <IonAlert
                     isOpen={alertOpen}
                     onDidDismiss={() => setAlertOpen(false)}

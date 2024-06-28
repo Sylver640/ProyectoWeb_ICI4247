@@ -23,15 +23,25 @@ import "../../theme/ion.css";
 import "../../theme/text.css";
 import "../../theme/icon.css";
 
+// ========================================================================
+// Página de búsqueda
 const Search = () => {
+
+    // Llamar a la constante de la API
     const { searchData } = useApi();
+
+    // Datos de la búsqueda
     const [selectedOption, setSelectedOption] = useState<string>('songs');
     const [songList, setSongList] = useState<any[]>([]);
     const [gameList, setGameList] = useState<any[]>([]);
     const [results, setResults] = useState<any[]>([]);
     const [url, setUrl] = useState<string>('');
+
+    // Llamar a la constante de la historia
     const history = useHistory();
 
+    // ========================================================================
+    // Obtener los datos de las canciones y juegos
     useEffect(() => {
         const fetchData = async () => {
             try{
@@ -51,7 +61,10 @@ const Search = () => {
 
         fetchData();
     }, []);
+    // ========================================================================
 
+    // ========================================================================
+    // Función para manejar el botón de búsqueda
     const  handleButtonClick = (option: string) => {
         setSelectedOption(option);
 
@@ -61,7 +74,11 @@ const Search = () => {
             setResults(selectRandomElement(gameList, 2));
         }
     }
+    // ========================================================================
 
+
+    // ========================================================================
+    // Función para manejar la búsqueda
     const handleInput = (e: any) => {
         const target = e.target as HTMLIonSearchbarElement;
         const query = target?.value?.toLowerCase() || '';
@@ -72,28 +89,46 @@ const Search = () => {
             setResults(gameList.filter(game => game.name.toLowerCase().includes(query)));
         }
     }
+    // ========================================================================
 
+
+    // ========================================================================
+    // Función para navegar a la página de la canción o juego
     const handleNavigate = (id: string) => {{
         history.push(`/tunebytes/${selectedOption}/${id}`);
     }}
+    // ========================================================================
 
+    // ========================================================================
+    // Función para seleccionar elementos aleatorios
     const selectRandomElement = (list:any[], count:number) => {
         const shuffled = [...list].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, count);
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado de la página
     return (
         <IonContent className='ion-grad'>
+
+            {/* Cabecera de la página */}
             <IonHeader>
+
                 <div className='flex-column padding-top-15'>
                     <div className='flex-row ion-padding'>
+
+                        {/* Avatar de la página */}
                         <IonAvatar className="icon-min width-max height-max">
                             <IonImg className="width-max height-max" src={url} />
                         </IonAvatar>
 
+                        {/* Título de la página */}
                         <IonTitle className='font-size-25'>Search</IonTitle>
+
                     </div>
 
+                    {/* Barra de búsqueda */}
                     <IonToolbar className='ion-main-bg'>
                         <IonSearchbar 
                             className='ion-wff-bg ion-txt-look ion-border-circle-15'
@@ -103,6 +138,7 @@ const Search = () => {
                         ></IonSearchbar>
                     </IonToolbar>
                 </div>
+
             </IonHeader>
 
             <div className="flex-column flex-center ion-padding gap-5-px">
@@ -126,6 +162,7 @@ const Search = () => {
 
             </div>
 
+            {/* Lista de resultados */}
             <IonList className='no-shadow opaque-total ion-margin'>
                 {results.map((item, index) => {
                     return(

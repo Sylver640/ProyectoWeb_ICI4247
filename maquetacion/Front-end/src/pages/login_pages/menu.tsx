@@ -9,10 +9,14 @@ import {pages} from "../../Data";
 // Import de los themes de css
 import "../../theme/ion.css";
 
+// ========================================================================
+// Menú de la aplicación
 const Menu = () => {
 
     return (
         <IonApp>
+
+            {/*Router de la aplicacion*/}
             <IonReactRouter>
                 <IonTabs className="flex-row flex-center align-center">
                     <IonRouterOutlet>

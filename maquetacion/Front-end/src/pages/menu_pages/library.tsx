@@ -31,6 +31,8 @@ import "../../theme/ion.css";
 import "../../theme/text.css";
 import "../../theme/icon.css";
 
+
+// Modal para crear una nueva playlist
 const ModalPlaylist = ({ dismiss }: { dismiss: (data?: string | null | undefined | number, role?: string) => void }) => {
     const inputRef = useRef<HTMLIonInputElement>(null);
     return (
@@ -64,19 +66,32 @@ const ModalPlaylist = ({ dismiss }: { dismiss: (data?: string | null | undefined
       </IonPage>
     );
   };
+// ========================================================================
 
+// ========================================================================
+// Función para mostrar la biblioteca de playlists
 const library = () => {
-    const [playlists, setPlaylists] = useState<any[]>([]);
+    
+    // Llamada a la función de crear una playlist
     const [present, dismiss] = useIonModal(ModalPlaylist, {
         dismiss: (data: string, role: string) => dismiss(data, role),
     });
+
+    // Llamada a la función de la API
     const {getPlaylistUser, createPlaylist} = UsersCall();
+
+    // Variables de estado
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [alertMessage, setAlertMessage] = useState<string>('');
+    const [playlists, setPlaylists] = useState<any[]>([]);
     const [header, setHeader] = useState<string>('');
-    const history = useHistory();
     const [url, setUrl] = useState<string>('');
 
+    // Hook para redireccionar
+    const history = useHistory();
+
+    // ========================================================================
+    // Función para obtener las playlists del usuario
     useEffect(() => {
       const fetchList = async () => {
           try{
@@ -93,8 +108,11 @@ const library = () => {
       }
 
       fetchList();
-  }, []);
+    }, []);
+    // ========================================================================
 
+    // ========================================================================
+    // Función para agregar una playlist
     const addPlaylist = async (name: string) => {
         let id = useLocalStorage('id').getValue();
 
@@ -115,7 +133,10 @@ const library = () => {
             setShowAlert(true);
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Función para abrir el modal
     const openModal = () => {
         present({
             onWillDismiss: (ev: CustomEvent<OverlayEventDetail>) => {
@@ -125,28 +146,40 @@ const library = () => {
             },
         });
     };
+    // ========================================================================
 
 
+    // ========================================================================
+    // Función para redireccionar
     const goto = (path: string) => {
       history.push(path);
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado de la página
     return (
         <IonContent className="ion-grad">
             <div className="flex-column">
+
+                {/* Header de la página */}
                 <div className="ion-padding flex-row align-center flex-between">
+
+                    {/* Avatar del usuario */}
                     <IonAvatar className='icon-mid'>
                             <IonImg src={url} />
                     </IonAvatar>
                     
                     <div className="font-size-25 font-bold">Playlists</div>
-
+                        
+                        {/* Botón para crear una playlist */}
                         <IonButton className="ion-main-look" aria-label="Favorite" shape="round" size="small" fill="solid" onClick={() => openModal()}>
                             <IonIcon icon={addCircleSharp} aria-hidden="true" className="font-size-20"/>
                         </IonButton>
 
                     </div>
 
+                {/* Lista de playlists */}
                 <IonList className='opaque-total'>
                   {playlists.map((card) => {
                       return(
@@ -161,11 +194,13 @@ const library = () => {
                           </IonCard>
                       );
                   })}
-              </IonList>
+                </IonList>
 
-              <div className="opaque-total icon-min"></div>
-
-              <IonAlert
+                {/* Espacio en blanco */}
+                <div className="opaque-total icon-min"></div>
+            
+                {/* Alerta */}
+                <IonAlert
                     isOpen={showAlert}
                     onDidDismiss={() => setShowAlert(false)}
                     header={header}

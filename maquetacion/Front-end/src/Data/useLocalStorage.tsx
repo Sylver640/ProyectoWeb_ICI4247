@@ -1,4 +1,9 @@
+// ========================================================================
+// This file contains the custom hook for local storage
 export const useLocalStorage = (key: string) => {
+
+    // ========================================================================
+    // Guardar valor en local storage
     const setValue = (value : unknown) => {
         try{
             window.localStorage.setItem(key, JSON.stringify(value));
@@ -7,7 +12,10 @@ export const useLocalStorage = (key: string) => {
             console.error(e);
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Obtener valor de local storage
     const getValue = () => {
         try{
             const item = window.localStorage.getItem(key);
@@ -18,6 +26,9 @@ export const useLocalStorage = (key: string) => {
             return undefined;
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Retornar funciones
     return { setValue , getValue }
 }

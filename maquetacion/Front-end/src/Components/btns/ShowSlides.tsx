@@ -4,10 +4,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import React from 'react';
 
+// Import de los themes css
 import 'swiper/css';
 import '@ionic/react/css/ionic-swiper.css';
 import 'swiper/css/pagination';
 
+// ========================================================================
+// Componente de la lista de canciones
 interface ShowSlidesProps {
     clases?: string;
     tipo: 'games' | 'songs';
@@ -16,18 +19,31 @@ interface ShowSlidesProps {
     spaceBetween: number;
     SlidesPerView: number;
 }
+// ========================================================================
 
+// ========================================================================
+// Componente de la lista de canciones
 const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type, spaceBetween, SlidesPerView}) => {
+
+    // Llamar a la constante de la historia
     const history = useHistory();
 
+    // ========================================================================
+    // Función para navegar
     const handleNavigate = (cardId: string) => {{
         history.push(`/tunebytes/${tipo}/${cardId}`);
     }}
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado del componente
     return(
             <div>
+
+                {/* Título */}
                 <div className="text-left font-size-25 ion-padding font-bold">{title}</div>
 
+                {/* Swiper */}
                 <div className="flex-row flex-nowrap overflow-x-auto"> 
 
                 <Swiper
@@ -37,7 +53,8 @@ const ShowSlides: React.FC<ShowSlidesProps> = ({clases, tipo, title, type, space
                     pagination={{ clickable: true }}
                     className='mySwiper'
                 >
-
+                    
+                    {/* Mapeo de las canciones */}
                     {type.map((card) => {
                         return (
                             

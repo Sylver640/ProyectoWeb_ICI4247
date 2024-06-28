@@ -13,18 +13,30 @@ import "../../theme/ion.css";
 import "../../theme/text.css";
 import "../../theme/icon.css";
 
+// ========================================================================
+// Página de configuración
 const Settings = () => {
+
+    // Datos del usuario
     const [email, setEmail] = useState<string>('');
     const [url, setUrl] = useState<string>('');
+
+    // Llamar a la constante de la API
     const {update_user} = UsersCall();
 
+    // ========================================================================
+    // Obtener los datos del usuario
     useEffect(() => {
         let email = useLocalStorage('user').getValue();
         setEmail(email);
         let url = useLocalStorage('url').getValue();
         setUrl(url);
     },[]);
+    // ========================================================================
 
+
+    // ========================================================================
+    // Seleccionar imagen
     const selectImage = async () => {
         const platform = Capacitor.getPlatform();
 
@@ -79,7 +91,10 @@ const Settings = () => {
             }
         }
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizar la página
     return (
         <IonContent>
             <div>

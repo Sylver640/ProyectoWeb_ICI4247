@@ -30,17 +30,23 @@ import "../../theme/icon.css";
 
 const Home = () => {
 
-    // Llamar a la constante de la API
+    // Llamar a la constantes de la API
     const { searchData } = useApi();
     const {getUserByEmail} = UsersCall();
+
+    // Datos del usuario   
     const [name, setName] = useState<string>('');
     const [url, setUrl] = useState<string>('');
     const [gamelist, setGameList] = useState<any[]>([]);
+
+    // Llamar a la constante de la historia
     const history = useHistory();
 
     // Data de canciones
     const [songs, setSongs] = useState<any>([]);
 
+    // ========================================================================
+    // Obtener los datos del usuario
     useEffect(()=>{
         const fetchData = async () => {
             try{
@@ -68,11 +74,19 @@ const Home = () => {
 
         fetchData();
     }, []);
+    // ========================================================================
 
+
+    // ========================================================================
+    // Redireccionar la pagina
     const goTo = (path: string) => {
         history.push(path);
     }
+    // ========================================================================
 
+
+    // ========================================================================
+    // Cerrar la sesion del usuario
     const getBack = () => {
         if(useLocalStorage('rememberMe').getValue() === 'true'){ 
             useLocalStorage('rememberMe').setValue('false');
@@ -80,7 +94,9 @@ const Home = () => {
 
         history.push("/login");
     }
+    // ========================================================================
 
+    // Pagina Home
     return (
         <>  
             {/* Menu de la aplicacion */}
@@ -164,6 +180,7 @@ const Home = () => {
                         </div>
                     </div>
 
+                    {/* Mostrando una caja naranja */}
                     <div className="width-100-pe height-120"></div>
 
                 </IonContent>

@@ -194,7 +194,7 @@ const SignIn: React.FC = () =>{
     //-----------------------------------------
 
 
-    //Validación de contraseña
+    // Validación de contraseña
     const validarPassowrd = (e:Event) => {
         const value = (e.target as HTMLInputElement).value;
 
@@ -216,6 +216,7 @@ const SignIn: React.FC = () =>{
         setIsValidPassword(Object.values(passwordValidation).every(Boolean));
     };
 
+    // Validación de confirmación de contraseña
     const validationConfrim = (e:Event) => {
         const value = (e.target as HTMLInputElement).value;
 
@@ -226,6 +227,7 @@ const SignIn: React.FC = () =>{
         (value === password) ? setConfirmPassword(true):setConfirmPassword(false);
     };
 
+    // Resetear validaciones de contraseña
     const resetValidations = () => {
         setPasswordValidation(initialValidationState);
     };

@@ -4,10 +4,18 @@ import {chevronBackOutline} from "ionicons/icons";
 import {UsersCall} from "../../hooks/usersCall";
 import { useHistory } from 'react-router-dom';
 
+// ========================================================================
+// Página de recuperar contraseña
 const Forgot = () => {
+
+    // Llamar a la constante de la historia
     const history = useHistory();
+
+    // Llamar a la constante de la API
     const {getUserByEmail, update_user} = UsersCall();
     const [email, setEmail] = useState<string>('');
+
+    // Declaración de variables
     const [canUpdate, setCanUpdate] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
     const [header, setHeader] = useState<string>('');
@@ -35,15 +43,23 @@ const Forgot = () => {
     const number_validate = /\d/;
     const specialChar_validate = /[^A-Za-z0-9]/;
 
+    // ========================================================================
+    // Función para regresar
     const getBack = () => {
         history.goBack();
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Función para manejar el email
     const handleEmail = async (e: any) => {
         const value = (e.target as HTMLInputElement).value;
         setEmail(value);
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Validar el email
     const validate = async () => {
         try{
             const user = await getUserByEmail(email);
@@ -60,7 +76,9 @@ const Forgot = () => {
             console.log(e);
         }
     }
+    // ========================================================================
 
+    // ========================================================================
     //Validación de contraseña
     const validarPassowrd = (e:Event) => {
         const value = (e.target as HTMLInputElement).value;
@@ -82,16 +100,24 @@ const Forgot = () => {
     
         setIsValidPassword(Object.values(passwordValidation).every(Boolean));
     };
+    // ========================================================================
     
+    // ========================================================================
+    // Resetear las validaciones
     const resetValidations = () => {
         setPasswordValidation(initialValidationState);
     };
+    // ========================================================================
 
+    // ========================================================================
     // Si un input es tocado
     const markTouched = () => {
         setIsTouched(true);
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Actualizar la contraseña
     const handleUpdate = async () => {
 
         if(isValidPassword){
@@ -116,20 +142,31 @@ const Forgot = () => {
         }
 
     }
+    // ========================================================================
 
+    // ========================================================================
+    // Renderizado de la página
     return(
         <IonPage>
             <IonContent>
+
+                {/* Cabecera de la página */}
                 <div className='flex-row flex-between'>
+
+                    {/* Botón para regresar */}
                     <IonButton className='ion-border-circle ion-main-bg no-shadow ion-txt-look ion-margin width-10-pe' slot='start' onClick={() => getBack()}>
                         <IonIcon slot="icon-only" icon={chevronBackOutline}/>
                     </IonButton>
 
+                    {/* Título de la página */}
                     <h1 className='look-txt font-bold width-90-pe'>Reset your password</h1>
+
                 </div>
                 
+                {/* Contenido de la página */}
                 <div className='flex-column flex-center align-center ion-padding ion-margin'>
 
+                    {/* Sección del correo */}
                     <div className='flex-column flex-center gap-15-px align-center'>
                         <p className='font-bold'>Enter your email, and we will send you a link to get back into your account.</p>
 
@@ -148,6 +185,7 @@ const Forgot = () => {
 
                 </div>
 
+                {/* Sección de cambio de contraseña */}
                 {canUpdate &&
                     <div className='flex-column flex-start align-center gap-15-px'>
 
@@ -185,6 +223,7 @@ const Forgot = () => {
 
                     </div>
                 }
+                
             </IonContent>            
         </IonPage>
 

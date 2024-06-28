@@ -1,7 +1,11 @@
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
+// ========================================================================
+// ==================  API CALLS  =======================================
 export const apiCall = () => {
 
+    // ========================================================================
+    // Buscar datos
     const searchData = async (type:string, query: string): Promise<any> => {
         try{
 
@@ -29,7 +33,10 @@ export const apiCall = () => {
 
         };
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Buscar datos por id
     const searchDataId = async (query:string, type:string): Promise<any> => {
         try{
 
@@ -48,7 +55,10 @@ export const apiCall = () => {
             console.error('Something is wrong: ',error);
         }
     };
+    // ========================================================================
 
+    // ========================================================================
+    // Retornar funciones
     return { searchData , searchDataId };
 
 };
